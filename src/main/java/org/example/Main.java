@@ -1,19 +1,52 @@
 package org.example;
+import interfaces.IService;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
+import entities.Personnes;
+import services.PersonneService;
+import tools.MyConnection;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Entrée with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        try {
+            // Establish database connection
+            MyConnection connection = new MyConnection();
 
-        // Press Maj+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+            // Create IService instance
+            IService<Personnes> personneService = new PersonneService(connection.getConnection());
 
-            // Press Maj+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+            // Test Update operation
+            System.out.println("Updating a Personne...");
+            // Suppose you have an existing Personne with ID 1 in the database
+            Personnes existingPersonne = new Personnes(1, "taher", "ezzine");
+            existingPersonne.setNom("Abdou");
+            existingPersonne.setPrenom("Bouafif");
+            personneService.updatePerson(existingPersonne);
+            System.out.println("Personne updated successfully: " + existingPersonne);
+
+            // Test Read operation
+            System.out.println("Retrieving all Personnes...");
+            List<Personnes> personnesList = personneService.getData();
+            for (Personnes personne : personnesList) {
+                System.out.println(personne);
+            }
+
+            // Test Delete operation
+            System.out.println("Deleting a Personne...");
+            // Suppose you want to delete the same Personne with ID 1
+            personneService.deletePerson(2);
+            System.out.println("Personne deleted successfully");
+
+            // Close database connection
+            connection.closeConnection();
+        } catch (SQLException e) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, "SQL Exception occurred: " + e.getMessage());
         }
     }
-}
+    }
