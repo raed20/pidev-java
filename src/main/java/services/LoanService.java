@@ -6,7 +6,10 @@ import tools.MyConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class LoanService implements ILoanService<Pret> {
@@ -14,10 +17,14 @@ public class LoanService implements ILoanService<Pret> {
     public void addLoan(Pret pret) throws Exception {
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
-            String query = "INSERT INTO pret (gender, married, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_amount_term, credit_history, property_area, loan_status) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO pret (gender, married, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_amount_term, credit_history, property_area, loan_status , idBank) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?)";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 Scanner scanner = new Scanner(System.in);
+
+                System.out.println("Enter id of bank:");
+                int bankId = scanner.nextInt();
+                scanner.nextLine(); // Consume the newline character
 
                 System.out.println("Enter gender:");
                 String gender = scanner.nextLine();
@@ -73,6 +80,8 @@ public class LoanService implements ILoanService<Pret> {
                 statement.setInt(10, creditHistory);
                 statement.setString(11, propertyArea);
                 statement.setString(12, loanStatus);
+                statement.setInt(13, bankId);
+
 
                 statement.executeUpdate();
                 System.out.println("Pret ajouté");
@@ -82,6 +91,8 @@ public class LoanService implements ILoanService<Pret> {
         } finally {
             myConnection.closeConnection();
         }
+        new GMailer().sendMail("Loan Application ","Congratulations ! your loan application has been submitted successfully .");
+
     }
 
     @Override
@@ -175,5 +186,40 @@ public class LoanService implements ILoanService<Pret> {
             myConnection.closeConnection();
         }
     }
+
+    @Override
+    public List<Pret> getDataLoan() throws Exception {
+        List<Pret> pretList = new ArrayList<>();
+        MyConnection myConnection = new MyConnection();
+        try (Connection connection = myConnection.getConnection()) {
+            String query = "SELECT * FROM pret";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Pret pret = new Pret();
+                    pret.setId(resultSet.getInt("id"));
+                    pret.setGender(resultSet.getString("gender"));
+                    pret.setMarried(resultSet.getString("married"));
+                    pret.setDependents(resultSet.getInt("dependents"));
+                    pret.setEducation(resultSet.getString("education"));
+                    pret.setSelfEmployed(resultSet.getString("self_employed"));
+                    pret.setApplicantIncome(resultSet.getInt("applicant_income"));
+                    pret.setCoapplicantIncome(resultSet.getInt("coapplicant_income"));
+                    pret.setLoanAmount(resultSet.getInt("loan_amount"));
+                    pret.setLoanAmountTerm(resultSet.getInt("loan_amount_term"));
+                    pret.setCreditHistory(resultSet.getInt("credit_history"));
+                    pret.setPropertyArea(resultSet.getString("property_area"));
+                    pret.setLoanStatus(resultSet.getString("loan_status"));
+
+                    pretList.add(pret);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pretList;
+    }
+
 }
+
 

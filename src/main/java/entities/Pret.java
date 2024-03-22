@@ -150,4 +150,7 @@ public class Pret {
         this.loanStatus = loanStatus;
     }
     // (omitted for brevity)
+
+
 }
+
