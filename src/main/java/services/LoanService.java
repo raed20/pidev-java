@@ -17,11 +17,13 @@ public class LoanService implements ILoanService<Pret> {
     public void addLoan(Pret pret) throws Exception {
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
-            String query = "INSERT INTO pret (gender, married, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_amount_term, credit_history, property_area, loan_status , idBank) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?)";
+            String query = "INSERT INTO pret (gender, married, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_amount_term, credit_history, property_area, loan_status , idBank , idUser) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ? , ?)";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 Scanner scanner = new Scanner(System.in);
 
+                int idUser=1;
+                System.out.println("user number : "+idUser);
                 System.out.println("Enter id of bank:");
                 int bankId = scanner.nextInt();
                 scanner.nextLine(); // Consume the newline character
@@ -81,6 +83,7 @@ public class LoanService implements ILoanService<Pret> {
                 statement.setString(11, propertyArea);
                 statement.setString(12, loanStatus);
                 statement.setInt(13, bankId);
+                statement.setInt(14, idUser);
 
 
                 statement.executeUpdate();
