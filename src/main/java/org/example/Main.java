@@ -1,19 +1,132 @@
 package org.example;
+// import interfaces.IService;
+import interfaces.UService;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
+// import entities.Personnes;
+// import services.PersonneService;
+
+import entities.Utilisateurs;
+import services.UtilisateurService;
+
+import tools.MyConnection;
+
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.List;
+import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Entrée with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        try {
+            // Establish database connection
+            MyConnection connection = new MyConnection();
 
-        // Press Maj+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+            // Create IService instance
+            // IService<Personnes> personneService = new PersonneService(connection.getConnection());
 
-            // Press Maj+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+
+            UtilisateurService utilisateurService = new UtilisateurService(connection.getConnection());
+
+            //Update user
+           /* System.out.println("Updating a User...");
+            Utilisateurs UpUser = new Utilisateurs();
+            UpUser.setId(1);
+            UpUser.setLastname("hama");
+            UpUser.setAdresse("tadha");
+            UpUser.setEmail("nvkays@gmail.com");
+            UpUser.setNumtel(0000000);
+            UpUser.setRoles("Client");
+            UpUser.setPassword("112233445566");
+
+            utilisateurService.updateUtilisateur(UpUser);
+
+            System.out.println("Utilisateur mis à jour avec succès.");  */
+
+
+
+
+
+
+
+            //Liste des users
+          /* System.out.println("Liste des utilisateurs :");
+            List<Utilisateurs> utilisateursList = utilisateurService.getData();
+            for (Utilisateurs user : utilisateursList) {
+                System.out.println("ID : " + user.getId());
+                System.out.println("Nom : " + user.getLastname());
+                System.out.println("Email : " + user.getEmail());
+                System.out.println("Numéro de téléphone : " + user.getNumtel());
+                System.out.println("Adresse : " + user.getAdresse());
+                System.out.println("Roles : " + user.getRoles());
+                System.out.println("Mot de passe : " + user.getPassword());
+                System.out.println();
+            } */
+
+
+
+
+
+
+            //AddUser
+         /*    Utilisateurs nvUser = new Utilisateurs();
+            nvUser.setLastname("h");
+            nvUser.setAdresse("sdgbdg");
+            nvUser.setEmail("hssssssssss@gmail.com");
+            nvUser.setNumtel(4526526);
+            nvUser.setRoles("admin");
+            nvUser.setPassword("123456789");
+            utilisateurService.addUtilisateur(nvUser);
+            System.out.println("user added succes");   */
+
+
+
+
+
+
+            // Delete user
+             System.out.println("Deleting a User...");
+            utilisateurService.deleteUtilisateur(3);
+            System.out.println("User deleted successfully");
+
+
+
+
+
+            // Suppose you have an existing Personne with ID 1 in the database
+            //Personnes existingPersonne = new Personnes(1, "taher", "ezzine");
+            //existingPersonne.setNom("Abdou");
+            //existingPersonne.setPrenom("Bouafif");
+            // personneService.updatePerson(existingPersonne);
+            // System.out.println("Personne updated successfully: " + existingPersonne);
+
+            // Test Read operation
+            //  System.out.println("Retrieving all Personnes...");
+            // List<Personnes> personnesList = personneService.getData();
+            // for (Personnes personne : personnesList) {
+            //   System.out.println(personne);
+            //  }
+
+            // Test Delete operation
+            // System.out.println("Deleting a Personne...");
+
+
+            //System.out.println("Deleting a User...");
+
+
+            // Suppose you want to delete the same Personne with ID 1
+            //  personneService.deletePerson(2);
+            //  System.out.println("Personne deleted successfully");
+
+
+
+
+            // Close database connection
+            connection.closeConnection();
+
+
+        } catch (SQLException e) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, "SQL Exception occurred: " + e.getMessage());
         }
     }
 }
