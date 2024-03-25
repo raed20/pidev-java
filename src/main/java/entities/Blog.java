@@ -5,7 +5,7 @@ public class Blog {
     private int id;
     private String Title;
     private String Description;
-    private String Content;
+    private int Content;
 
     public Blog() {
     }
