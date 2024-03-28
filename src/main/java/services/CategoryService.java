@@ -7,10 +7,16 @@ import tools.MyConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CategoryService implements IService<Category> {
 
-    Connection connection= MyConnection.getInstance().getConnection();
+    private MyConnection connection;
+    private static final Logger LOGGER = Logger.getLogger(MyConnection.class.getName());
+
+    public CategoryService(MyConnection connection) {
+        this.connection = connection;
+    }
 //    @Override
 //    public void add(Category category){
 //        String req="INSERT INTO `category`(`name`) VALUES ('"+category.getName()+"')";

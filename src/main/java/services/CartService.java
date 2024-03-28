@@ -12,13 +12,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class CartService implements IService<Cart> {
 
-    private final Connection connection;
+    private MyConnection connection;
+    private static final Logger LOGGER = Logger.getLogger(MyConnection.class.getName());
 
-    public CartService() {
-        this.connection = MyConnection.getInstance().getConnection();
+    public CartService(MyConnection connection) {
+        this.connection = connection;
     }
 
     @Override

@@ -14,8 +14,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
-       MyConnection cnx=MyConnection.getInstance();
-        MyConnection cnx1=MyConnection.getInstance();
+       MyConnection cnx=new MyConnection();
        // MyConnection cnx1=new MyConnection();
 
 //        CategoryService cs=new CategoryService();
@@ -60,7 +59,7 @@ public class Main {
 //        System.out.println(productService.getOne(13));
 //        productService.delete(10);
 
-        ProductService productService=new ProductService();
+        ProductService productService=new ProductService(cnx);
         Product product1 = productService.getOne(14);
         Product product2 = productService.getOne(15);
 
@@ -69,7 +68,7 @@ public class Main {
         products.put(product1, 2);
         products.put(product2, 3);
         Cart cart = new Cart(products);
-        CartService cartService = new CartService();
+        CartService cartService = new CartService(cnx);
         //cartService.add(cart);
      cart.getProducts().put(product1, 15);
      cartService.update(cart);
