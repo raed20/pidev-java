@@ -55,10 +55,6 @@
             <artifactId>json</artifactId>
             <version>20231013</version> <!-- or the latest version -->
         </dependency>
-
-
-
-
         <dependency>
 
             <groupId>com.stripe</groupId>
@@ -89,4 +85,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 49b992702315cb99e5cc9a208471d860be962c3f
 </project>
