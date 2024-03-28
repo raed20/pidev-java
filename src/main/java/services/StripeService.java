@@ -1,10 +1,10 @@
 package services;
+
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 
-import java.util.Arrays;
 public class StripeService {
     private final String stripeSecretKey;
 

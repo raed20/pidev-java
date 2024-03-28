@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.PolygonController">
+
+    <center>
+        <TableView fx:id="tableView">
+            <columns>
+
+                <TableColumn text="Open" fx:id="openColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="open"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="High" fx:id="highColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="high"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Low" fx:id="lowColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="low"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Close" fx:id="closeColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="close"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Volume" fx:id="volumeColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="volume"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- Define the resultText object outside the BorderPane -->
+    <bottom>
+        <Text fx:id="resultText" />
+    </bottom>
+
+</BorderPane>
