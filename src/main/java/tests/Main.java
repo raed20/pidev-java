@@ -1,14 +1,8 @@
 package tests;
-import java.util.List;
-import java.util.Scanner;
-import java.sql.Connection;
 
-import entities.Bank;
 import entities.Pret;
-import services.BankService;
-import services.GMailer;
 import services.LoanService;
-import tools.MyConnection;
+import weka.classifiers.Classifier;
 
 public class Main {
     public static void main(String[] args) throws Exception {
