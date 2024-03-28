@@ -15,6 +15,7 @@
 
                 <TableColumn fx:id="openColumn" text="Open">
                     <cellValueFactory>
+
                         <PropertyValueFactory property="open" />
                     </cellValueFactory>
                 </TableColumn>
