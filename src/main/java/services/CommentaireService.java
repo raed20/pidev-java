@@ -30,7 +30,7 @@ public class CommentaireService implements interfaces.ICommentaire {
 
     @Override
     public void deleteCommentaire(int id) {
-        String query = "DELETE FROM Commentaire WHERE id = ?";
+        String query = "DELETE FROM commentaire WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.executeUpdate();
