@@ -1,52 +1,64 @@
 package org.example;
-import interfaces.IService;
-
-
-import entities.Personnes;
-import services.PersonneService;
+import entities.Investissement;
+import entities.Opportunite;
+import services.InvestissementService;
+import services.OpportuniteService;
 import tools.MyConnection;
 
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.List;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 public class Main {
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
     public static void main(String[] args) {
+
+        MyConnection connection = new MyConnection();
+        InvestissementService investissementService = new InvestissementService(connection);
+        OpportuniteService opportuniteService = new OpportuniteService(connection);
         try {
-            // Establish database connection
-            MyConnection connection = new MyConnection();
+            Random random = new Random();
 
-            // Create IService instance
-            IService<Personnes> personneService = new PersonneService(connection.getConnection());
+            // Generate random data for Opportunite
+            Opportunite opportunite = new Opportunite();
+            opportunite.setDescription("Description_" + random.nextInt(1000));
+            opportunite.setPrix((float) (random.nextDouble() * 100));
+            opportunite.setName("Opportunite_" + random.nextInt(1000));
+            opportunite.setLastprice((float) (random.nextDouble() * 100));
+            opportunite.setYesterdaychange((float) (random.nextDouble() * 100));
+            opportunite.setMarketcap((float) (random.nextDouble() * 1000));
+            opportuniteService.addOpportunite(opportunite);
+            LOGGER.log(Level.INFO, "Opportunite added successfully.");
 
-            // Test Update operation
-            System.out.println("Updating a Personne...");
-            // Suppose you have an existing Personne with ID 1 in the database
-            Personnes existingPersonne = new Personnes(1, "taher", "ezzine");
-            existingPersonne.setNom("Abdou");
-            existingPersonne.setPrenom("Bouafif");
-            personneService.updatePerson(existingPersonne);
-            System.out.println("Personne updated successfully: " + existingPersonne);
 
-            // Test Read operation
-            System.out.println("Retrieving all Personnes...");
-            List<Personnes> personnesList = personneService.getData();
-            for (Personnes personne : personnesList) {
-                System.out.println(personne);
-            }
+            // Add Opportunite
 
-            // Test Delete operation
-            System.out.println("Deleting a Personne...");
-            // Suppose you want to delete the same Personne with ID 1
-            personneService.deletePerson(2);
-            System.out.println("Personne deleted successfully");
+            // Generate random data for Investissement
+            Investissement investissement = new Investissement();
+            investissement.setMontant((long) (random.nextDouble() * 1000));
+            investissement.setDateInvest(new Date());
+            investissement.setTotalValue((float) (random.nextDouble() * 1000));
+            investissement.setStockName("Stock_" + random.nextInt(1000));
+            investissement.setChangerate((float) random.nextDouble());
+            investissement.setPrice((float) (random.nextDouble() * 100));
 
-            // Close database connection
-            connection.closeConnection();
-        } catch (SQLException e) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, "SQL Exception occurred: " + e.getMessage());
+            // Set the Opportunite for Investissement
+            if (opportunite.getId() != null) {
+            investissement.setOpport(opportunite.getId());}
+
+
+            // Add Investissement
+
+            investissementService.addInvestissement(investissement);
+            LOGGER.log(Level.INFO, "Investissement added successfully.");
+
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "An Exception occurred:", e);
         }
     }
-    }
+}
