@@ -8,14 +8,14 @@ import tools.MyConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class ProductService implements IService<Product> {
-    private final Connection connection;
-    private final CategoryService categoryService;
+    private MyConnection connection;
+    private static final Logger LOGGER = Logger.getLogger(MyConnection.class.getName());
 
-    public ProductService() {
-        connection = MyConnection.getInstance().getConnection();
-        categoryService = new CategoryService();
+    public ProductService(MyConnection connection) {
+        this.connection = connection;
     }
 
     @Override
