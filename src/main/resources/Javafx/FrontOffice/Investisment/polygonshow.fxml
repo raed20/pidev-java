@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="535.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PolygonController">
+   <left>
+      <Pane id="navbar" prefHeight="564.0" prefWidth="200.0" style="-fx-background-color: #3874ff;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="20.0" layoutY="18.0" prefHeight="404.0" prefWidth="156.0" spacing="10.0">
+               <children>
+                  <Pane prefHeight="52.0" prefWidth="156.0">
+                     <children>
+                        <Label layoutX="39.0" layoutY="1.0" text="Prosync" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Button id="navbutton" fx:id="homeButton" mnemonicParsing="false" text="Home" />
+                  <Button id="navbutton" fx:id="investissementButton" layoutX="10.0" layoutY="62.0" mnemonicParsing="false" text="Investissement" />
+                  <Button id="navbutton" fx:id="pretButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="Pret" />
+                  <Button id="navbutton" fx:id="blogButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="Blog" />
+                  <Button id="navbutton" fx:id="stockButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="Stock" />
+                  <Button id="navbutton" fx:id="crmButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="CRM" />
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFF;" />
+            <TableView fx:id="tableView" prefHeight="427.0" prefWidth="786.0">
+               <columns>
+                  <TableColumn fx:id="openColumn" text="Open">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="open" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="highColumn" text="High">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="high" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="lowColumn" text="Low">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="low" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="closeColumn" text="Close">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="close" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="volumeColumn" text="Volume">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="volume" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <Pane prefHeight="58.0" prefWidth="986.0" style="-fx-background-color: #FFFFF;" BorderPane.alignment="CENTER" />
+   </top>
+   <stylesheets>
+      <String fx:value="/Css/Front/Investisment/investissementStyles.css" />
+   </stylesheets>
+</BorderPane>

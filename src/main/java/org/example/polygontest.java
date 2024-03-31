@@ -10,7 +10,7 @@ import java.io.IOException;
 public class polygontest extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/FrontOffice/InvestismentFront/polygonshow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Javafx/FrontOffice/Investisment/polygonshow.fxml"));
         primaryStage.setTitle("Polygon API Demo");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
