@@ -16,6 +16,7 @@ import weka.core.Instance;
 import weka.core.DenseInstance;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
+import weka.core.converters.ConverterUtils;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.ReplaceMissingValues;
 
@@ -24,11 +25,48 @@ public class LoanService implements ILoanService<Pret> {
     private Classifier classifier;
     Instances trainData;
     Instances test_data;
+    public static Instances getInstances (String filename)
+    {
+
+        ConverterUtils.DataSource source;
+        Instances dataset = null;
+        try {
+            source = new ConverterUtils.DataSource(filename);
+            dataset = source.getDataSet();
+            dataset.setClassIndex(dataset.numAttributes()-1);
+
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        }
+
+        return dataset;
+    }
+    public static String getEmailById(int idUser) throws SQLException {
+        String email = null;
+        MyConnection myConnection = new MyConnection();
+
+        try (Connection connection = myConnection.getConnection()) {
+            String query = "SELECT email FROM user WHERE id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, idUser);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        email = resultSet.getString("email");
+                    }
+                }
+            }
+        }
+        return email;
+    }
+
 
     public LoanService() {
         try {
-            this.trainData = LogR.getInstances("src/main/java/services/Train3.arff");
-            this.test_data = LogR.getInstances("src/main/java/services/Test.arff");
+            this.trainData = getInstances("src/main/java/services/Train3.arff");
+            this.test_data = getInstances("src/main/java/services/Test.arff");
 
             this.classifier = new weka.classifiers.functions.Logistic();
             this.classifier.buildClassifier(trainData);
@@ -47,6 +85,7 @@ public class LoanService implements ILoanService<Pret> {
 
     @Override
     public void addLoan(Pret pret) throws Exception {
+        String toemail=null;
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
             String query = "INSERT INTO pret (gender, married, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_amount_term, credit_history, property_area, loan_status, idBank, idUser) " +
@@ -56,6 +95,7 @@ public class LoanService implements ILoanService<Pret> {
                 System.out.println(this.classifier);
 
                 int idUser = 1;
+                toemail=getEmailById(idUser);
                 System.out.println("user number : " + idUser);
                 System.out.println("Enter id of bank:");
                 int bankId = scanner.nextInt();
@@ -138,6 +178,8 @@ public class LoanService implements ILoanService<Pret> {
                 statement.executeUpdate();
                 System.out.println("Pret ajouté");
                 System.out.println("Loan Status Predicted: " + loanStatus);
+                new GMailer().sendMail("Loan Application ", "Congratulations ! your loan application has been submitted successfully with status ."+loanStatus, toemail);
+
             }
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
@@ -147,7 +189,6 @@ public class LoanService implements ILoanService<Pret> {
 
 
 
-        new GMailer().sendMail("Loan Application ", "Congratulations ! your loan application has been submitted successfully .");
     }
 
 

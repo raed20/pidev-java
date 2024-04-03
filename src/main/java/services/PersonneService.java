@@ -63,4 +63,29 @@ public class PersonneService implements IService<Personnes> {
         }
         return personnesList;
     }
+
+    @Override
+    public void add(Personnes personnes) {
+
+    }
+
+    @Override
+    public void update(Personnes personnes) {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public List<Personnes> getAll() {
+        return null;
+    }
+
+    @Override
+    public Personnes getOne(int id) {
+        return null;
+    }
 }

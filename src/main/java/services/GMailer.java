@@ -53,7 +53,7 @@ public class GMailer {
         //returns an authorized Credential object.
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
-    public void sendMail(String Subject , String message) throws Exception {
+    public void sendMail(String Subject , String message , String emailTo) throws Exception {
 
         // Create the email content
       /*  String messageSubject = "Loan application";
@@ -65,7 +65,7 @@ public class GMailer {
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress(FromMail));
         email.addRecipient(Message.RecipientType.TO,
-                new InternetAddress(FromMail));
+                new InternetAddress(emailTo));
         email.setSubject(Subject);
         email.setText(message);
 
