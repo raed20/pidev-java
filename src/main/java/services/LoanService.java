@@ -65,7 +65,7 @@ public class LoanService implements ILoanService<Pret> {
 
     public LoanService() {
         try {
-            this.trainData = getInstances("src/main/java/services/Train3.arff");
+            this.trainData = getInstances("src/main/java/services/Train.arff");
             this.test_data = getInstances("src/main/java/services/Test.arff");
 
             this.classifier = new weka.classifiers.functions.Logistic();
