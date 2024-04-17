@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="sidebar" alignment="TOP_CENTER" prefHeight="580.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@../../Css/Front/sidebar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SideBarController">
+   <children>
+      <Label styleClass="sidebar-user-btn" text="Prosync" textFill="WHITE">
+
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_LEFT" styleClass="sidebar-btn">
+         <children>
+            <Label fx:id="homeLabel" styleClass="sidebar-btn" text="Home" textFill="WHITE">
+
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="2.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" styleClass="sidebar-btn">
+         <children>
+            <Label fx:id="investmentLabel" styleClass="sidebar-btn" text="Investissement" textFill="WHITE">
+               <HBox.margin>
+                  <Insets top="2.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" styleClass="sidebar-btn">
+         <children>
+            <Label fx:id="pretLabel" styleClass="sidebar-btn" text="Pret" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="2.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="119.0" styleClass="sidebar-btn">
+         <children>
+            <Label fx:id="crmLabel" styleClass="sidebar-btn" text="CRM" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="2.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="144.0" styleClass="sidebar-btn">
+         <children>
+            <Label fx:id="blogLabel" styleClass="sidebar-btn" text="Blog" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="2.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0" styleClass="sidebar-btn">
+         <children>
+            <Label fx:id="stockLabel" styleClass="sidebar-btn" text="Stock" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="2.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

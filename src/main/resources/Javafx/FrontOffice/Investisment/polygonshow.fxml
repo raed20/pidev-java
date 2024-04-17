@@ -26,12 +26,12 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Button id="navbutton" fx:id="homeButton" mnemonicParsing="false" text="Home" />
-                  <Button id="navbutton" fx:id="investissementButton" layoutX="10.0" layoutY="62.0" mnemonicParsing="false" text="Investissement" />
-                  <Button id="navbutton" fx:id="pretButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="Pret" />
-                  <Button id="navbutton" fx:id="blogButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="Blog" />
-                  <Button id="navbutton" fx:id="stockButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="Stock" />
-                  <Button id="navbutton" fx:id="crmButton" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" text="CRM" />
+                  <Button id="navbuttun" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Home" />
+                  <Button id="navbuttun" layoutX="10.0" layoutY="62.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Investissement" />
+                  <Button id="navbuttun" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Pret" />
+                  <Button id="navbuttun" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Blog" />
+                  <Button id="navbuttun" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Stock" />
+                  <Button id="navbuttun" layoutX="10.0" layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="CRM" />
                </children>
             </VBox>
          </children>
