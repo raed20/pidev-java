@@ -24,6 +24,9 @@ public class Pret {
     private String propertyArea;
 
     private String loanStatus;
+    private int idBank;
+    private String bankName;
+
 
     public Pret() {
         // Default constructor
@@ -151,6 +154,20 @@ public class Pret {
     }
     // (omitted for brevity)
 
+    public int getIdBank() {
+        return idBank;
+    }
 
+    public void setIdBank(int idBank) {
+        this.idBank = idBank;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
 }
 

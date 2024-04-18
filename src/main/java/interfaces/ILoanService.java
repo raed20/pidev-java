@@ -1,10 +1,12 @@
 package interfaces;
 
+import entities.Pret;
+
 import java.util.List;
 
 public interface ILoanService<T> {
-    public void addLoan(T t) throws Exception;
+    public String addLoan(T t) throws Exception;
     public void deleteLoan(int id) throws Exception;
-    public void updateLoan(int id) throws Exception;
+    public String updateLoan(int id, T t) throws Exception;
     public List<T> getDataLoan() throws Exception;
 }

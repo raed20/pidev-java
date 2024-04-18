@@ -12,7 +12,6 @@ public class Main {
         System.out.println("Adding a new pret...");
        // Pret newPret = new Pret("homme", "yes",3,"graduated","yes",3000,500,5000,12,1,"urban","no");
         Pret pret = new Pret();
-
         //System.out.println("deleting ...");
 
             // Set Pret object properties here or use user input
