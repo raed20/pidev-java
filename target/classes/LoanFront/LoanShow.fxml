@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="651.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoanController">
+<AnchorPane>
+
+</AnchorPane>
+   <top>
+      <TableView fx:id="tableView" prefHeight="378.0" prefWidth="835.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="Loan ref" />
+            <TableColumn fx:id="loanAmountColumn" prefWidth="84.00003814697266" text="Loan amount" />
+            <TableColumn fx:id="loanTermColumn" prefWidth="66.39996337890625" text="Term" />
+            <TableColumn fx:id="incomeColumn" prefWidth="75.0" text="Income" />
+            <TableColumn fx:id="coIncomeColumn" prefWidth="75.0" text="Co income" />
+          <TableColumn fx:id="loanStatusColumn" prefWidth="75.0" text="Loan status" />
+            <TableColumn fx:id="bankNameColumn" prefWidth="75.0" text="Bank" />
+        </columns>
+      </TableView>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goToEdit" text="Edit" />
+            <Button mnemonicParsing="false" onAction="#deleteSelectedLoan" text="Delete" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" text="Print" />
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
