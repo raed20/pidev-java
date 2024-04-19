@@ -27,12 +27,14 @@
 }
 .menu-bar-btn{
     -fx-background-color:white ;
-    -fx-border-color: White;
-    -fx-border-width: 0px 1px 0px 0px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 1px 0px 1px;
 
 }
 .menu-bar-btns{
     -fx-background-color:white ;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 1px 0px 0px ;
 }
 .menu-bar-btns:hover{
     -fx-background-color:rgb(56, 116, 255) ;
@@ -44,13 +46,13 @@
     -fx-fill: white;
 }
 .menu-bar-field{
-    -fx-prompt-text-fill: white;
-    -fx-text-fill: black;
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
 }
 .menu-bar-search-field-box{
-    -fx-prompt-text-fill: white;
-    -fx-text-fill: black;
-    -fx-border-color: White;
-    -fx-border-width: 0px 0px 0px 0px;
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 0px 1px 0px;
 
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox fx:id="menubar" maxHeight="-Infinity" prefHeight="80.0" prefWidth="1024.0" style="-fx-background-color: white;" stylesheets="@../../Css/Front/sidebar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Menubar">
+   <children>
+      <JFXButton contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="80.0" styleClass="menu-bar-btns">
+         <graphic>
+            <FontAwesomeIcon fill="#3874ff" glyphName="TH_LIST" size="3em" styleClass="menu-bar-btns-icon" text="" />
+         </graphic>
+      </JFXButton>
+      <HBox alignment="CENTER_LEFT" styleClass="menu-bar-search-field-box" HBox.hgrow="ALWAYS">
+         <children>
+            <FontAwesomeIcon fill="#3874ff" glyphName="SEARCH" size="3em" styleClass="menu-bar-btns-icon" />
+            <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="79.0" prefWidth="80.0" promptText="Search Bar" style="-fx-background-color: transparent;" styleClass="menu-bar-field" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Calibri" size="15.0" />
+               </font>
+            </TextField>
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+         <children>
+            <JFXButton contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="80.0" styleClass="menu-bar-btn">
+               <graphic>
+                  <FontAwesomeIcon fill="#3874ff" glyphName="CREDIT_CARD" size="3em" styleClass="menu-bar-btns-icon" />
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="CENTER" layoutX="441.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="80.0" styleClass="menu-bar-btns">
+               <graphic>
+                  <FontAwesomeIcon fill="#3874ff" glyphName="COG" size="3em" styleClass="menu-bar-btns-icon" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+</HBox>
