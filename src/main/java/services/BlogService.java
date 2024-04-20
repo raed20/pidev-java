@@ -6,8 +6,7 @@ import entities.Blog;
 import entities.Commentaire;
 import interfaces.IBlog;
 import tools.MyConnection;
-import java.sql.Statement;
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
