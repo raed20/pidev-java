@@ -4,3 +4,7 @@
     -fx-background-radius: 30px 30px 30px 30px;
     -fx-border-radius:30px 30px 30px 30px ;
 }
+.inv_card:hover {
+    -fx-background-radius: 10px;
+    -fx-background-color: rgba(0, 0, 0, 0.24);
+}
