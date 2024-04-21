@@ -23,7 +23,7 @@ public class HomepageController implements Initializable {
                 throw new IllegalStateException("border_pane is not injected.");
             }
 
-            Parent sidebar = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/Sidebar.fxml")));
+            Parent sidebar = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/FrontSidebar.fxml")));
            // Parent menubar = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/Menubar.fxml")));
             Parent content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/Investissement/polygonshow.fxml")));
             //border_pane.setTop(menubar);

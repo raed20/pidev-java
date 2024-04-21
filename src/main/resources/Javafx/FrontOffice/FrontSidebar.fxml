@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SideBarController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FrontSideBarController">
    <children>
       <BorderPane id="borderPane" fx:id="borderPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@../../Css/Front/sidebar.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
