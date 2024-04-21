@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -16,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -74,16 +76,18 @@ public class FrontSideBarController implements Initializable {
         creditCardButton.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
+        MenuItem AdminItem = new MenuItem("BackOffice");
         MenuItem disconnectItem = new MenuItem("Disconnect");
+        boolean isAdmin = checkIfAdmin(); // Implement this method to check if the user is an admin
+        if (isAdmin) {
+            addAdminMenuItem();
+        }
         // event handlers for menu items
         settingsItem.setOnAction(event -> handleSettingsClicked());
         disconnectItem.setOnAction(event -> handleDisconnectClicked());
 
         // Add menu items to the cogButton
         cogButton.getItems().addAll(settingsItem, disconnectItem);
-
-
-
 
 
     }
@@ -157,6 +161,7 @@ public class FrontSideBarController implements Initializable {
             // Implement logic to handle button click
         });
     }
+
     private void setIconMenucog(MenuButton button, FontAwesomeIcon iconType) {
         FontAwesomeIconView iconViewMenu = new FontAwesomeIconView(iconType);
         setIconmenu(button, iconViewMenu);
@@ -185,6 +190,7 @@ public class FrontSideBarController implements Initializable {
             button.getScene().setCursor(Cursor.DEFAULT);
         });
     }
+
     private void setIconmenu(MenuButton button, FontAwesomeIconView iconView) {
         iconView.getStyleClass().add("sidebar-btn-icon");
         iconView.setSize("2.3em");
@@ -233,11 +239,57 @@ public class FrontSideBarController implements Initializable {
         });
     }
 
+    private boolean checkIfAdmin() {
+        // Implement the logic to check if the connected user is an admin
+        return true; // For demonstration, always return true
+    }
+
+    private void addAdminMenuItem() {
+        MenuItem adminItem = new MenuItem("BackOffice");
+        adminItem.setOnAction(event -> handleAdminClicked());
+        cogButton.getItems().add(adminItem);
+    }
+
     // Event handler for Settings menu item
     private void handleSettingsClicked() {
         // Implement logic for when Settings menu item is clicked
         System.out.println("Settings clicked");
     }
+
+    private void handleAdminClicked( ) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/BackOffice/BackSidebar.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene with the sidebar
+            Scene newScene = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+
+            // Store the current scene size
+            double currentWidth = stage.getWidth();
+            double currentHeight = stage.getHeight();
+
+            // Set the size of the new scene to match the current scene size
+            newScene.setRoot(root);
+            newScene.setFill(Color.TRANSPARENT); // Optionally set the fill color to transparent
+            stage.setScene(newScene);
+
+            // Set the size of the stage to match the stored size
+            stage.setWidth(currentWidth);
+            stage.setHeight(currentHeight);
+
+            // Request focus on the scene
+            newScene.getRoot().requestFocus();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle any potential errors loading the FXML file
+        }
+    }
+
+
+
+
 
     // Event handler for Disconnect menu item
     private void handleDisconnectClicked() {
