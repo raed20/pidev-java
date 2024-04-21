@@ -17,6 +17,8 @@ public class sidebarmain extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("/Javafx/FrontOffice/Sidebar.fxml"));
         primaryStage.setTitle("Polygon API Demo");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(true);
+
         primaryStage.show();
     }
 

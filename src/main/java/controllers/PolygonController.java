@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -9,7 +10,10 @@ import javafx.concurrent.Task;
 import models.StockQuote;
 import services.PolygonApiService;
 
-public class PolygonController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PolygonController implements Initializable {
 
     @FXML
     private TableView<StockQuote> tableView;
@@ -34,8 +38,8 @@ public class PolygonController {
         this.polygonApiService = new PolygonApiService();
     }
 
-    @FXML
-    private void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set cell value factories for each column
         openColumn.setCellValueFactory(new PropertyValueFactory<>("open"));
         highColumn.setCellValueFactory(new PropertyValueFactory<>("high"));
