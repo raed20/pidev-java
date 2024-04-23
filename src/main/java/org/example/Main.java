@@ -1,10 +1,10 @@
 package org.example;
 
-import entities.Cart;
 import entities.Category;
+import entities.Panier;
 import entities.Product;
-import services.CartService;
 import services.CategoryService;
+import services.PanierService;
 import services.ProductService;
 import tools.MyConnection;
 
@@ -15,14 +15,13 @@ public class Main {
     public static void main(String[] args) {
 
        MyConnection cnx=new MyConnection();
-       // MyConnection cnx1=new MyConnection();
 
-//        CategoryService cs=new CategoryService();
-//        Category category=new Category("cars");
-//        //cs.add(category);
-//
-//        System.out.println(cs.getAll());
-//
+        CategoryService cs=new CategoryService(cnx);
+        Category category=new Category("sponge");
+        cs.add(category);
+
+        System.out.println(cs.getAll());
+
 //        Category category1=new Category();
 //        category1.setId(7);
 //        category1.setName("Cars");
@@ -59,21 +58,22 @@ public class Main {
 //        System.out.println(productService.getOne(13));
 //        productService.delete(10);
 
-        ProductService productService=new ProductService(cnx);
-        Product product1 = productService.getOne(14);
-        Product product2 = productService.getOne(15);
+//        ProductService productService=new ProductService(cnx);
+//        Product product1 = productService.getOne(14);
+//        Product product2 = productService.getOne(15);
+//
+//     System.out.println(product1);
+//        Map<Product, Integer> products = new HashMap<>();
+//        products.put(product1, 2);
+//        products.put(product2, 3);
+//        Panier panier = new Panier(products);
+//        PanierService panierService = new PanierService(cnx);
+//        //cartService.add(cart);
+//     panier.getProducts().put(product1, 15);
+//     panierService.update(panier);
+//     System.out.println(panier);
+//     panierService.delete(5);
+//     System.out.println(panierService.getOne(5));
 
-     System.out.println(product1);
-        Map<Product, Integer> products = new HashMap<>();
-        products.put(product1, 2);
-        products.put(product2, 3);
-        Cart cart = new Cart(products);
-        CartService cartService = new CartService(cnx);
-        //cartService.add(cart);
-     cart.getProducts().put(product1, 15);
-     cartService.update(cart);
-     System.out.println(cart);
-     cartService.delete(5);
-     System.out.println(cartService.getOne(5));
     }
 }

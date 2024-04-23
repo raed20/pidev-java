@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class CartService implements IService<Panier> {
+public class PanierService implements IService<Panier> {
 
     private MyConnection connection;
     private static final Logger LOGGER = Logger.getLogger(MyConnection.class.getName());
 
-    public CartService(MyConnection connection) {
+    public PanierService(MyConnection connection) {
         this.connection = connection;
     }
 

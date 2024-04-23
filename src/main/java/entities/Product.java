@@ -6,7 +6,10 @@ public class Product {
     private String name;
     private double price;
     private String description;
+    private String image;
+    private double discount;
     private int category_id;
+    private int panier_id;
 
     //Constructors
 
@@ -14,18 +17,22 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, double price, String description, int category_id) {
+    public Product(int id, String name, double price, String description, String image, double discount, int category_id) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.image=image;
+        this.discount=discount;
         this.category_id = category_id;
     }
 
-    public Product(String name, double price, String description, int category_id) {
+    public Product(String name, double price, String description, String image, double discount, int category_id) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.image=image;
+        this.discount=discount;
         this.category_id = category_id;
     }
 
@@ -63,6 +70,22 @@ public class Product {
         this.description = description;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
     public int getCategory() {
         return category_id;
     }
@@ -73,15 +96,17 @@ public class Product {
 
     //Display
 
+
     @Override
     public String toString() {
-
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", category=" + category_id +
+                ", image='" + image + '\'' +
+                ", discount=" + discount +
+                ", category_id=" + category_id +
                 '}';
     }
 }

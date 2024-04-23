@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class MyConnection {
     private static final Logger LOGGER = Logger.getLogger(MyConnection.class.getName());
-    private static  String URL = "jdbc:mysql://localhost:3306/pidev";
+    private static  String URL = "jdbc:mysql://localhost:3306/stock_db";
     private static  String USERNAME = "root";
     private static  String PASSWORD = "";
 

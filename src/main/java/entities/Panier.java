@@ -2,22 +2,22 @@ package entities;
 
 import java.util.Map;
 
-public class Cart {
+public class Panier {
     //Attributes
     private int id;
     private Map<Product, Integer> products;
 
     //Constructors
 
-    public Cart() {
+    public Panier() {
     }
 
-    public Cart(int id, Map<Product, Integer> products) {
+    public Panier(int id, Map<Product, Integer> products) {
         this.id = id;
         this.products = products;
     }
 
-    public Cart(Map<Product, Integer> products) {
+    public Panier(Map<Product, Integer> products) {
         this.products = products;
     }
 
