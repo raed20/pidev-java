@@ -17,18 +17,10 @@ public class CategoryService implements IService<Category> {
     public CategoryService(MyConnection connection) {
         this.connection = connection;
     }
-//    @Override
-//    public void add(Category category){
-//        String req="INSERT INTO `category`(`name`) VALUES ('"+category.getName()+"')";
-//        try {
-//            Statement st=connection.createStatement();
-//            st.executeUpdate(req);
-//            System.out.println("Category added succesfully !");
-//        }catch (SQLException e){
-//            throw new RuntimeException(e);
-//        }
-//    }
 
+    public CategoryService() {
+
+    }
 
     @Override
     public void add(Category category){
