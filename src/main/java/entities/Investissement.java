@@ -1,15 +1,15 @@
 package entities;
 
+import javafx.beans.property.*;
+
 public class Investissement {
-    private Integer id;
-    private Long montant;
-    private java.util.Date dateInvest;
-
-    private Float totalValue;
-    private String stockName;
-    private Float changerate;
-    private Float price;
-
+    private final IntegerProperty id;
+    private final LongProperty montant;
+    private final ObjectProperty<java.util.Date> dateInvest;
+    private final FloatProperty totalValue;
+    private final StringProperty stockName;
+    private final FloatProperty changerate;
+    private final FloatProperty price;
     public Integer getOpport() {
         return opport;
     }
@@ -21,62 +21,99 @@ public class Investissement {
     private int opport;
 
     public Investissement() {
+        this.id = new SimpleIntegerProperty();
+        this.montant = new SimpleLongProperty();
+        this.dateInvest = new SimpleObjectProperty<>();
+        this.totalValue = new SimpleFloatProperty();
+        this.stockName = new SimpleStringProperty();
+        this.changerate = new SimpleFloatProperty();
+        this.price = new SimpleFloatProperty();
     }
 
-    // Getters and setters
-    public Integer getId() {
+    // Getters and setters for each property
+    public int getId() {
+        return id.get();
+    }
+
+    public IntegerProperty idProperty() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(int id) {
+        this.id.set(id);
     }
 
-    public Long getMontant() {
+    public long getMontant() {
+        return montant.get();
+    }
+
+    public LongProperty montantProperty() {
         return montant;
     }
 
-    public void setMontant(Long montant) {
-        this.montant = montant;
+    public void setMontant(long montant) {
+        this.montant.set(montant);
     }
 
     public java.util.Date getDateInvest() {
+        return dateInvest.get();
+    }
+
+    public ObjectProperty<java.util.Date> dateInvestProperty() {
         return dateInvest;
     }
 
     public void setDateInvest(java.util.Date dateInvest) {
-        this.dateInvest = dateInvest;
+        this.dateInvest.set(dateInvest);
     }
 
+    public float getTotalValue() {
+        return totalValue.get();
+    }
 
-    public Float getTotalValue() {
+    public FloatProperty totalValueProperty() {
         return totalValue;
     }
 
-    public void setTotalValue(Float totalValue) {
-        this.totalValue = totalValue;
+    public void setTotalValue(float totalValue) {
+        this.totalValue.set(totalValue);
     }
 
     public String getStockName() {
+        return stockName.get();
+    }
+
+    public StringProperty stockNameProperty() {
         return stockName;
     }
 
     public void setStockName(String stockName) {
-        this.stockName = stockName;
+        this.stockName.set(stockName);
     }
 
-    public Float getChangerate() {
+    public float getChangerate() {
+        return changerate.get();
+    }
+
+    public FloatProperty changerateProperty() {
         return changerate;
     }
 
-    public void setChangerate(Float changerate) {
-        this.changerate = changerate;
+    public void setChangerate(float changerate) {
+        this.changerate.set(changerate);
     }
 
-    public Float getPrice() {
+    public float getPrice() {
+        return price.get();
+    }
+
+    public FloatProperty priceProperty() {
         return price;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
-    }}
+    public void setPrice(float price) {
+        this.price.set(price);
+    }
+
+
+}

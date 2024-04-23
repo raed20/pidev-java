@@ -64,7 +64,7 @@ public class BackSideBarController  implements Initializable{
         initializeLabels();
         //Add the path of your fxml file
         homeLabel.setOnMouseClicked(event -> loadPage("/path/to/homePage.fxml"));
-        investmentLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        investmentLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Investissement/opportuniteback.fxml"));
         pretLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));

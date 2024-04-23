@@ -1,0 +1,69 @@
+
+.sidebar{
+    -fx-background-color: rgb(56, 116, 255);
+
+
+}
+.sidebar-user-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+.sidebar-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+.sidebar-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+
+}
+.sidebar-btn-icon{
+
+    -fx-text-fill: white;
+    -fx-background-color: white;
+}
+.menu-bar-btn{
+    -fx-background-color:white ;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 1px 0px 1px;
+    -fx-border-radius: 0px;
+}
+.menu-bar-btns{
+    -fx-background-color:white ;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 1px 0px 0px ;
+    -fx-border-radius: 0px;
+}
+.menu-item:hover{
+    -fx-background-color: rgb(56, 116, 255);
+
+}
+.menu-bar-btns:hover{
+    -fx-background-color:rgb(56, 116, 255) ;
+}
+.menu-bar-btn:hover{
+    -fx-background-color:rgb(56, 116, 255) ;
+}
+.menu-bar-btns-icon{
+    -fx-fill: rgb(56, 116, 255);
+}
+.menu-bar-btns:hover .menu-bar-btns-icon{
+    -fx-fill: white;
+}
+.menu-bar-btn:hover .menu-bar-btns-icon{
+    -fx-fill: white;
+}
+.menu-bar-field{
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
+}
+.menu-bar-search-field-box{
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 0px 1px 0px;
+
+}
