@@ -38,7 +38,9 @@ public class BackSideBarController  implements Initializable{
     @FXML
     private Label blogLabel; // Label for the Blog button
     @FXML
-    private Label stockLabel; // Label for the Stock button
+    private Label categoryLabel; // Label for the Stock button
+    @FXML
+    private Label productLabel; // Label for the Stock button
 
 
 
@@ -68,7 +70,9 @@ public class BackSideBarController  implements Initializable{
         pretLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        stockLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        categoryLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
         MenuItem disconnectItem = new MenuItem("Disconnect");
@@ -102,7 +106,8 @@ public class BackSideBarController  implements Initializable{
         setIconAndLabel(pretLabel, FontAwesomeIcon.MONEY);
         setIconAndLabel(crmLabel, FontAwesomeIcon.GROUP);
         setIconAndLabel(blogLabel, FontAwesomeIcon.NEWSPAPER_ALT);
-        setIconAndLabel(stockLabel, FontAwesomeIcon.DROPBOX);
+        setIconAndLabel(categoryLabel, FontAwesomeIcon.DROPBOX);
+        setIconAndLabel(productLabel, FontAwesomeIcon.SHOPPING_BAG);
 
     }
 

@@ -132,7 +132,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="108.0" styleClass="sidebar-btn">
                            <children>
-                              <Label id="stockLabel" fx:id="stockLabel" styleClass="sidebar-btn" text="Stock" textFill="WHITE">
+                              <Label id="stockLabel" fx:id="productLabel" styleClass="sidebar-btn" text="Product" textFill="WHITE">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>

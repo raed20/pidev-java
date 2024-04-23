@@ -40,7 +40,7 @@ public class FrontSideBarController implements Initializable {
     @FXML
     private Label blogLabel; // Label for the Blog button
     @FXML
-    private Label stockLabel; // Label for the Stock button
+    private Label productLabel; // Label for the Stock button
 
     @FXML
     private Button searchButton; // Label for the search button
@@ -72,7 +72,7 @@ public class FrontSideBarController implements Initializable {
         pretLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        stockLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         creditCardButton.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
@@ -107,7 +107,7 @@ public class FrontSideBarController implements Initializable {
         setIconAndLabel(pretLabel, FontAwesomeIcon.MONEY);
         setIconAndLabel(crmLabel, FontAwesomeIcon.GROUP);
         setIconAndLabel(blogLabel, FontAwesomeIcon.NEWSPAPER_ALT);
-        setIconAndLabel(stockLabel, FontAwesomeIcon.DROPBOX);
+        setIconAndLabel(productLabel, FontAwesomeIcon.SHOPPING_BAG);
 
     }
 

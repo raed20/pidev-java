@@ -59,7 +59,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                      <children>
-                        <AnchorPane id="inv_card" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" styleClass="inv_card">
+                        <AnchorPane id="inv_card" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
                            <children>
                               <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
                                  <font>
@@ -83,8 +83,80 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="50.0" />
                            </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane id="inv_card" layoutX="30.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                           <children>
+                              <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="curency" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="amount" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane id="inv_card" layoutX="230.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                           <children>
+                              <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="curency" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="amount" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane id="inv_card" layoutX="430.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                           <children>
+                              <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="curency" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="amount" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
                         </AnchorPane>
                      </children>
                   </HBox>
