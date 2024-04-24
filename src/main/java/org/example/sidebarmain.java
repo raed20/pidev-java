@@ -14,7 +14,7 @@ public class sidebarmain extends Application{
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Javafx/FrontOffice/FrontSidebar.fxml"));
-        primaryStage.setTitle("Polygon API Demo");
+        primaryStage.setTitle("Prosync");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(true);
 

@@ -3,8 +3,9 @@ package models;
 public class StockQuote {
 
 
+    public StockQuote() {
 
-
+    }
 
     public double getOpen() {
         return open;
@@ -42,17 +43,25 @@ public class StockQuote {
         return volume;
     }
 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setVolume(long volume) {
         this.volume = volume;
     }
-
+private  String name;
     private double open;
     private double high;
     private double low;
     private double close;
     private long volume;
 
-    public StockQuote(double open, double high, double low, double close, long volume) {
+    public StockQuote(String name ,double open, double high, double low, double close, long volume) {
+        this.name = name;
         this.open = open;
         this.high = high;
         this.low = low;
@@ -60,6 +69,6 @@ public class StockQuote {
         this.volume = volume;
     }
 
-    // Getters and setters
-    // Implement as needed
+
+
 }

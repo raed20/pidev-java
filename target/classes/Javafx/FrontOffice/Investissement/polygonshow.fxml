@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,193 +12,211 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="535.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PolygonController">
-   <top>
-      <Pane prefHeight="58.0" prefWidth="986.0" style="-fx-background-color: #FFFFF;" BorderPane.alignment="CENTER" />
-   </top>
    <stylesheets>
       <String fx:value="/Css/Front/Investisment/investissementStyles.css" />
    </stylesheets>
    <center>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="850.0" styleClass="pane" stylesheets="@../../../Css/Front/Investisment/investissementStyles.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" prefHeight="600.0">
                <children>
-                  <HBox>
+                  <VBox prefHeight="200.0" prefWidth="850.0" styleClass="pane" stylesheets="@../../../Css/Front/Investisment/investissementStyles.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
                      <children>
-                        <Label text="Marketplace" textFill="WHITE">
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                           <padding>
-                              <Insets left="40.0" right="5.0" top="15.0" />
-                           </padding>
-                        </Label>
-                        <Separator orientation="VERTICAL" scaleX="0.5">
-                           <padding>
-                              <Insets top="15.0" />
-                           </padding>
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Separator>
-                        <Label text="Seek the future" textFill="WHITE">
-                           <padding>
-                              <Insets left="5.0" top="18.0" />
-                           </padding>
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                        </Label>
-                     </children></HBox>
-                  <HBox>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                     <children>
-                        <AnchorPane id="inv_card" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                        <HBox>
                            <children>
-                              <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                              <Label text="Marketplace" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri Bold" size="18.0" />
                                  </font>
+                                 <padding>
+                                    <Insets left="40.0" right="5.0" top="15.0" />
+                                 </padding>
                               </Label>
-                              <Label id="curency" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                              <Separator orientation="VERTICAL" scaleX="0.5">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                              </Separator>
+                              <Label text="Seek the future" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="5.0" top="18.0" />
+                                 </padding>
                                  <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="amount" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
+                                    <Font name="Calibri Bold" size="14.0" />
                                  </font>
                               </Label>
                            </children>
-                           <HBox.margin>
-                              <Insets left="50.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane id="inv_card" layoutX="30.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                        </HBox>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
                            <children>
-                              <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="curency" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="amount" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
+                              <AnchorPane id="inv_card" fx:id="cardPane1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                                 <children>
+                                    <Label id="invname" fx:id="nameLabel" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="curency" fx:id="currencyLabel" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label id="amount" fx:id="amountLabel" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                              <AnchorPane id="inv_card" fx:id="cardPane2" layoutX="60.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                                 <children>
+                                    <Label id="invname" fx:id="nameLabel1" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="curency" fx:id="currencyLabel1" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label id="amount" fx:id="amountLabel1" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane id="inv_card" fx:id="cardPane3" layoutX="260.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                                 <children>
+                                    <Label id="invname" fx:id="nameLabel11" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="curency" fx:id="currencyLabel11" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label id="amount" fx:id="amountLabel11" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane id="inv_card" fx:id="cardPane4" layoutX="460.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
+                                 <children>
+                                    <Label id="invname" fx:id="nameLabel111" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="curency" fx:id="currencyLabel111" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label id="amount" fx:id="amountLabel111" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
-                        </AnchorPane>
-                        <AnchorPane id="inv_card" layoutX="230.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
-                           <children>
-                              <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="curency" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="amount" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane id="inv_card" layoutX="430.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="200.0" styleClass="inv_card">
-                           <children>
-                              <Label id="invname" layoutX="39.0" layoutY="14.0" text="name" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="curency" layoutX="92.0" layoutY="14.0" text="curency" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="amount" layoutX="39.0" layoutY="50.0" text="amount" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label id="chgrate" layoutX="39.0" layoutY="75.0" text="chrate" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
-            </VBox>
+            </AnchorPane>
+            <AnchorPane id="inv_card" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../Css/Front/Investisment/investissementStyles.css">
+               <children>
+                  <TableView fx:id="tableView" prefHeight="427.0" prefWidth="786.0">
+                     <columns>
+                        <TableColumn fx:id="openColumn" text="Open">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="open" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="highColumn" text="High">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="high" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="lowColumn" text="Low">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="low" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="closeColumn" text="Close">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="close" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="volumeColumn" text="Volume">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="volume" />
+                           </cellValueFactory>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </VBox>
    </center>
-   <bottom>
-      <AnchorPane id="inv_card" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../Css/Front/Investisment/investissementStyles.css" BorderPane.alignment="CENTER">
+   <top>
+      <AnchorPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableView" prefHeight="427.0" prefWidth="786.0">
-               <columns>
-                  <TableColumn fx:id="openColumn" text="Open">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="open" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="highColumn" text="High">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="high" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="lowColumn" text="Low">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="low" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="closeColumn" text="Close">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="close" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="volumeColumn" text="Volume">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="volume" />
-                     </cellValueFactory>
-                  </TableColumn>
-               </columns>
-            </TableView>
+            <MenuButton id="cogButton" fx:id="currencyButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" styleClass="menu-bar-btns" AnchorPane.bottomAnchor="61.6" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
-   </bottom>
+   </top>
 </BorderPane>
