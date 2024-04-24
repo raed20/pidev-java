@@ -119,7 +119,27 @@ public class BankService implements IBankService<Bank> {
         );
     }
 
-    @Override
+    public boolean isBankExists(Bank b) {
+        try {
+            String query = "SELECT * FROM bank WHERE nom = ? AND adresse = ? AND code_swift = ? AND phone_num = ?";
+            try (PreparedStatement ps = cnx.prepareStatement(query)) {
+                ps.setString(1, b.getNom());
+                ps.setString(2, b.getAdresse());
+                ps.setString(3, b.getCodeSwift());
+                ps.setString(4, b.getPhoneNum());
+                ResultSet resultSet = ps.executeQuery();
+                return resultSet.next(); // If a row is returned, the bank already exists
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+        @Override
     public String toString() {
         return "BankService{" +
                 "cnx=" + cnx +

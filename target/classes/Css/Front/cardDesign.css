@@ -16,10 +16,10 @@ and open the template in the editor.
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
 }
 .btn{
-    -fx-background-color: linear-gradient(to bottom right, #098c53, #246861); 
+    -fx-background-color: #2c62f5;
     -fx-cursor: hand;
     -fx-text-fill: #fff;
 }
 .btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, #0fb565, #399a8f); 
+    -fx-background-color: #2c62f5;
 }

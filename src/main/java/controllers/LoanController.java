@@ -114,6 +114,8 @@ public class LoanController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Allow editing only if an item is selected
         edit.setOnAction(event -> {
             Pret selectedPret = tableView.getSelectionModel().getSelectedItem();
             if (selectedPret != null) {
@@ -122,14 +124,21 @@ public class LoanController implements Initializable {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            }
-            else{
-                goToEdit(null, selectedPret.getIdBank());
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Attention !");
+                alert.setHeaderText(null);
+                alert.setContentText("You need to select a loan first!");
 
+                // Show the alert and wait for a button to be clicked
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        System.out.println("OK button clicked");
+                    }
+                });
             }
         });
     }
-
     @FXML
     void goToEdit(Pret pret , int bankid) {
         try {
@@ -137,16 +146,16 @@ public class LoanController implements Initializable {
             Parent form = loader.load();
             LoanFormController controller = loader.getController();
             controller.setBankId(bankid);
+
             if (pret != null) {
                 controller.setPret(pret); // If updating an existing loan
             }
 
             Stage stage = new Stage();
             stage.setScene(new Scene(form));
-            stage.setTitle(pret == null ? "Ajouter un Nouveau pret" : "Modifier le pret");
+            stage.setTitle(pret == null ? "Add a New loan": "Modify the loan");
             stage.showAndWait(); // Use showAndWait to refresh list after adding or updating
 
-            //reloadPrets(); // Reload the list after closing the form
         } catch (IOException ex) {
             ex.printStackTrace();
         }

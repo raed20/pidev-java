@@ -7,42 +7,36 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="card_form" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="230.0"
-            stylesheets="@/Css/Front/cardDesign.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
+<AnchorPane fx:id="card_form" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="230.0" stylesheets="@/Css/Front/cardDesign.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
    <styleClass>
-      <String fx:value="card"/>
-      <String fx:value="shadow"/>
+      <String fx:value="card" />
+      <String fx:value="shadow" />
    </styleClass>
-   <VBox layoutX="65.0" layoutY="-10.0" prefHeight="180.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0"
-         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <VBox layoutX="65.0" layoutY="-10.0" prefHeight="180.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="230.0">
          <Label fx:id="bank_name" prefHeight="21.0" prefWidth="151.0" text="Bank">
             <font>
-               <Font size="15.0"/>
+               <Font size="15.0" />
             </font>
             <HBox.margin>
-               <Insets left="25.0"/>
+               <Insets left="25.0" />
             </HBox.margin>
          </Label>
-         <Label fx:id="bank_price" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="86.0" text="\$0.0">
+         <Label fx:id="bank_price" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="86.0" text="0.0">
             <HBox.margin>
-               <Insets right="25.0"/>
+               <Insets right="25.0" />
             </HBox.margin>
             <font>
-               <Font size="15.0"/>
+               <Font size="15.0" />
             </font>
          </Label>
       </HBox>
       <AnchorPane prefHeight="101.0" prefWidth="230.0">
-         <ImageView fx:id="bank_imageView" fitHeight="94.0" fitWidth="190.0" layoutX="20.0" layoutY="4.0"
-                    pickOnBounds="true" preserveRatio="true"/>
+         <ImageView fx:id="bank_imageView" fitHeight="94.0" fitWidth="190.0" layoutX="20.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
       </AnchorPane>
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="230.0">
          <children>
-            <Button fx:id="bank_addBtn" mnemonicParsing="false" onAction="#selectBtn" prefHeight="25.0"
-                    prefWidth="81.0" styleClass="btn" stylesheets="@/Css/Front/cardDesign.css" text="Select"/>
+            <Button fx:id="bank_addBtn" mnemonicParsing="false" onAction="#selectBtn" prefHeight="25.0" prefWidth="81.0" styleClass="btn" stylesheets="@/Css/Front/cardDesign.css" text="Select" />
          </children>
       </HBox>
    </VBox>

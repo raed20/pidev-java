@@ -63,7 +63,6 @@ public class LoanFormController {
 
 
     public void initialize() {
-        //chargerCampagnes();
         updateFormTitle();
         initializeChoiceBoxes();
         boutonEnregistrer.setOnAction(event -> {
@@ -74,9 +73,8 @@ public class LoanFormController {
             }
         });
 
-
-
     }
+
     private void initializeChoiceBoxes() {
         genderChoiceBox.getItems().addAll("Male", "Female");
         marriedChoiceBox.getItems().addAll("Yes", "No");
@@ -128,36 +126,20 @@ public class LoanFormController {
 
     private void updateFormTitle() {
         if (pretActuel == null) {
-            labelTitre.setText("Ajouter un Nouveau Don");
+            labelTitre.setText("Ajouter un Nouveau Prêt");
         } else {
-            labelTitre.setText("Modifier le Don");
+            labelTitre.setText("Modifier le Prêt");
         }
     }
 
-    /*private Bank findCampagneById(Integer campagneId) {
-        return campagneId == null ? null : BankService.findById(campagneId).orElse(null);
-    }*/
 
-    /*private void chargerCampagnes() {
-        List<Bank> banks = BankService.findAll();
-        comboCampagne.setItems(FXCollections.observableArrayList(campagnes));
-        comboCampagne.setConverter(new StringConverter<Campagne>() {
-            @Override
-            public String toString(Campagne campagne) {
-                return campagne == null ? null : campagne.getTitre();
-            }
-            @Override
-            public Campagne fromString(String string) {
-                return null;
-            }
-        });
-    }*/
+
 
     void gererEnregistrementPret() throws Exception {
-       /* if (!validerSaisie()) {
-            afficherAlerte(Alert.AlertType.WARNING, "Validation échouée", "Veuillez corriger les champs invalides.");
+
+        if (!validerSaisie()) {
             return;
-        }*/
+        }
 // Retrieve values from form components
         String gender = genderChoiceBox.getValue();
         String married = marriedChoiceBox.getValue();
@@ -183,7 +165,6 @@ public class LoanFormController {
             pretActuel.setLoanAmountTerm(loanAmountTerm);
             pretActuel.setCreditHistory(creditHistory ? 1 : 0); // Convert boolean to int
             pretActuel.setPropertyArea(propertyArea);
-            // Campagne selectedCampagne = comboCampagne.getSelectionModel().getSelectedItem();
 
 
             String loanStatus = serviceLoan.addLoan(pretActuel,this.bankId);
@@ -191,9 +172,9 @@ public class LoanFormController {
             resultLabel.setText("Loan Status Predicted: " + loanStatus);
 
             if (Objects.equals(loanStatus, "yes") || Objects.equals(loanStatus, "no")) {
-                afficherAlerte(Alert.AlertType.INFORMATION, "Succès", "Don ajouté avec succès.");
+                afficherAlerte(Alert.AlertType.INFORMATION, "Success", "Loan added successfully.");
             } else {
-                afficherAlerte(Alert.AlertType.ERROR, "Erreur", "L'ajout du don a échoué.");
+                afficherAlerte(Alert.AlertType.ERROR, "Error", "Adding loan failed.");
             }
         } else {
             pretActuel.setGender(gender);
@@ -211,9 +192,9 @@ public class LoanFormController {
             resultLabel.setText("Loan Status Predicted: " + pretMisAJour);
 
             if (Objects.equals(pretMisAJour, "yes") || Objects.equals(pretMisAJour, "no")) {
-                afficherAlerte(Alert.AlertType.INFORMATION, "Succès", "Don mis à jour avec succès.");
+                afficherAlerte(Alert.AlertType.INFORMATION, "Success", "Ready updated successfully.");
             } else {
-                afficherAlerte(Alert.AlertType.ERROR, "Erreur", "La mise à jour du don a échoué.");
+                afficherAlerte(Alert.AlertType.ERROR, "Error", "Loan update failed.");
             }
         }
         clearForm();
@@ -225,28 +206,6 @@ public class LoanFormController {
     }
 
 
-    /*private boolean validerSaisie() {
-        String errorMessage = "";
-        if (champType.getText().isEmpty()) {
-            errorMessage += "Le type ne peut pas être vide.\n";
-        }
-        if (selecteurDateRemise.getValue() == null) {
-            errorMessage += "La date de remise est requise.\n";
-        }
-        if (!errorMessage.isEmpty()) {
-            afficherAlerte(Alert.AlertType.WARNING, "Saisie invalide", errorMessage);
-            return false;
-        }
-        return true;
-    }*/
-
-    /*private Integer essayerParserInt(String texte) {
-        try {
-            return Integer.parseInt(texte);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }*/
 
     private void afficherAlerte(Alert.AlertType typeAlerte, String titre, String contenu) {
         Alert alerte = new Alert(typeAlerte);
@@ -267,5 +226,150 @@ public class LoanFormController {
         loanAmountTermTextField.clear();
         creditHistoryCheckBox1.setSelected(false);
         propertyAreaChoiceBox.setValue(null);
+    }
+
+    private boolean validerSaisie() {
+        String gender = genderChoiceBox.getValue();
+        String married = marriedChoiceBox.getValue();
+        String education = educationChoiceBox.getValue();
+        String selfEmployed = selfEmployedChoiceBox.getValue();
+        String applicantIncomeText = applicantIncomeTextField.getText();
+        String coapplicantIncomeText = coapplicantIncomeTextField.getText();
+        String loanAmountText = loanAmountTextField.getText();
+        String loanAmountTermText = loanAmountTermTextField.getText();
+        String propertyArea = propertyAreaChoiceBox.getValue();
+
+        if (gender == null || married == null || education == null || selfEmployed == null ||
+                applicantIncomeText.isEmpty() || coapplicantIncomeText.isEmpty() ||
+                loanAmountText.isEmpty() || loanAmountTermText.isEmpty() || propertyArea == null) {
+            afficherAlerte(Alert.AlertType.WARNING, "Required fields", "Please complete all required fields.");
+            return false;
+        }
+
+        try {
+            int applicantIncome = Integer.parseInt(applicantIncomeText);
+            int coapplicantIncome = Integer.parseInt(coapplicantIncomeText);
+            int loanAmount = Integer.parseInt(loanAmountText);
+            int loanAmountTerm = Integer.parseInt(loanAmountTermText);
+
+            if (applicantIncome <= 0 || coapplicantIncome < 0 || loanAmount <= 0 || loanAmountTerm <= 0) {
+                afficherAlerte(Alert.AlertType.WARNING, "Invalid values", "Please enter valid values for income and loan amounts.");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            afficherAlerte(Alert.AlertType.WARNING, "Invalid format", "Please enter valid numeric values for income and loan amounts.");
+            return false;
+        }
+
+        return true;
+    }
+
+    public void textfieldDesign(){
+
+        if(genderChoiceBox.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+
+        }else if(marriedChoiceBox.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+
+        }else if(educationChoiceBox.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+
+        }else if(selfEmployedChoiceBox.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+
+        }else if(applicantIncomeTextField.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+        }else if(coapplicantIncomeTextField.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+        }else if(loanAmountTextField.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+        }else if(loanAmountTermTextField.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+        }else if(propertyAreaChoiceBox.isFocused()){
+
+            genderChoiceBox.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
+            marriedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            educationChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            selfEmployedChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            applicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            coapplicantIncomeTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            loanAmountTermTextField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            propertyAreaChoiceBox.setStyle("-fx-border-width:1px; -fx-background-color:#fff");
+        }
+
     }
 }

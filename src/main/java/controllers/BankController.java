@@ -51,19 +51,41 @@ public class BankController {
     private boolean validateInput() {
         String errorMessage = "";
 
-        if (banknameField.getText() == null || banknameField.getText().isEmpty()) {
-            errorMessage += "bank name is required.\n";
+        // Bank Name validation
+        String bankName = banknameField.getText();
+        if (bankName == null || bankName.isEmpty()) {
+            errorMessage += "Bank name is required.\n";
+        } else if (!bankName.matches("[a-zA-Z]{1,12}")) {
+            errorMessage += "Bank name must be between 1 and 12 letters and contain only letters.\n";
         }
-        if (adresseField.getText() == null || adresseField.getText().isEmpty()) {
-            errorMessage += "address is required.\n";
+
+        // Address validation
+        String address = adresseField.getText();
+        if (address == null || address.isEmpty()) {
+            errorMessage += "Address is required.\n";
+        } else if (address.length() > 20) {
+            errorMessage += "Address must be maximum 20 characters.\n";
         }
-        if (codeswift.getText() == null || codeswift.getText().isEmpty()) {
+
+        // CodeSwift validation (assuming it's a code format)
+        String codeSwift = codeswift.getText();
+        if (codeSwift == null || codeSwift.isEmpty()) {
             errorMessage += "CodeSwift is required.\n";
+        } else if (!codeSwift.matches("[a-zA-Z0-9]{8,11}")) {
+            errorMessage += "CodeSwift must be between 8 and 11 characters and contain only uppercase letters and numbers.\n";
         }
-        if (phonenum.getText() == null || phonenum.getText().isEmpty()) {
-            errorMessage += "enter a valid phone number.\n";
+
+        // Phone Number validation
+        String phoneNumber = phonenum.getText();
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            errorMessage += "Phone number is required.\n";
+        } else if (!phoneNumber.matches("\\+216\\d{8}")) {
+            errorMessage += "Phone number must start with +216 and be 11 digits long.\n";
         }
-        if (imageField.getText() == null || imageField.getText().isEmpty() || !new File(imageField.getText()).exists()) {
+
+        // Image validation
+        String imagePath = imageField.getText();
+        if (imagePath == null || imagePath.isEmpty() || !new File(imagePath).exists()) {
             errorMessage += "A valid image file must be selected.\n";
         }
 
@@ -73,6 +95,7 @@ public class BankController {
         }
         return true;
     }
+
 
     public void selectData(){
 
@@ -127,14 +150,18 @@ public class BankController {
                     imageField.getText(),
                     phonenum.getText()
                     );
-            Bank savedBank = b.save(ban);
-            if (savedBank != null) {
-                tableView.getItems().add(savedBank);
-                clearFields();
-                showAlert("Success", "Bank added successfully.");
-            } else {
-                showAlert("Error", "Failed to add the Bank.");
+            if (!b.isBankExists(ban)) {
+                Bank savedBank = b.save(ban);
+
+                if (savedBank != null) {
+                    tableView.getItems().add(savedBank);
+                    clearFields();
+                    showAlert("Success", "Bank added successfully.");
+                } else {
+                    showAlert("Error", "Failed to add the Bank.");
+                }
             }
+            else showAlert("Error", "Bank already exist.");
         }
     }
 
@@ -148,16 +175,20 @@ public class BankController {
                 selected.setCodeSwift(codeswift.getText());
                 selected.setPhoneNum(phonenum.getText());
                 selected.setLogo(imageField.getText());
-
-                if (b.update(selected) != null) {
-                    tableView.refresh();
-                    showAlert("Success", "Bank updated successfully.");
+                if (!b.isBankExists(selected)) {
+                    if (b.update(selected) != null) {
+                        tableView.refresh();
+                        showAlert("Success", "Bank updated successfully.");
+                    } else {
+                        showAlert("Error", "Failed to update bank.");
+                    }
                 } else {
-                    showAlert("Error", "Failed to update bank.");
+                    showAlert("Error", "Bank already exist.");
                 }
             } else {
-                showAlert("Error", "No bank selected.");
-            }
+                    showAlert("Error", "No bank selected.");
+                }
+
         }
     }
     @FXML
@@ -224,7 +255,7 @@ public class BankController {
             banknameField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             adresseField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             codeswift.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
-            phonenum.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
+            phonenum.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
 
         }
 

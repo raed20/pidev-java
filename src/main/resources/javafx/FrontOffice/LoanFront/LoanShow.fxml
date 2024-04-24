@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -7,12 +8,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="651.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoanController">
+<BorderPane prefHeight="651.0" prefWidth="835.0" stylesheets="@/Css/Front/loanShowDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoanController">
 <AnchorPane>
 
 </AnchorPane>
    <top>
-      <TableView fx:id="tableView" prefHeight="378.0" prefWidth="835.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="378.0" prefWidth="572.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="Loan ref" />
             <TableColumn fx:id="loanAmountColumn" prefWidth="84.00003814697266" text="Loan amount" />
@@ -22,15 +23,30 @@
           <TableColumn fx:id="loanStatusColumn" prefWidth="75.0" text="Loan status" />
             <TableColumn fx:id="bankNameColumn" prefWidth="75.0" text="Bank" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </top>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER"  prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="edit" mnemonicParsing="false" text="Manage" />
-            <Button mnemonicParsing="false" onAction="#deleteSelectedLoan" text="Delete" textAlignment="CENTER" />
+            <Button fx:id="edit" mnemonicParsing="false" text="Manage">
+               <HBox.margin>
+                  <Insets right="25.0" />
+               </HBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#deleteSelectedLoan" text="Delete" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets right="25.0" />
+               </HBox.margin></Button>
             <Button mnemonicParsing="false" text="Print" />
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
       </HBox>
    </center>
 </BorderPane>
