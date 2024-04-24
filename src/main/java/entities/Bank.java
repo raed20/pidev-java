@@ -19,6 +19,15 @@ public class Bank {
     public Bank() {
     }
 
+    public Bank(Integer id,String nom, String adresse, String codeSwift, String logo, String phoneNum) {
+        this.id = id;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.codeSwift = codeSwift;
+        this.logo = logo;
+        this.phoneNum = phoneNum;
+    }
+
     public Bank(String nom, String adresse, String codeSwift, String logo, String phoneNum) {
         this.nom = nom;
         this.adresse = adresse;
@@ -26,6 +35,10 @@ public class Bank {
         this.logo = logo;
         this.phoneNum = phoneNum;
     }
+
+    public Bank(int id, String nom, String logo) {
+    }
+
 
     public Integer getId() {
         return id;

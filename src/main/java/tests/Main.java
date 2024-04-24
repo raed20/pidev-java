@@ -16,13 +16,13 @@ public class Main {
 
             // Set Pret object properties here or use user input
 
-        try {
+       /* try {
             loanService.addLoan(pret);
             System.out.println("New Pret added successfully: " + pret);
         } catch (Exception e) {
             System.err.println("Error adding new Pret: " + e.getMessage());
         }
-
+*/
         /*try {
             // Demandez à l'utilisateur d'entrer l'identifiant de l'enregistrement à supprimer
             Scanner scanner = new Scanner(System.in);

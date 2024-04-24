@@ -1,5 +1,9 @@
 package controllers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.fxml.Initializable;
+
+
 
 import entities.Pret;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,48 +15,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import services.LoanService;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
-
-public class LoanController {
+import java.util.ResourceBundle;
 
 
-    @FXML
-    private ChoiceBox<String> genderChoiceBox;
+public class LoanController implements Initializable {
 
-    @FXML
-    private ChoiceBox<String> marriedChoiceBox;
-
-    @FXML
-    private ChoiceBox<String> educationChoiceBox;
-
-    @FXML
-    private ChoiceBox<String> selfEmployedChoiceBox;
-
-    @FXML
-    private TextField applicantIncomeTextField;
-
-    @FXML
-    private TextField coapplicantIncomeTextField;
-
-    @FXML
-    private TextField loanAmountTextField;
-
-    @FXML
-    private TextField loanAmountTermTextField;
-
-    @FXML
-    private CheckBox creditHistoryCheckBox1;
-
-    @FXML
-    private ChoiceBox<String> propertyAreaChoiceBox;
-
-    @FXML
-    private Label resultLabel;
 
     @FXML
     private TableView<Pret> tableView;
@@ -78,84 +55,18 @@ public class LoanController {
     @FXML
     private TableColumn<Pret, String> bankNameColumn;
 
-
     @FXML
-    public void initialize() {
-        // Initialize choice boxes with options
-        genderChoiceBox.getItems().addAll("Male", "Female");
-        marriedChoiceBox.getItems().addAll("Yes", "No");
-        educationChoiceBox.getItems().addAll("Graduate", "Not Graduate");
-        selfEmployedChoiceBox.getItems().addAll("Yes", "No");
-        propertyAreaChoiceBox.getItems().addAll("Urban", "Rural", "Semiurban");
+    private Button edit;
 
 
-        LoanService l= new LoanService();
 
-        tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE); // or SelectionMode.MULTIPLE if you want to allow multiple selection
+    @Override
+    public void initialize(URL url, ResourceBundle resource) {
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        incomeColumn.setCellValueFactory(new PropertyValueFactory<>("applicantIncome"));
-        coIncomeColumn.setCellValueFactory(new PropertyValueFactory<>("coapplicantIncome"));
-        loanAmountColumn.setCellValueFactory(new PropertyValueFactory<>("loanAmount"));
-        loanTermColumn.setCellValueFactory(new PropertyValueFactory<>("loanAmountTerm"));
-        loanStatusColumn.setCellValueFactory(new PropertyValueFactory<>("loanStatus"));
+        loanShow();
 
-        // Configurez la colonne pour afficher le nom de la banque
-        bankNameColumn.setCellValueFactory(cellData -> {
-            try {
-                return new SimpleStringProperty(cellData.getValue().getBankName());
-            } catch (Exception e) {
-                e.printStackTrace();
-                return new SimpleStringProperty("test");
-            }
-        });
-        try {
-            List<Pret> pretList = l.getDataLoan();
-            ObservableList<Pret> data = FXCollections.observableArrayList(pretList);
-            tableView.setItems(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Set default values or handle initializations
     }
 
-    @FXML
-    private void handleLoanAdd() {
-        // Retrieve values from form components
-        String gender = genderChoiceBox.getValue();
-        String married = marriedChoiceBox.getValue();
-        String education = educationChoiceBox.getValue();
-        String selfEmployed = selfEmployedChoiceBox.getValue();
-        int applicantIncome = Integer.parseInt(applicantIncomeTextField.getText());
-        int coapplicantIncome = Integer.parseInt(coapplicantIncomeTextField.getText());
-        int loanAmount = Integer.parseInt(loanAmountTextField.getText());
-        int loanAmountTerm = Integer.parseInt(loanAmountTermTextField.getText());
-        boolean creditHistory = creditHistoryCheckBox1.isSelected();
-        String propertyArea = propertyAreaChoiceBox.getValue();
-
-        // Handle form submission
-        Pret pret = new Pret();
-        pret.setGender(gender);
-        pret.setMarried(married);
-        pret.setEducation(education);
-        pret.setSelfEmployed(selfEmployed);
-        pret.setApplicantIncome(applicantIncome);
-        pret.setCoapplicantIncome(coapplicantIncome);
-        pret.setLoanAmount(loanAmount);
-        pret.setLoanAmountTerm(loanAmountTerm);
-        pret.setCreditHistory(creditHistory ? 1 : 0); // Convert boolean to int
-        pret.setPropertyArea(propertyArea);
-
-        try {
-            LoanService l = new LoanService();
-            String loanStatus = l.addLoan(pret);
-            resultLabel.setText("Loan Status Predicted: " + loanStatus);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // Now you can use these values for further processing or saving to a database
-    }
 
     @FXML
     private void deleteSelectedLoan() {
@@ -174,69 +85,73 @@ public class LoanController {
         }
     }
 
-    @FXML
-    private void handleLoanUpdate() {
+    void loanShow() {
+        tableView.getSelectionModel().clearSelection();
+        LoanService l = new LoanService();
 
-        genderChoiceBox.getItems().addAll("Male", "Female");
-        marriedChoiceBox.getItems().addAll("Yes", "No");
-        educationChoiceBox.getItems().addAll("Graduate", "Not Graduate");
-        selfEmployedChoiceBox.getItems().addAll("Yes", "No");
-        propertyAreaChoiceBox.getItems().addAll("Urban", "Rural", "Semiurban");
-        // Retrieve values from form components
-        String gender = genderChoiceBox.getValue();
-        String married = marriedChoiceBox.getValue();
-        String education = educationChoiceBox.getValue();
-        String selfEmployed = selfEmployedChoiceBox.getValue();
-        int applicantIncome = Integer.parseInt(applicantIncomeTextField.getText());
-        int coapplicantIncome = Integer.parseInt(coapplicantIncomeTextField.getText());
-        int loanAmount = Integer.parseInt(loanAmountTextField.getText());
-        int loanAmountTerm = Integer.parseInt(loanAmountTermTextField.getText());
-        boolean creditHistory = creditHistoryCheckBox1.isSelected();
-        String propertyArea = propertyAreaChoiceBox.getValue();
+        // Initialize table columns
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        incomeColumn.setCellValueFactory(new PropertyValueFactory<>("applicantIncome"));
+        coIncomeColumn.setCellValueFactory(new PropertyValueFactory<>("coapplicantIncome"));
+        loanAmountColumn.setCellValueFactory(new PropertyValueFactory<>("loanAmount"));
+        loanTermColumn.setCellValueFactory(new PropertyValueFactory<>("loanAmountTerm"));
+        loanStatusColumn.setCellValueFactory(new PropertyValueFactory<>("loanStatus"));
 
-        // Handle form submission
-        Pret pret = new Pret();
-        pret.setGender(gender);
-        pret.setMarried(married);
-        pret.setEducation(education);
-        pret.setSelfEmployed(selfEmployed);
-        pret.setApplicantIncome(applicantIncome);
-        pret.setCoapplicantIncome(coapplicantIncome);
-        pret.setLoanAmount(loanAmount);
-        pret.setLoanAmountTerm(loanAmountTerm);
-        pret.setCreditHistory(creditHistory ? 1 : 0); // Convert boolean to int
-        pret.setPropertyArea(propertyArea);
+        // Configure the bankNameColumn
+        bankNameColumn.setCellValueFactory(cellData -> {
+            try {
+                return new SimpleStringProperty(cellData.getValue().getBankName());
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new SimpleStringProperty("test");
+            }
+        });
 
         try {
-            LoanService l = new LoanService();
-            String loanStatus = l.updateLoan(pret.getId(), pret);
-            resultLabel.setText("Loan Status Predicted: " + loanStatus);
+            List<Pret> pretList = l.getDataLoan();
+            ObservableList<Pret> data = FXCollections.observableArrayList(pretList);
+            tableView.setItems(data);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // Now you can use these values for further processing or saving to a database
+        edit.setOnAction(event -> {
+            Pret selectedPret = tableView.getSelectionModel().getSelectedItem();
+            if (selectedPret != null) {
+                try {
+                    goToEdit(l.getPretById(selectedPret.getId()), selectedPret.getIdBank());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else{
+                goToEdit(null, selectedPret.getIdBank());
+
+            }
+        });
     }
 
     @FXML
-    private void goToEdit() {
+    void goToEdit(Pret pret , int bankid) {
         try {
-            // Load the FXML file
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoanFront/LoanEdit.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/LoanFront/LoanForm.fxml"));
+            Parent form = loader.load();
+            LoanFormController controller = loader.getController();
+            controller.setBankId(bankid);
+            if (pret != null) {
+                controller.setPret(pret); // If updating an existing loan
+            }
 
-
-            // Create a new stage for the edit form
             Stage stage = new Stage();
-            stage.setTitle("Edit Loan");
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(form));
+            stage.setTitle(pret == null ? "Ajouter un Nouveau pret" : "Modifier le pret");
+            stage.showAndWait(); // Use showAndWait to refresh list after adding or updating
 
-            // Show the stage
-            stage.show();
-            // Close the current stage (optional)
-            Stage currentStage = (Stage) tableView.getScene().getWindow();
-            currentStage.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            //reloadPrets(); // Reload the list after closing the form
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-
     }
+
 }
+
+

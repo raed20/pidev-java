@@ -27,7 +27,7 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#goToEdit" text="Edit" />
+            <Button fx:id="edit" mnemonicParsing="false" text="Manage" />
             <Button mnemonicParsing="false" onAction="#deleteSelectedLoan" text="Delete" textAlignment="CENTER" />
             <Button mnemonicParsing="false" text="Print" />
          </children>

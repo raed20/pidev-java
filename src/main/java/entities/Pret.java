@@ -105,7 +105,7 @@ public class Pret {
         this.applicantIncome = applicantIncome;
     }
 
-    public Integer getCoapplicantIncome() {
+    public int getCoapplicantIncome() {
         return coapplicantIncome;
     }
 
@@ -113,7 +113,7 @@ public class Pret {
         this.coapplicantIncome = coapplicantIncome;
     }
 
-    public Integer getLoanAmount() {
+    public int getLoanAmount() {
         return loanAmount;
     }
 
@@ -121,7 +121,7 @@ public class Pret {
         this.loanAmount = loanAmount;
     }
 
-    public Integer getLoanAmountTerm() {
+    public int getLoanAmountTerm() {
         return loanAmountTerm;
     }
 
@@ -129,7 +129,7 @@ public class Pret {
         this.loanAmountTerm = loanAmountTerm;
     }
 
-    public Integer getCreditHistory() {
+    public int getCreditHistory() {
         return creditHistory;
     }
 

@@ -25,15 +25,15 @@ public class LoanService implements ILoanService<Pret> {
     private Classifier classifier;
     Instances trainData;
     Instances test_data;
-    public static Instances getInstances (String filename)
-    {
+
+    public static Instances getInstances(String filename) {
 
         ConverterUtils.DataSource source;
         Instances dataset = null;
         try {
             source = new ConverterUtils.DataSource(filename);
             dataset = source.getDataSet();
-            dataset.setClassIndex(dataset.numAttributes()-1);
+            dataset.setClassIndex(dataset.numAttributes() - 1);
 
 
         } catch (Exception e) {
@@ -44,6 +44,7 @@ public class LoanService implements ILoanService<Pret> {
 
         return dataset;
     }
+
     public static String getEmailById(int idUser) throws SQLException {
         String email = null;
         MyConnection myConnection = new MyConnection();
@@ -84,8 +85,8 @@ public class LoanService implements ILoanService<Pret> {
 
     public LoanService() {
         try {
-            this.trainData = getInstances("src/main/java/services/Train.arff");
-            this.test_data = getInstances("src/main/java/services/Test.arff");
+            this.trainData = getInstances("src/main/resources/modeles/Train.arff");
+            this.test_data = getInstances("src/main/resources/modeles/Test.arff");
 
             this.classifier = new weka.classifiers.functions.Logistic();
             this.classifier.buildClassifier(trainData);
@@ -103,8 +104,8 @@ public class LoanService implements ILoanService<Pret> {
     }
 
     @Override
-    public String addLoan(Pret pret) throws Exception {
-        String toemail=null;
+    public String addLoan(Pret pret,int bankId) throws Exception {
+        String toemail = null;
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
             String query = "INSERT INTO pret (gender, married, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_amount_term, credit_history, property_area, loan_status, idBank, idUser) " +
@@ -114,49 +115,9 @@ public class LoanService implements ILoanService<Pret> {
                 System.out.println(this.classifier);
 
                 int idUser = 1;
-                int bankId=1;
-                toemail=getEmailById(idUser);
-                /*System.out.println("user number : " + idUser);
-                System.out.println("Enter id of bank:");
-                int bankId = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
+                //int bankId = 1;
+                toemail = getEmailById(idUser);
 
-                System.out.println("Enter gender:");
-                String gender = scanner.nextLine();
-
-                System.out.println("Enter married (yes/no):");
-                String married = scanner.nextLine();
-
-                // Skip reading dependents as it's not used
-
-                System.out.println("Enter education:");
-                String education = scanner.nextLine();
-
-                System.out.println("Enter self employed (yes/no):");
-                String selfEmployed = scanner.nextLine();
-
-                System.out.println("Enter applicant income:");
-                int applicantIncome = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
-
-                System.out.println("Enter coapplicant income:");
-                int coapplicantIncome = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
-
-                System.out.println("Enter loan amount:");
-                int loanAmount = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
-
-                System.out.println("Enter loan amount term:");
-                int loanAmountTerm = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
-
-                System.out.println("Enter credit history (0/1):");
-                int creditHistory = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
-
-                System.out.println("Enter property area:");
-                String propertyArea = scanner.nextLine();*/
 
                 // Prepare an instance for prediction
                 Instance instance = new DenseInstance(10);
@@ -196,9 +157,9 @@ public class LoanService implements ILoanService<Pret> {
                 statement.setInt(14, idUser);
 
                 statement.executeUpdate();
-                System.out.println("Pret ajouté");
+                System.out.println("Loan added");
                 System.out.println("Loan Status Predicted: " + loanStatus);
-                new GMailer().sendMail("Loan Application ", "Congratulations ! your loan application has been submitted successfully with status ."+loanStatus, toemail);
+                new GMailer().sendMail("Loan Application ", "Congratulations ! your loan application has been submitted successfully with status ." + loanStatus, toemail);
                 return loanStatus;
             }
         } catch (SQLException e) {
@@ -206,7 +167,6 @@ public class LoanService implements ILoanService<Pret> {
         } finally {
             myConnection.closeConnection();
         }
-
 
 
     }
@@ -231,8 +191,8 @@ public class LoanService implements ILoanService<Pret> {
     }
 
     @Override
-    public String updateLoan(int id, Pret pret) throws Exception {
-        String toemail=null;
+    public String updateLoan(Pret pret) throws Exception {
+        String toemail = null;
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
             String query = "UPDATE pret SET gender = ?, married = ?, education = ?, self_employed = ?, applicant_income = ?, coapplicant_income = ?, loan_amount = ?, loan_amount_term = ?, credit_history = ?, property_area = ? , idBank= ? , loan_status= ? WHERE id = ?";
@@ -240,7 +200,7 @@ public class LoanService implements ILoanService<Pret> {
                 int idUser = 1; // Assuming you're updating a specific loan for a specific user
                 int bankId = 1; // Assuming you're updating a specific loan for a specific bank
 
-                toemail=getEmailById(idUser);
+                toemail = getEmailById(idUser);
                 // Prepare an instance for prediction
                 Instance instance = new DenseInstance(10);
                 instance.setDataset(this.trainData);
@@ -272,9 +232,9 @@ public class LoanService implements ILoanService<Pret> {
                 statement.setInt(8, pret.getLoanAmountTerm());
                 statement.setInt(9, pret.getCreditHistory());
                 statement.setString(10, pret.getPropertyArea());
-                statement.setString(11, loanStatus);
-                statement.setInt(12, bankId);
-                statement.setInt(13, id); // Set the ID of the loan to update
+                statement.setInt(11, bankId);
+                statement.setString(12, loanStatus);
+                statement.setInt(13, pret.getId()); // Set the ID of the loan to update
 
                 // Execute the update statement
                 statement.executeUpdate();
@@ -325,6 +285,38 @@ public class LoanService implements ILoanService<Pret> {
         return pretList;
     }
 
+    public Pret getPretById(int id) throws SQLException {
+        MyConnection myConnection = new MyConnection();
+        Pret pret = null;
+
+        try (Connection connection = myConnection.getConnection()) {
+            String query = "SELECT * FROM pret WHERE id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Map the result set to a Pret object
+                        pret = new Pret();
+                        pret.setId(resultSet.getInt("id"));
+                        pret.setGender(resultSet.getString("gender"));
+                        pret.setMarried(resultSet.getString("married"));
+                        pret.setEducation(resultSet.getString("education"));
+                        pret.setSelfEmployed(resultSet.getString("self_employed"));
+                        pret.setApplicantIncome(resultSet.getInt("applicant_income"));
+                        pret.setCoapplicantIncome(resultSet.getInt("coapplicant_income"));
+                        pret.setLoanAmount(resultSet.getInt("loan_amount"));
+                        pret.setLoanAmountTerm(resultSet.getInt("loan_amount_term"));
+                        pret.setCreditHistory(resultSet.getInt("credit_history"));
+                        pret.setPropertyArea(resultSet.getString("property_area"));
+                    }
+
+
+                }
+
+                return pret;
+            }
+        }
+    }
 }
 
 
