@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.reclamation.controllers.ReclamationsAdminController"
+            prefHeight="400.0" prefWidth="600.0" stylesheets="@ReclamationsAdmin.css">
+
+    <!-- Use VBox as the root container -->
+    <VBox alignment="CENTER" spacing="10" prefWidth="600.0" prefHeight="400.0">
+        <!-- Set VBox to fill the AnchorPane -->
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+
+        <!-- Use AnchorPane constraints to make TableView occupy the whole window -->
+        <TableView fx:id="reclamationTable" VBox.vgrow="ALWAYS">
+            <!-- Define table columns -->
+        </TableView>
+
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="addResponseButton" text="Add Response" onAction="#addResponse"/>
+        </HBox>
+    </VBox>
+
+</AnchorPane>
+
+
+
+
