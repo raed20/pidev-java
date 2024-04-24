@@ -8,7 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import services.OpportuniteService;
 import tools.MyConnection;
 
@@ -63,6 +65,8 @@ public class OpportuniteaddBackController implements Initializable {
 
     @FXML
     private Button cancelButton;
+    @FXML
+    private VBox card;
 
     private OpportuniteService opportuniteService;
 
@@ -72,6 +76,7 @@ public class OpportuniteaddBackController implements Initializable {
         // Initialize the service with the database connection
         MyConnection myConnection = new MyConnection(); // Creating an instance of MyConnection
         opportuniteService = new OpportuniteService(myConnection); // Passing myConnection to the constructor
+        applyBoxShadow();
         nameField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (validationRequired) validateName();
         });
@@ -95,7 +100,20 @@ public class OpportuniteaddBackController implements Initializable {
         cancelButton.setOnMouseClicked(event -> handleCancelButtonAction());
 
     }
+    private void applyBoxShadow() {
+        // Create drop shadow effect
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setWidth(30); // Adjust width and height as needed
+        dropShadow.setHeight(30);
+        dropShadow.setRadius(15);
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setSpread(0.5); // Adjust spread as needed
+        dropShadow.setColor(javafx.scene.paint.Color.BLACK); // Shadow color
 
+        // Apply drop shadow to card VBox
+        card.setEffect(dropShadow);
+    }
 
     // This method is called when the "Add" button is clicked
 

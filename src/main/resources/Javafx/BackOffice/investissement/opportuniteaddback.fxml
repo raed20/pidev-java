@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OpportuniteaddBackController">
+<AnchorPane fx:id="anchorPane" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: white;" stylesheets="@../../../Css/Back/Investisment/opportunitestyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OpportuniteaddBackController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="700.0">
+      <VBox fx:id="card" layoutY="-9.0" prefHeight="600.0" prefWidth="725.0" styleClass="card" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Label text="Ajouter une opportunité">
+            <Label styleClass="title" text="Ajouter une opportunité">
                <font>
-                  <Font name="Calibri" size="25.0" />
+                  <Font name="Calibri Bold" size="25.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -182,7 +182,7 @@
                <children>
                   <Button fx:id="addButton" minHeight="38.0" mnemonicParsing="false" prefWidth="80.0" text="Ajouter">
                      <font>
-                        <Font name="Calibri" size="14.0" />
+                        <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Button>
                   <Button fx:id="cancelButton" minHeight="38.0" mnemonicParsing="false" prefWidth="80.0" text="Cancel">
@@ -190,7 +190,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Calibri" size="14.0" />
+                        <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Button>
                </children>

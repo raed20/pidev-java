@@ -14,6 +14,9 @@ import tools.MyConnection;
 import java.io.IOException;
 
 public class OpportuniteupdateBackController {
+    public void setOpportuniteService(OpportuniteService opportuniteService) {
+        this.opportuniteService = opportuniteService;
+    }
 
     @FXML
     private AnchorPane anchorPane;

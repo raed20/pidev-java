@@ -180,6 +180,12 @@
                <children>
                   <TableView fx:id="tableView" prefHeight="427.0" prefWidth="786.0">
                      <columns>
+                        <TableColumn fx:id="nameColumn" text="Name">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="name" />
+                           </cellValueFactory>
+                        </TableColumn>
+
                         <TableColumn fx:id="openColumn" text="Open">
                            <cellValueFactory>
                               <PropertyValueFactory property="open" />
