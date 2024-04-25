@@ -6,9 +6,23 @@ public class Blog {
     private String Title;
     private String Description;
     private String Content;
-    private int Comment;
+    private String Img;
 
-    public Blog() {
+    public Blog() {}
+
+    public Blog(String title, String description, String content, String img) {
+        Title = title;
+        Description = description;
+        Content = content;
+        Img = img;
+    }
+
+    public Blog(int id, String title, String description, String content, String img) {
+        this.id = id;
+        Title = title;
+        Description = description;
+        Content = content;
+        Img = img;
     }
 
     public int getId() {
@@ -43,12 +57,12 @@ public class Blog {
         Content = content;
     }
 
-    public Integer getComment() {
-        return Comment;
+    public String getImg() {
+        return Img;
     }
 
-    public void setComment(Integer Comment) {
-        this.Comment = Comment;
+    public void setImg(String img) {
+        Img = img;
     }
 
 

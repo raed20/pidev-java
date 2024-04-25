@@ -12,6 +12,9 @@ public interface IBlog {
     void updateBlog(Blog Blog);
 
     List<Blog> getAllBlog();
+
+    List<Blog> displayAllList();
+
     List<Blog> getCommentaireByBlogId(int CommentaireId);
 
 }

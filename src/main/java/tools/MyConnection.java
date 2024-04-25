@@ -17,6 +17,9 @@ public class MyConnection {
 
     private Connection connection;
 
+    private static MyConnection instance;
+
+
     public MyConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,6 +34,12 @@ public class MyConnection {
 
     public Connection getConnection() {
         return connection;
+    }
+
+    public static MyConnection getInstance() {
+        if(instance == null)
+            instance = new MyConnection();
+        return instance;
     }
 
     public void closeConnection() {
