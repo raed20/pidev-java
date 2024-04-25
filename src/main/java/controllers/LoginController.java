@@ -3,6 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import tools.MyConnection;
 
 import java.sql.Connection;
@@ -65,7 +67,7 @@ public class LoginController implements Initializable {
     public void RegistrationButtonOnAction(ActionEvent event) {
         //Stage stage = (Stage) RegistrationButton.getScene().getWindow();
         //stage.close();
-        createAccountForm();
+        createAccountForm(((Node) event.getSource()).getScene().getWindow());
     }
 
     public void validateLogin(){
@@ -100,14 +102,16 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void createAccountForm(){
+    public void createAccountForm(Window previousWindow){
         try{
 
             Parent root = FXMLLoader.load(getClass().getResource("/FrontOffice.Login/registration.fxml"));
             Stage RegisterStage = new Stage();
-            RegisterStage.initStyle(StageStyle.UNDECORATED);
+            RegisterStage.setTitle("ProSync");
             RegisterStage.setScene(new Scene(root,600,400));
+            previousWindow.hide();
             RegisterStage.show();
+
 
         } catch (Exception e){
             e.printStackTrace();

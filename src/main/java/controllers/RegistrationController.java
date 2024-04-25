@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import tools.MyConnection;
 import weka.core.converters.DatabaseConnection;
 
@@ -64,7 +66,7 @@ public class RegistrationController implements Initializable {
         Image ProSyncImage = new Image(ProSyncFile.toURI().toString());
         shieldImageView.setImage(ProSyncImage);
         RoleBox.setItems(roleList);
-        RoleBox.setValue("RoleBox");
+        RoleBox.setValue("Choose a role here...");
     }
 
     public void registerButtonOnAction(ActionEvent event){
@@ -123,18 +125,22 @@ public class RegistrationController implements Initializable {
     public void LoginButtonOnAction(ActionEvent event) {
         //Stage stage = (Stage) RegistrationButton.getScene().getWindow();
         //stage.close();
-        loginForm();
+        loginForm(((Node) event.getSource()).getScene().getWindow());
     }
 
 
-    public void loginForm(){
+    public void loginForm(Window previousWindow){
         try{
 
             Parent root = FXMLLoader.load(getClass().getResource("/FrontOffice.Login/login.fxml"));
             Stage RegisterStage = new Stage();
-            RegisterStage.initStyle(StageStyle.UNDECORATED);
+            RegisterStage.setTitle("ProSync");
             RegisterStage.setScene(new Scene(root,600,400));
+            previousWindow.hide();
             RegisterStage.show();
+
+
+
 
         } catch (Exception e){
             e.printStackTrace();
