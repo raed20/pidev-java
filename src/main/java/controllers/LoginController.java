@@ -1,7 +1,10 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -11,6 +14,7 @@ import javafx.event.ActionEvent;
 import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.StageStyle;
 import tools.MyConnection;
 
 import java.sql.Connection;
@@ -59,8 +63,9 @@ public class LoginController implements Initializable {
     }
 
     public void RegistrationButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) RegistrationButton.getScene().getWindow();
-        stage.close();
+        //Stage stage = (Stage) RegistrationButton.getScene().getWindow();
+        //stage.close();
+        createAccountForm();
     }
 
     public void validateLogin(){
@@ -82,6 +87,7 @@ public class LoginController implements Initializable {
                     LoginMessage.setText("You are Logged in!");
                     LoginMessage.setStyle("-fx-text-fill: green;");
 
+
                 } else {
 
                     LoginMessage.setText("Invalid login. try again !");
@@ -93,4 +99,20 @@ public class LoginController implements Initializable {
 
         }
     }
+
+    public void createAccountForm(){
+        try{
+
+            Parent root = FXMLLoader.load(getClass().getResource("/FrontOffice.Login/registration.fxml"));
+            Stage RegisterStage = new Stage();
+            RegisterStage.initStyle(StageStyle.UNDECORATED);
+            RegisterStage.setScene(new Scene(root,600,400));
+            RegisterStage.show();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
 }
