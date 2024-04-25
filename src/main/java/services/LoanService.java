@@ -191,14 +191,14 @@ public class LoanService implements ILoanService<Pret> {
     }
 
     @Override
-    public String updateLoan(Pret pret) throws Exception {
+    public String updateLoan(Pret pret,int bankId) throws Exception {
         String toemail = null;
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
             String query = "UPDATE pret SET gender = ?, married = ?, education = ?, self_employed = ?, applicant_income = ?, coapplicant_income = ?, loan_amount = ?, loan_amount_term = ?, credit_history = ?, property_area = ? , idBank= ? , loan_status= ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 int idUser = 1; // Assuming you're updating a specific loan for a specific user
-                int bankId = 1; // Assuming you're updating a specific loan for a specific bank
+                //int bankId = 1; // Assuming you're updating a specific loan for a specific bank
 
                 toemail = getEmailById(idUser);
                 // Prepare an instance for prediction
@@ -238,7 +238,7 @@ public class LoanService implements ILoanService<Pret> {
 
                 // Execute the update statement
                 statement.executeUpdate();
-                System.out.println("Pret modifié");
+                System.out.println("Loan edited");
                 new GMailer().sendMail("Loan Application ", "Your loan application has been updated successfully", toemail);
                 return loanStatus;
             }
@@ -317,6 +317,25 @@ public class LoanService implements ILoanService<Pret> {
             }
         }
     }
+
+    public int getBankIdByPretId(int pretId) throws SQLException {
+        MyConnection myConnection = new MyConnection();
+        try (Connection connection = myConnection.getConnection()) {
+            String query = "SELECT idBank FROM pret WHERE id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, pretId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getInt("idBank");
+                    }
+                }
+            }
+        } finally {
+            myConnection.closeConnection();
+        }
+        throw new SQLException("Pret with id " + pretId + " not found.");
+    }
+
 }
 
 

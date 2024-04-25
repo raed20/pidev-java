@@ -188,11 +188,11 @@ public class LoanFormController {
             pretActuel.setCreditHistory(creditHistory ? 1 : 0); // Convert boolean to int
             pretActuel.setPropertyArea(propertyArea);
 
-            String pretMisAJour = serviceLoan.updateLoan(pretActuel);
+            String pretMisAJour = serviceLoan.updateLoan(pretActuel,serviceLoan.getBankIdByPretId(pretActuel.getId()));
             resultLabel.setText("Loan Status Predicted: " + pretMisAJour);
 
             if (Objects.equals(pretMisAJour, "yes") || Objects.equals(pretMisAJour, "no")) {
-                afficherAlerte(Alert.AlertType.INFORMATION, "Success", "Ready updated successfully.");
+                afficherAlerte(Alert.AlertType.INFORMATION, "Success", "Loan updated successfully.");
             } else {
                 afficherAlerte(Alert.AlertType.ERROR, "Error", "Loan update failed.");
             }
