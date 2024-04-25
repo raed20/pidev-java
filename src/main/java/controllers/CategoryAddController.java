@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import services.CategoryService;
 import tools.MyConnection;
@@ -16,12 +17,12 @@ public class CategoryAddController {
 
     @FXML
     private TextField catTF;
-
+    @FXML
+    private Label catAlert;
     private Category selectedCategory;
     private final CategoryService cs;
 
     public CategoryAddController() {
-        // Initialize the CategoryService with a MyConnection object
         MyConnection connection = new MyConnection();
         cs = new CategoryService(connection);
     }
@@ -29,33 +30,49 @@ public class CategoryAddController {
     @FXML
     void AddCategory(ActionEvent event) {
         String categoryName = catTF.getText();
-        if (!categoryName.isEmpty()) {
+        if (isValidInput(categoryName)) {
             try {
                 if (selectedCategory != null) {
-                    // If a category is selected, update it
+                    // Si une catégorie est sélectionnée, mettez à jour
                     selectedCategory.setName(categoryName);
                     cs.update(selectedCategory);
                 } else {
-                    // If no category is selected, add a new one
-                    cs.add(new Category(categoryName));
+                    addNewCategory(categoryName, event);
                 }
-                // Clear the TextField after adding or updating
-                catTF.setText("");
-                // Navigate back to the CategoryList.fxml
-                navigate(event);
+            } catch (RuntimeException e) {
+                showAlert("Error", e.getMessage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            // Show an alert if the category name is empty
-            showAlert("Invalid Category Name", "Please enter a category name.");
         }
     }
+
+    private void addNewCategory(String categoryName, ActionEvent event) {
+        if (cs.isCategoryExists(categoryName)) {
+            catAlert.setText("Category already exists!");
+        } else {
+            cs.add(new Category(categoryName));
+            catTF.setText("");
+            navigate(event);
+        }
+    }
+
+    private boolean isValidInput(String input) {
+        if (input.isEmpty()) {
+            catAlert.setText("Category name cannot be empty!");
+            return false;
+        } else if (!input.matches("[a-zA-Z]+")) {
+            catAlert.setText("Only alphabetic characters!");
+            return false;
+        }
+        return true;
+    }
+
 
     @FXML
     void navigate(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/BackOffice/CategoryList.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Javafx/BackOffice/Category/CategoryList.fxml"));
             catTF.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +82,6 @@ public class CategoryAddController {
 
     public void setCategory(Category category) {
         this.selectedCategory = category;
-        // Set the name of the selected category in the TextField for updating
         catTF.setText(category.getName());
     }
 

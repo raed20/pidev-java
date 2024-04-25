@@ -15,11 +15,11 @@ public class mainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/BackOffice/CategoryAdd.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Javafx/BackOffice/BackSideBar.fxml"));
         try {
             Parent root=loader.load();
             Scene scene=new Scene(root);
-            primaryStage.setTitle("Add Category");
+            primaryStage.setTitle("Prosync");
             primaryStage.setScene(scene);
             primaryStage.show();
         }catch (IOException e){

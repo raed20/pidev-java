@@ -48,7 +48,7 @@ public class CategoryListController {
     @FXML
     void navigate(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BackOffice/CategoryAdd.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/BackOffice/Category/CategoryAdd.fxml"));
             Parent root = loader.load();
 
             // Get the controller of the loaded FXML
@@ -88,7 +88,7 @@ public class CategoryListController {
         if (selectedCategory != null) {
             try {
                 // Load the CategoryAdd.fxml file
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/BackOffice/CategoryAdd.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/BackOffice/Category/CategoryAdd.fxml"));
                 Parent root = loader.load();
 
                 // Get the controller of the loaded FXML

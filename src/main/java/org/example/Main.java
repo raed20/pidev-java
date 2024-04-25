@@ -17,10 +17,29 @@ public class Main {
        MyConnection cnx=new MyConnection();
 
         CategoryService cs=new CategoryService(cnx);
-        Category category=new Category("sponge");
+        Category category=new Category("Car");
         cs.add(category);
 
         System.out.println(cs.getAll());
+
+        ProductService productService=new ProductService(cnx);
+
+//        // Create a new product
+//        Product product = new Product();
+//        product.setName("Test Product");
+//        product.setPrice(19.99);
+//        product.setDescription("This is a test product");
+//        product.setImage("test_image.jpg"); // Assuming you have an image file named test_image.jpg
+//        product.setDiscount(0.1); // 10% discount
+//        product.setCategory(1); // Assuming the category ID exists in the database
+//
+//        // Add the product
+//        productService.add(product);
+//
+//        // Test retrieving the product
+//        int productId = 1; // Assuming this is the ID of the product you just added
+//        Product retrievedProduct = productService.getOne(productId);
+//        System.out.println("Retrieved Product: " + retrievedProduct);
 
 //        Category category1=new Category();
 //        category1.setId(7);

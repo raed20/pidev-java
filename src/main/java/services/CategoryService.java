@@ -37,17 +37,29 @@ public class CategoryService implements IService<Category> {
 
     @Override
     public void update(Category category) {
+        String newName = category.getName();
+        // Check if the new name is the same as the old name
+        Category existingCategory = getOne(category.getId());
+        if(existingCategory != null && !existingCategory.getName().equals(newName)) {
+            // If the new name is different, check if it already exists
+            if(isCategoryExists(newName)) {
+                throw new RuntimeException("Category with the new name already exists!");
+            }
+        }
         String query = "UPDATE category SET name = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, category.getName());
             statement.setInt(2, category.getId());
             statement.executeUpdate();
+            System.out.println("Category Updated !");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Category Updated !");
     }
+
+
+
     @Override
     public void delete(int id) {
         String req = "DELETE FROM category WHERE id = ?";
@@ -96,5 +108,20 @@ public class CategoryService implements IService<Category> {
             throw new RuntimeException(e);
         }
         return category;
+    }
+    public boolean isCategoryExists(String categoryName) {
+        String query = "SELECT COUNT(*) FROM category WHERE name = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, categoryName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }

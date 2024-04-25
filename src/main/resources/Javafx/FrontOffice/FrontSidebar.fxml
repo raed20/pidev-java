@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FrontSideBarController">
+   <children>
+      <BorderPane id="borderPane" fx:id="borderPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@../../Css/Front/Frontsidebar.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
+               <children>
+                  <HBox layoutX="239.0" layoutY="1.0" prefHeight="38.0" prefWidth="525.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label id="searchLabel" fx:id="searchLabel" />
+                        <TextField id="searchBar" fx:id="searchBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="300.0" promptText="Search Bar" style="-fx-background-color: transparent;" styleClass="menu-bar-field">
+                           <font>
+                              <Font name="Calibri" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Button id="searchButton" fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" styleClass="menu-bar-btn">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Button>
+                        <Button id="creditCardButton" fx:id="creditCardButton" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="10.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" styleClass="menu-bar-btns">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Button>
+                        <MenuButton id="cogButton" fx:id="cogButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" styleClass="menu-bar-btns" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="Menu" layoutX="14.0" layoutY="36.0" prefHeight="22.0" prefWidth="92.0" textFill="#b7b7b7" AnchorPane.bottomAnchor="7.007998687500045" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="618.063980710938" AnchorPane.topAnchor="5.0">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@./../../Images/menu1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="MenuBack" layoutX="14.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="92.0" textFill="#b7b7b7" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="594.0" AnchorPane.topAnchor="5.0">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" styleClass="menuItem">
+                           <image>
+                              <Image url="@../../Images/burger.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane fx:id="slider" prefHeight="362.0" prefWidth="176.0" styleClass="sidebar">
+               <children>
+                  <VBox layoutX="14.0" layoutY="35.0" prefHeight="200.0" prefWidth="100.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" styleClass="sidebar-btn">
+                           <children>
+                              <Label id="homeLabel" fx:id="homeLabel" styleClass="sidebar-btn" text="Home" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" styleClass="sidebar-btn">
+                           <children>
+                              <Label id="investmentLabel" fx:id="investmentLabel" styleClass="sidebar-btn" text="Investissement" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" styleClass="sidebar-btn">
+                           <children>
+                              <Label id="pretLabel" fx:id="pretLabel" styleClass="sidebar-btn" text="Pret" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="43.0" styleClass="sidebar-btn">
+                           <children>
+                              <Label id="crmLabel" fx:id="crmLabel" styleClass="sidebar-btn" text="CRM" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="76.0" styleClass="sidebar-btn">
+                           <children>
+                              <Label id="blogLabel" fx:id="blogLabel" styleClass="sidebar-btn" text="Blog" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="108.0" styleClass="sidebar-btn">
+                           <children>
+                              <Label id="stockLabel" fx:id="productLabel" styleClass="sidebar-btn" text="Product" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

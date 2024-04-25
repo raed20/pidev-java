@@ -1,7 +1,6 @@
 package services;
 
 import entities.Product;
-import entities.Category;
 import interfaces.IService;
 import tools.MyConnection;
 
@@ -20,12 +19,14 @@ public class ProductService implements IService<Product> {
 
     @Override
     public void add(Product product) {
-        String req = "INSERT INTO product(name,price,description,category_id) VALUES (?,?,?,?)";
+        String req = "INSERT INTO product(name, price, description, category_id, image, discount) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(req)) {
             ps.setString(1, product.getName());
             ps.setDouble(2, product.getPrice());
             ps.setString(3, product.getDescription());
             ps.setInt(4, product.getCategory());
+            ps.setString(5, product.getImage());
+            ps.setDouble(6, product.getDiscount()); // Set discount
             ps.executeUpdate();
             System.out.println("Product added successfully !");
         } catch (SQLException e) {
@@ -35,13 +36,15 @@ public class ProductService implements IService<Product> {
 
     @Override
     public void update(Product product) {
-        String query = "UPDATE product SET name = ?, price = ?, description = ?, category_id = ? WHERE id = ?";
+        String query = "UPDATE product SET name = ?, price = ?, description = ?, category_id = ?, image = ?, discount = ? WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, product.getName());
             ps.setDouble(2, product.getPrice());
             ps.setString(3, product.getDescription());
             ps.setInt(4, product.getCategory());
-            ps.setInt(5, product.getId());
+            ps.setString(5, product.getImage());
+            ps.setDouble(6, product.getDiscount()); // Set discount
+            ps.setInt(7, product.getId());
             ps.executeUpdate();
             System.out.println("Product Updated !");
         } catch (SQLException e) {
@@ -73,6 +76,8 @@ public class ProductService implements IService<Product> {
                 product.setPrice(res.getDouble("price"));
                 product.setDescription(res.getString("description"));
                 product.setCategory(res.getInt("category_id"));
+                product.setImage(res.getString("image"));
+                product.setDiscount(res.getDouble("discount")); // Set discount
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -94,6 +99,8 @@ public class ProductService implements IService<Product> {
                     product.setPrice(resultSet.getDouble("price"));
                     product.setDescription(resultSet.getString("description"));
                     product.setCategory(resultSet.getInt("category_id"));
+                    product.setImage(resultSet.getString("image"));
+                    product.setDiscount(resultSet.getDouble("discount")); // Set discount
                     return product;
                 }
             }

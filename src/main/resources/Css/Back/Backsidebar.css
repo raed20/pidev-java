@@ -1,0 +1,53 @@
+/* productstyle.css */
+
+/* AnchorPane */
+.root {
+    -fx-background-color: white;
+}
+
+/* Label */
+.label {
+    -fx-font-size: 25px;
+}
+
+/* TextField */
+.text-field {
+    -fx-pref-width: 150px;
+}
+
+/* ChoiceBox */
+.choice-box {
+    -fx-pref-width: 150px;
+}
+
+/* TextArea */
+.text-area {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 70px;
+}
+
+/* Button */
+.button {
+    -fx-pref-width: 100px;
+}
+
+/* ImageView */
+.image-view {
+    -fx-fit-width: 98px;
+    -fx-fit-height: 91px;
+}
+
+/* Text */
+.text {
+    -fx-font-size: 14px;
+}
+
+/* Labels with specific fx:id */
+#nameAlert,
+#priceAlert,
+#disAlert,
+#catAlert,
+#descAlert,
+#imgAlert {
+    -fx-text-fill: red;
+}
