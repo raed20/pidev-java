@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Blend?>
@@ -16,18 +17,16 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="535.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@../../../Css/Front/Investisment/investissementStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PolygonController">
-   <top>
-      <AnchorPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <MenuButton id="cogButton" fx:id="currencyButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" styleClass="menu-bar-btns" AnchorPane.bottomAnchor="61.6" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
-         </children>
-      </AnchorPane>
-   </top>
    <center>
       <ScrollPane prefHeight="486.0" prefWidth="1200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <content>
             <VBox prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: white;">
                <children>
+                  <AnchorPane maxWidth="1100.0" prefHeight="38.0" prefWidth="200.0">
+                     <children>
+                        <MenuButton id="cogButton" fx:id="currencyButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" styleClass="menu-bar-btns" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="1000.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="1000.0">
@@ -299,15 +298,19 @@
                                     </Label>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="50.0" />
+                                    <Insets left="20.0" />
                                  </VBox.margin>
                               </HBox>
                               <Separator maxWidth="1100.0" prefWidth="1100.0" styleClass="divider" />
-                              <ListView fx:id="listView" maxWidth="1100.0" prefHeight="500.0" prefWidth="1100.0" style="-fx-background-color: white;" styleClass="listcollum" stylesheets="@../../../Css/Back/Investisment/opportunitestyle.css" VBox.vgrow="NEVER">
+                              <ListView fx:id="listView" maxWidth="0.0" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: white;" styleClass="listcollum" stylesheets="@../../../Css/Back/Investisment/opportunitestyle.css" VBox.vgrow="NEVER">
                                  <VBox.margin>
                                     <Insets left="50.0" />
                                  </VBox.margin>
                               </ListView>
+                              <Pagination fx:id="pagination" maxWidth="1050.0" pageCount="1" prefHeight="500.0" prefWidth="1000.0">
+                                 <VBox.margin>
+                                    <Insets left="20.0" />
+                                 </VBox.margin></Pagination>
                            </children>
                         </VBox>
 

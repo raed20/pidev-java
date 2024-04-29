@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -36,11 +37,15 @@ public class PolygonController implements Initializable {
     private MenuButton currencyButton;
     @FXML
     private AnchorPane listviewanchorepane;
+    @FXML
+    private Pagination pagination;
     private StockQuote stockquote;
 
     private String selectedCurrency = "USD"; // Default currency
     private final PolygonApiService polygonApiService;
     private DecimalFormat decimalFormat = new DecimalFormat("#.##");
+    private static final int ITEMS_PER_PAGE = 10;
+
 
     public PolygonController() {
         this.polygonApiService = new PolygonApiService();
@@ -50,6 +55,7 @@ public class PolygonController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeCurrencyMenu();
         fetchAndPopulateData();
+        setupPagination();
 
         convertToCurrency(selectedCurrency);
 
@@ -66,6 +72,9 @@ public class PolygonController implements Initializable {
         currencyButton.getItems().addAll(usdItem, eurItem, gbpItem);
         currencyButton.setText(selectedCurrency);
     }
+    private void setupPagination() {
+        pagination.setPageFactory(this::createPage);
+    }
 
     private void fetchAndPopulateData() {
         Task<ObservableList<StockQuote>> fetchTableDataTask = new Task<>() {
@@ -79,6 +88,7 @@ public class PolygonController implements Initializable {
         fetchTableDataTask.setOnSucceeded(event -> {
             ObservableList<StockQuote> stockQuotes = fetchTableDataTask.getValue();
             listView.setItems(stockQuotes);
+            pagination.setPageCount((int) Math.ceil((double) stockQuotes.size() / ITEMS_PER_PAGE));
         });
 
         new Thread(fetchTableDataTask).start();
@@ -232,4 +242,18 @@ public class PolygonController implements Initializable {
         double changeRate = ((stock.getClose() - stock.getOpen()) / stock.getOpen()) * 100.0;
         changeRateLabel.setText(String.format("%.2f%%", changeRate));
     }
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * ITEMS_PER_PAGE;
+        int toIndex = Math.min(fromIndex + ITEMS_PER_PAGE, listView.getItems().size());
+
+        ListView<StockQuote> pageListView = new ListView<>();
+        pageListView.setItems(FXCollections.observableArrayList(listView.getItems().subList(fromIndex, toIndex)));
+
+        // Set custom cell factory for the page's ListView
+        CustomCellFactoryFront cellFactory = new CustomCellFactoryFront();
+        pageListView.setCellFactory(cellFactory);
+
+        return pageListView;
+    }
+
 }
