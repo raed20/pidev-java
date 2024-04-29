@@ -8,3 +8,38 @@
     -fx-background-radius: 10px;
     -fx-background-color: rgba(0, 0, 0, 0.24);
 }
+
+.listcollum:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+
+}
+.divider{
+    -fx-background-color: black;
+}
+.title{
+    -fx-text-fill: rgb(56, 116, 255);
+
+}
+.btnget{
+    -fx-text-fill: white;
+    -fx-background-radius: 30px 30px 30px 30px;
+    -fx-background-color: linear-gradient(to bottom, rgb(56, 116, 255), rgb(56, 116, 255));
+    -fx-padding: 8 16; /* Optional: Set padding */
+    -fx-font-size: 14px; /* Optional: Set font size */
+    -fx-cursor: hand; /* Optional: Change cursor to hand on hover */
+    -fx-border-width: 1; /* Optional: Set border width */
+    -fx-border-color: transparent; /* Optional: Set border color */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); /* Optional: Add drop shadow */
+
+}
+.btnget:hover{
+    -fx-background-color: linear-gradient(to bottom, rgb(23, 64, 133), rgb(56, 116, 255));
+}
+
+.imgspin:hover {
+    -fx-transition-duration: 0.5s; /* Duration for each part of the animation */
+    -fx-animation-timing-function: ease-in-out; /* Timing function for smoother animation */
+    -fx-rotate: 90deg; /* Ensure the image starts at the correct position */
+    animation-name: rotateLeftRight; /* Apply the defined keyframes */
+}
+

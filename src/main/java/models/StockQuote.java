@@ -69,6 +69,10 @@ private  String name;
         this.volume = volume;
     }
 
+    @Override
+    public String toString() {
+        return "Stock: " + name + ", Open: " + open + ", High: " + high + ", Low: " + low + ", Close: " + close + ", Volume: " + volume;
+    }
 
 
 }

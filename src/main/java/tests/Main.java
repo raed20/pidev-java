@@ -14,7 +14,6 @@ public class Main {
 
         InvestissementService investissementService = new InvestissementService(connection);
         OpportuniteService opportuniteService = new OpportuniteService(connection);
-
         // Test Add operation for Investissement
         System.out.println("Adding a new investment...");
         Investissement newInvestissement = new Investissement();
@@ -44,6 +43,8 @@ public class Main {
         newOpportunite.setLastprice(200F); // Example value, replace with actual value
         newOpportunite.setYesterdaychange(0.02F); // Example value, replace with actual value
         newOpportunite.setMarketcap(500000F); // Example value, replace with actual value
+        investissementService.deleteInvestissement(1);
+
 
         try {
             opportuniteService.addOpportunite(newOpportunite);

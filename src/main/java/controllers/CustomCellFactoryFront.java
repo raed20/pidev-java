@@ -1,69 +1,64 @@
 package controllers;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import models.StockQuote;
-import services.PolygonApiService;
-import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
+import models.StockQuote;
 
 import java.io.IOException;
-import java.util.List;
 
-public class CustomCellFactoryFront {
-    @FXML
-    private ListView<StockQuote> listView;
+public class CustomCellFactoryFront implements Callback<ListView<StockQuote>, ListCell<StockQuote>> {
 
-    private final PolygonApiService polygonApiService;
+    @Override
+    public ListCell<StockQuote> call(ListView<StockQuote> listView) {
+        return new ListCell<>() {
+            @FXML
+            private Label nameLabel;
+            @FXML
+            private Label openLabel;
+            @FXML
+            private Label highLabel;
+            @FXML
+            private Label lowLabel;
+            @FXML
+            private Label closeLabel;
+            @FXML
+            private Label volumeLabel;
+            @FXML
+            private AnchorPane listviewCollum;
 
-    public CustomCellFactoryFront() {
-        this.polygonApiService = new PolygonApiService() ;   }
+            private FXMLLoader loader;
 
-    @FXML
-    public void initialize() {
-        // Set custom cell factory for the ListView
-        listView.setCellFactory(param -> new ListCell<StockQuote>() {
+            {
+                loader = new FXMLLoader(getClass().getResource("/JavaFX/FrontOffice/investissement/listviewcollum.fxml"));
+                loader.setController(this);
+                try {
+                    listviewCollum = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             @Override
             protected void updateItem(StockQuote item, boolean empty) {
                 super.updateItem(item, empty);
-
                 if (empty || item == null) {
+                    setText(null);
                     setGraphic(null);
                 } else {
-                    try {
-                        // Load the FXML file
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/JavaFX/FrontOffice/investissement/opportuniteupdateback.fxml"));
-                        AnchorPane root = loader.load();
-
-                        // Access the elements of the custom cell
-                        Label nameLabel = (Label) root.lookup("#nameLabel");
-                        Label lastpriceLabel = (Label) root.lookup("#lastpriceLabel");
-
-                        // Set values to the elements
-                        nameLabel.setText(item.getName());
-                        lastpriceLabel.setText(String.valueOf(item.getOpen()));
-
-                        // Set the cell content
-                        setGraphic(root);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    nameLabel.setText(item.getName());
+                    openLabel.setText("" + item.getOpen());
+                    highLabel.setText("" + item.getHigh());
+                    lowLabel.setText("" + item.getLow());
+                    closeLabel.setText("" + item.getClose());
+                    volumeLabel.setText("" + item.getVolume());
+                    setGraphic(listviewCollum);
                 }
             }
-        });
-
-
-        // Load and populate data
-        populateListView();
-    }
-
-    private void populateListView() {
-        // Fetch data from API
-        List<StockQuote> stockQuotes = polygonApiService.fetchStockQuotes();
-
-        // Add data to ListView
-        listView.getItems().addAll(stockQuotes);
+        };
     }
 }

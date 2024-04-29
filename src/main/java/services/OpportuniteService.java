@@ -83,6 +83,21 @@ public class OpportuniteService implements interfaces.IOpportunite {
         }
         return opportunites;
     }
+    public boolean opportuniteExists(String name) {
+        String query = "SELECT COUNT(*) AS count FROM opportunite WHERE name = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt("count");
+                    return count > 0;
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "An SQL Exception occurred: ", e);
+        }
+        return false;
+    }
         public Opportunite getOpportuniteById(int opportuniteId) {
             String query = "SELECT * FROM opportunite WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {

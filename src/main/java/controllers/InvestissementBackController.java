@@ -91,7 +91,6 @@ public class InvestissementBackController {
             anchorPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle any potential errors loading the FXML file
         }
     }
 

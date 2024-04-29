@@ -4,6 +4,7 @@ import entities.Opportunite;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -188,33 +189,55 @@ public class OpportuniteupdateBackController {
         descriptionField.setText(opportunite.getDescription());
         priceField.setText(String.valueOf(opportunite.getPrix()));
     }
+
     private void handleUpdateButtonAction() {
         if (validateInputs()) {
-            // Retrieve data from text fields
-            String name = nameField.getText();
-            float lastPrice = Float.parseFloat(lastPriceField.getText());
-            float changeRate = Float.parseFloat(changeRateField.getText());
-            float marketCap = Float.parseFloat(marketCapField.getText());
-            String description = descriptionField.getText();
-            float price = Float.parseFloat(priceField.getText());
+            String newName = nameField.getText();
 
-            // Create a new Opportunite object
-            Opportunite updatedOpportunite = new Opportunite();
-            updatedOpportunite.setName(name);
-            updatedOpportunite.setLastprice(lastPrice);
-            updatedOpportunite.setYesterdaychange(changeRate);
-            updatedOpportunite.setMarketcap(marketCap);
-            updatedOpportunite.setDescription(description);
-            updatedOpportunite.setPrix(price);
-
-            // Perform the update operation
-            opportuniteService.updateOpportunite(updatedOpportunite);
-            // You can handle the success case here, such as showing a success message
-            System.out.println("Opportunite updated successfully.");
-            loadPage("/JavaFX/BackOffice/investissement/opportuniteback.fxml");
+            // Check if the new name is the same as the original name (no change)
+            if (newName.equals(opportuniteToUpdate.getName())) {
+                updateOpportunite();
+            } else {
+                // Check if the new name already exists in the database
+                if (opportuniteService.opportuniteExists(newName)) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Duplicate Name");
+                    alert.setHeaderText(null);
+                    alert.setContentText("An opportunity with the same name already exists.");
+                    alert.showAndWait();
+                } else {
+                    updateOpportunite();
+                }
+            }
         }
     }
 
+    private void updateOpportunite() {
+        // Retrieve data from text fields
+        String name = nameField.getText();
+        float lastPrice = Float.parseFloat(lastPriceField.getText());
+        float changeRate = Float.parseFloat(changeRateField.getText());
+        float marketCap = Float.parseFloat(marketCapField.getText());
+        String description = descriptionField.getText();
+        float price = Float.parseFloat(priceField.getText());
+
+        // Create a new Opportunite object with updated data
+        Opportunite updatedOpportunite = new Opportunite();
+        updatedOpportunite.setId(opportuniteToUpdate.getId()); // Set the ID of the original opportunity
+        updatedOpportunite.setName(name);
+        updatedOpportunite.setLastprice(lastPrice);
+        updatedOpportunite.setYesterdaychange(changeRate);
+        updatedOpportunite.setMarketcap(marketCap);
+        updatedOpportunite.setDescription(description);
+        updatedOpportunite.setPrix(price);
+
+        // Perform the update operation
+        opportuniteService.updateOpportunite(updatedOpportunite);
+
+        // Handle the success case here, such as showing a success message
+        System.out.println("Opportunite updated successfully.");
+        loadPage("/JavaFX/BackOffice/investissement/opportuniteback.fxml");
+    }
     private void handleCancelButtonAction() {
         loadPage("/JavaFX/BackOffice/investissement/opportuniteback.fxml");
     }

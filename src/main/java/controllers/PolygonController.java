@@ -1,11 +1,12 @@
 package controllers;
+
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import models.StockQuote;
@@ -20,17 +21,7 @@ import java.util.ResourceBundle;
 public class PolygonController implements Initializable {
 
     @FXML
-    private TableView<StockQuote> tableView;
-    @FXML
-    private TableColumn<StockQuote, Double> openColumn;
-    @FXML
-    private TableColumn<StockQuote, Double> highColumn;
-    @FXML
-    private TableColumn<StockQuote, Double> lowColumn;
-    @FXML
-    private TableColumn<StockQuote, Double> closeColumn;
-    @FXML
-    private TableColumn<StockQuote, Long> volumeColumn;
+    private ListView<StockQuote> listView;
     @FXML
     private AnchorPane cardPane1;
     @FXML
@@ -43,6 +34,9 @@ public class PolygonController implements Initializable {
     private Text resultText;
     @FXML
     private MenuButton currencyButton;
+    @FXML
+    private AnchorPane listviewanchorepane;
+    private StockQuote stockquote;
 
     private String selectedCurrency = "USD"; // Default currency
     private final PolygonApiService polygonApiService;
@@ -55,9 +49,13 @@ public class PolygonController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeCurrencyMenu();
-        initializeTableView();
         fetchAndPopulateData();
+
         convertToCurrency(selectedCurrency);
+
+        // Set custom cell factory for the ListView
+        CustomCellFactoryFront cellFactory = new CustomCellFactoryFront();
+        listView.setCellFactory(cellFactory);
     }
 
     private void initializeCurrencyMenu() {
@@ -69,30 +67,30 @@ public class PolygonController implements Initializable {
         currencyButton.setText(selectedCurrency);
     }
 
+    private void fetchAndPopulateData() {
+        Task<ObservableList<StockQuote>> fetchTableDataTask = new Task<>() {
+            @Override
+            protected ObservableList<StockQuote> call() throws Exception {
+                List<StockQuote> stockQuotes = polygonApiService.fetchStockQuotes();
+                return FXCollections.observableArrayList(stockQuotes);
+            }
+        };
+
+        fetchTableDataTask.setOnSucceeded(event -> {
+            ObservableList<StockQuote> stockQuotes = fetchTableDataTask.getValue();
+            listView.setItems(stockQuotes);
+        });
+
+        new Thread(fetchTableDataTask).start();
+    }
+
+
+
+
     private MenuItem createCurrencyMenuItem(String currency) {
         MenuItem menuItem = new MenuItem(currency);
         menuItem.setOnAction(event -> handleCurrencySelection(currency));
         return menuItem;
-    }
-
-    private void initializeTableView() {
-        openColumn.setCellValueFactory(new PropertyValueFactory<>("open"));
-        highColumn.setCellValueFactory(new PropertyValueFactory<>("high"));
-        lowColumn.setCellValueFactory(new PropertyValueFactory<>("low"));
-        closeColumn.setCellValueFactory(new PropertyValueFactory<>("close"));
-        volumeColumn.setCellValueFactory(new PropertyValueFactory<>("volume"));
-    }
-
-    private void fetchAndPopulateData() {
-        Task<List<StockQuote>> fetchTableDataTask = new Task<>() {
-            @Override
-            protected List<StockQuote> call() throws Exception {
-                List<StockQuote> stockQuotes = polygonApiService.fetchStockQuotes();
-                Platform.runLater(() -> tableView.setItems((ObservableList<StockQuote>) stockQuotes));
-                return fetchFamousStocks();
-            }
-        };
-        new Thread(fetchTableDataTask).start();
     }
 
     private List<StockQuote> fetchFamousStocks() {
@@ -118,17 +116,18 @@ public class PolygonController implements Initializable {
 
     private void convertToCurrency(String currency) {
         double conversionRate = getConversionRate(currency) / getConversionRate(selectedCurrency);
-        for (StockQuote stock : tableView.getItems()) {
+        for (StockQuote stock : listView.getItems()) {
             convertStockQuote(stock, conversionRate);
         }
-        tableView.refresh();
+        listView.refresh();
         selectedCurrency = currency; // Update the selected currency
         currencyButton.setText(currency); // Update the currency button text
         updateCardCurrencies(); // Update the currency labels on the cards
         convertAllCardsToSelectedCurrency(); // Reapply conversion to all cards
     }
+
     private void updateCardCurrencies() {
-        List<StockQuote> stocks = tableView.getItems();
+        List<StockQuote> stocks = listView.getItems();
         for (int i = 0; i < stocks.size(); i++) {
             StockQuote stock = stocks.get(i);
             AnchorPane cardPane = getCardPane(i + 1);
@@ -144,8 +143,6 @@ public class PolygonController implements Initializable {
         Label currencyLabel = (Label) card.lookup("#curency");
         currencyLabel.setText("Currency: " + currency);
     }
-
-
 
     private double getConversionRate(String currency) {
         switch (currency) {
@@ -166,7 +163,7 @@ public class PolygonController implements Initializable {
     }
 
     private void convertAllCardsToSelectedCurrency() {
-        List<StockQuote> stocks = tableView.getItems();
+        List<StockQuote> stocks = listView.getItems();
         for (int i = 0; i < stocks.size(); i++) {
             StockQuote stock = stocks.get(i);
             AnchorPane cardPane = getCardPane(i + 1);
@@ -226,7 +223,7 @@ public class PolygonController implements Initializable {
         nameLabel.setText(stock.getName());
 
         Label currencyLabel = (Label) card.lookup("#curency");
-        currencyLabel.setText(" "+selectedCurrency);
+        currencyLabel.setText(" " + selectedCurrency);
 
         Label amountLabel = (Label) card.lookup("#amount");
         amountLabel.setText("" + stock.getOpen());

@@ -1,4 +1,5 @@
 package controllers;
+
 import entities.Opportunite;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +17,9 @@ import tools.MyConnection;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class OpportuniteaddBackController implements Initializable {
-
 
     @FXML
     private TextField nameField;
@@ -57,6 +56,7 @@ public class OpportuniteaddBackController implements Initializable {
 
     @FXML
     private Label priceValidationLabel;
+
     @FXML
     private AnchorPane anchorPane;
 
@@ -65,17 +65,18 @@ public class OpportuniteaddBackController implements Initializable {
 
     @FXML
     private Button cancelButton;
+
     @FXML
     private VBox card;
 
     private OpportuniteService opportuniteService;
 
     private boolean validationRequired = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Initialize the service with the database connection
-        MyConnection myConnection = new MyConnection(); // Creating an instance of MyConnection
-        opportuniteService = new OpportuniteService(myConnection); // Passing myConnection to the constructor
+        MyConnection myConnection = new MyConnection();
+        opportuniteService = new OpportuniteService(myConnection);
         applyBoxShadow();
         nameField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (validationRequired) validateName();
@@ -95,27 +96,23 @@ public class OpportuniteaddBackController implements Initializable {
         priceField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (validationRequired) validatePrice();
         });
-        // Set event handler for the "Add" button
+
         addButton.setOnAction(event -> handleAddButtonAction());
         cancelButton.setOnMouseClicked(event -> handleCancelButtonAction());
-
     }
+
     private void applyBoxShadow() {
-        // Create drop shadow effect
         DropShadow dropShadow = new DropShadow();
-        dropShadow.setWidth(30); // Adjust width and height as needed
+        dropShadow.setWidth(30);
         dropShadow.setHeight(30);
         dropShadow.setRadius(15);
         dropShadow.setOffsetX(0);
         dropShadow.setOffsetY(0);
-        dropShadow.setSpread(0.5); // Adjust spread as needed
-        dropShadow.setColor(javafx.scene.paint.Color.BLACK); // Shadow color
+        dropShadow.setSpread(0.5);
+        dropShadow.setColor(javafx.scene.paint.Color.BLACK);
 
-        // Apply drop shadow to card VBox
         card.setEffect(dropShadow);
     }
-
-    // This method is called when the "Add" button is clicked
 
     private void validateName() {
         String name = nameField.getText();
@@ -128,8 +125,6 @@ public class OpportuniteaddBackController implements Initializable {
         }
     }
 
-
-    // Method to validate the Last Price field
     private void validateLastPrice() {
         if (!isValidFloat(lastPriceField.getText())) {
             lastPriceValidationLabel.setText("Last Price must be a valid number.");
@@ -138,7 +133,6 @@ public class OpportuniteaddBackController implements Initializable {
         }
     }
 
-    // Method to validate the Change Rate field
     private void validateChangeRate() {
         if (!isValidFloat(changeRateField.getText())) {
             changeRateValidationLabel.setText("Change Rate must be a valid number.");
@@ -147,7 +141,6 @@ public class OpportuniteaddBackController implements Initializable {
         }
     }
 
-    // Method to validate the Market Cap field
     private void validateMarketCap() {
         if (!isValidFloat(marketCapField.getText())) {
             marketCapValidationLabel.setText("Market Cap must be a valid number.");
@@ -156,7 +149,6 @@ public class OpportuniteaddBackController implements Initializable {
         }
     }
 
-    // Method to validate the Description field
     private void validateDescription() {
         String description = descriptionField.getText();
         if (description.isEmpty()) {
@@ -168,8 +160,6 @@ public class OpportuniteaddBackController implements Initializable {
         }
     }
 
-
-    // Method to validate the Price field
     private void validatePrice() {
         if (!isValidFloat(priceField.getText())) {
             priceValidationLabel.setText("Price must be a valid number.");
@@ -178,7 +168,6 @@ public class OpportuniteaddBackController implements Initializable {
         }
     }
 
-    // Method to validate if a string can be parsed as a float
     private boolean isValidFloat(String input) {
         try {
             Float.parseFloat(input);
@@ -188,7 +177,6 @@ public class OpportuniteaddBackController implements Initializable {
         }
     }
 
-    // Method to perform validation before adding the opportunity
     private boolean validateInputs() {
         validationRequired = true;
         validateName();
@@ -198,7 +186,6 @@ public class OpportuniteaddBackController implements Initializable {
         validateDescription();
         validatePrice();
 
-        // Check if any validation message is displayed
         boolean isValid = nameValidationLabel.getText().isEmpty() &&
                 lastPriceValidationLabel.getText().isEmpty() &&
                 changeRateValidationLabel.getText().isEmpty() &&
@@ -206,7 +193,6 @@ public class OpportuniteaddBackController implements Initializable {
                 descriptionValidationLabel.getText().isEmpty() &&
                 priceValidationLabel.getText().isEmpty();
 
-        // Reset validationRequired flag
         validationRequired = false;
 
         return isValid;
@@ -214,26 +200,31 @@ public class OpportuniteaddBackController implements Initializable {
 
     private void handleAddButtonAction() {
         if (validateInputs()) {
-            // Retrieve data from text fields
             String name = nameField.getText();
-            float lastPrice = Float.parseFloat(lastPriceField.getText());
-            float changeRate = Float.parseFloat(changeRateField.getText());
-            float marketCap = Float.parseFloat(marketCapField.getText());
-            String description = descriptionField.getText();
-            float price = Float.parseFloat(priceField.getText());
+            if (opportuniteService.opportuniteExists(name)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Duplicate Opportunity");
+                alert.setHeaderText(null);
+                alert.setContentText("An opportunity with the same name already exists.");
+                alert.showAndWait();
+            } else {
+                float lastPrice = Float.parseFloat(lastPriceField.getText());
+                float changeRate = Float.parseFloat(changeRateField.getText());
+                float marketCap = Float.parseFloat(marketCapField.getText());
+                String description = descriptionField.getText();
+                float price = Float.parseFloat(priceField.getText());
 
-            // Create a new Opportunite object
-            Opportunite newOpportunite = new Opportunite();
-            newOpportunite.setName(name);
-            newOpportunite.setLastprice(lastPrice);
-            newOpportunite.setYesterdaychange(changeRate);
-            newOpportunite.setMarketcap(marketCap);
-            newOpportunite.setDescription(description);
-            newOpportunite.setPrix(price);
+                Opportunite newOpportunite = new Opportunite();
+                newOpportunite.setName(name);
+                newOpportunite.setLastprice(lastPrice);
+                newOpportunite.setYesterdaychange(changeRate);
+                newOpportunite.setMarketcap(marketCap);
+                newOpportunite.setDescription(description);
+                newOpportunite.setPrix(price);
 
-            // Add the new opportunity to the database
-            opportuniteService.addOpportunite(newOpportunite);
-            loadPage("/JavaFX/BackOffice/investissement/opportuniteback.fxml");
+                opportuniteService.addOpportunite(newOpportunite);
+                loadPage("/JavaFX/BackOffice/investissement/opportuniteback.fxml");
+            }
         }
     }
 
@@ -249,7 +240,6 @@ public class OpportuniteaddBackController implements Initializable {
             anchorPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle any potential errors loading the FXML file
         }
     }
 }
