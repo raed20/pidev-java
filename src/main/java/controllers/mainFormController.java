@@ -20,18 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -50,6 +39,8 @@ public class mainFormController implements Initializable {
 
     @FXML
     private Button menu_btn;
+    @FXML
+    private Button calc_btn;
 
     @FXML
     private Button customers_btn;
@@ -92,7 +83,7 @@ public class mainFormController implements Initializable {
             menu_gridPane.getColumnConstraints().clear();
 
             for (int q = 0; q < bankListData.size(); q++) {
-                FXMLLoader load = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/LoanFront/cardProduct.fxml"));
+                FXMLLoader load = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/LoanFront/cardBank.fxml"));
                 AnchorPane pane = load.load();
                 CardController cardC = load.getController();
                 cardC.setData(bankListData.get(q));
@@ -119,7 +110,6 @@ public class mainFormController implements Initializable {
              dashboard_form.setVisible(false);
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/LoanFront/LoanShow.fxml"));
              Parent form = loader.load();
-
              Stage stage = new Stage();
              stage.setScene(new Scene(form));
              stage.showAndWait(); // Use showAndWait to refresh list after adding or updating
@@ -128,9 +118,14 @@ public class mainFormController implements Initializable {
 
            /* menuDisplayTotal();
             menuShowOrderData();*/
-        } else if (event.getSource() == customers_btn) {
+        } else if (event.getSource() == calc_btn) {
             dashboard_form.setVisible(false);
             menu_form.setVisible(false);
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/LoanFront/LoanCalculator.fxml"));
+             Parent form = loader.load();
+             Stage stage = new Stage();
+             stage.setScene(new Scene(form));
+             stage.showAndWait();
 
            // customersShowData();
         }

@@ -1,33 +1,52 @@
-/* TableView styles */
-.table-view .table-column{
-    -fx-alignment:CENTER;
+.button
+{
+-fx-background-color : #3874FF;
+-fx-text-fill : #e7e5e5;
 }
-.table-view .column-header-background{
-    -fx-background-color:#272b3f;
-    -fx-background-insets: 0 0 0 0;
-    -f-background-radius:8px 8px 0px 0px;
-}
-.table-view .column-header, .filter{
+.button:pressed{
     -fx-background-color: transparent;
-    -fx-size:40px;
-}
-.table-view .column-header .label{
-    -fx-text-fill:#fff;
-    -fx-font-family:"Arial";
-}
-
-
-/* Button styles */
-.button {
-    -fx-background-color: #272b3f; /* Sky blue background */
-    -fx-text-fill: white; /* White text color */
+    -fx-border-color: #fff;
+    -fx-border-width: .4px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
     -fx-font-size: 14px;
-    -fx-padding: 8px 16px; /* Padding around the text */
-    -fx-border-radius: 5px; /* Rounded corners */
-    -fx-cursor: hand; /* Hand cursor on hover */
+}
+.button:hover{
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
 }
 
-/* Hover effect for buttons */
-.button:hover {
-    -fx-background-color: #4682b4; /* Steel blue background on hover */
+.scroll-pane {
+    -fx-background-color: #02030A;
 }
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #10165F;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+.selected-item {
+    -fx-background-color: #000;
+}
+

@@ -14,11 +14,6 @@
 <AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="1299.0" stylesheets="/Css/Back/backBank.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BankController">
    <children>
       <AnchorPane fx:id="left_main" prefHeight="500.0" prefWidth="335.0">
-         <Label layoutX="41.0" layoutY="41.0" text="ID:">
-            <font>
-               <Font name="Microsoft Sans Serif" size="20.0" />
-            </font>
-         </Label>
          <TextField fx:id="banknameField" layoutX="103.0" layoutY="78.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="/Css/Back/backBank.css" AnchorPane.leftAnchor="103.0">
             <font>
                <Font size="15.0" />
@@ -76,7 +71,7 @@
                <Font name="Microsoft Sans Serif" size="20.0" />
             </font>
          </Label>
-         <Label fx:id="idField" layoutX="168.0" layoutY="40.0">
+         <Label fx:id="idField" layoutX="168.0" layoutY="40.0" visible="false">
             <font>
                <Font size="16.0" />
             </font>
@@ -87,7 +82,7 @@
             <Separator layoutX="11.0" layoutY="14.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="1.0" />
             <TableView fx:id="tableView" layoutX="82.0" layoutY="3.0" onMouseClicked="#selectData" prefHeight="546.0" prefWidth="823.0">
               <columns>
-                <TableColumn fx:id="colId" prefWidth="67.0" text="ID" />
+                <TableColumn fx:id="colId" prefWidth="67.0" text="ID" visible="false" />
                 <TableColumn fx:id="colnom" prefWidth="83.0" text="bank" />
                   <TableColumn fx:id="coladresse" prefWidth="75.0" text="adresse" />
                   <TableColumn fx:id="colcodeswift" prefWidth="66.0" text="codeSwift" />

@@ -31,114 +31,31 @@ import java.util.ResourceBundle;
 public class LoanController implements Initializable {
 
 
-    @FXML
-    private TableView<Pret> tableView;
-
-    @FXML
-    private TableColumn<Pret, Integer> idColumn;
-
-    @FXML
-    private TableColumn<Pret, Integer> loanAmountColumn;
-
-    @FXML
-    private TableColumn<Pret, Integer> loanTermColumn;
-
-    @FXML
-    private TableColumn<Pret, Integer> incomeColumn;
-
-    @FXML
-    private TableColumn<Pret, Integer> coIncomeColumn;
-
-    @FXML
-    private TableColumn<Pret, String> loanStatusColumn;
-
-    @FXML
-    private TableColumn<Pret, String> bankNameColumn;
-
-    @FXML
-    private Button edit;
-
 
 
     @Override
     public void initialize(URL url, ResourceBundle resource) {
 
-        loanShow();
 
     }
 
 
     @FXML
-    private void deleteSelectedLoan() {
-        Pret selectedPret = tableView.getSelectionModel().getSelectedItem();
-        if (selectedPret != null) {
+    void deleteSelectedLoan(int idPret) {
+        if (idPret != 0) {
             try {
                 LoanService loanService = new LoanService();
-                loanService.deleteLoan(selectedPret.getId());
-                tableView.getItems().remove(selectedPret);
-                System.out.println("Row deleted successfully");
+                loanService.deleteLoan(idPret);
+                showAlert("Success","Row deleted successfully");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("No row selected");
+            showAlert("Error","No row selected");
         }
     }
 
-    void loanShow() {
-        tableView.getSelectionModel().clearSelection();
-        LoanService l = new LoanService();
 
-        // Initialize table columns
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        incomeColumn.setCellValueFactory(new PropertyValueFactory<>("applicantIncome"));
-        coIncomeColumn.setCellValueFactory(new PropertyValueFactory<>("coapplicantIncome"));
-        loanAmountColumn.setCellValueFactory(new PropertyValueFactory<>("loanAmount"));
-        loanTermColumn.setCellValueFactory(new PropertyValueFactory<>("loanAmountTerm"));
-        loanStatusColumn.setCellValueFactory(new PropertyValueFactory<>("loanStatus"));
-
-        // Configure the bankNameColumn
-        bankNameColumn.setCellValueFactory(cellData -> {
-            try {
-                return new SimpleStringProperty(cellData.getValue().getBankName());
-            } catch (Exception e) {
-                e.printStackTrace();
-                return new SimpleStringProperty("test");
-            }
-        });
-
-        try {
-            List<Pret> pretList = l.getDataLoan();
-            ObservableList<Pret> data = FXCollections.observableArrayList(pretList);
-            tableView.setItems(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Allow editing only if an item is selected
-        edit.setOnAction(event -> {
-            Pret selectedPret = tableView.getSelectionModel().getSelectedItem();
-            if (selectedPret != null) {
-                try {
-                    goToEdit(l.getPretById(selectedPret.getId()), selectedPret.getIdBank());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Attention !");
-                alert.setHeaderText(null);
-                alert.setContentText("You need to select a loan first!");
-
-                // Show the alert and wait for a button to be clicked
-                alert.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        System.out.println("OK button clicked");
-                    }
-                });
-            }
-        });
-    }
     @FXML
     void goToEdit(Pret pret , int bankid) {
         try {
@@ -159,6 +76,14 @@ public class LoanController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 

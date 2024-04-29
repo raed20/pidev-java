@@ -309,8 +309,6 @@ public class LoanService implements ILoanService<Pret> {
                         pret.setCreditHistory(resultSet.getInt("credit_history"));
                         pret.setPropertyArea(resultSet.getString("property_area"));
                     }
-
-
                 }
 
                 return pret;
