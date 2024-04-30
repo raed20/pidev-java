@@ -22,7 +22,7 @@
                <Insets left="25.0" />
             </HBox.margin>
          </Label>
-         <Label fx:id="bank_price" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="86.0" text="0.0">
+         <Label fx:id="bank_rate" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="86.0" text="0.0">
             <HBox.margin>
                <Insets right="25.0" />
             </HBox.margin>

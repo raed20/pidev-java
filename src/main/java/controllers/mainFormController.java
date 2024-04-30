@@ -34,20 +34,14 @@ import services.BankService;
 public class mainFormController implements Initializable {
     
     @FXML
-    private AnchorPane main_form;
+    private AnchorPane m_form;
+
     
 
     @FXML
     private Button menu_btn;
     @FXML
     private Button calc_btn;
-
-    @FXML
-    private Button customers_btn;
-
-
-    @FXML
-    private AnchorPane menu_form;
     
 
     @FXML
@@ -102,30 +96,40 @@ public class mainFormController implements Initializable {
         }
     }
 
+    private void loadPage(String fxmlPath) {
+        // Load a new FXML page into the anchor pane
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            m_form.getChildren().setAll(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle any potential errors loading the FXML file
+        }
+    }
+
 
     public void switchForm(ActionEvent event) throws IOException {
 
 
          if (event.getSource() == menu_btn) {
              dashboard_form.setVisible(false);
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/LoanFront/LoanShow.fxml"));
-             Parent form = loader.load();
+             loadPage("/javafx/FrontOffice/LoanFront/LoanShow.fxml");
+             /*Parent form = loader.load();
              Stage stage = new Stage();
              stage.setScene(new Scene(form));
-             stage.showAndWait(); // Use showAndWait to refresh list after adding or updating
+             stage.showAndWait(); // Use showAndWait to refresh list after adding or updating*/
 
              //reloadPrets(); // Reload the list after closing the form
 
            /* menuDisplayTotal();
             menuShowOrderData();*/
         } else if (event.getSource() == calc_btn) {
-            dashboard_form.setVisible(false);
-            menu_form.setVisible(false);
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/LoanFront/LoanCalculator.fxml"));
-             Parent form = loader.load();
+             loadPage("/javafx/FrontOffice/LoanFront/LoanCalculator.fxml");
+             /*Parent form = loader.load();
              Stage stage = new Stage();
              stage.setScene(new Scene(form));
-             stage.showAndWait();
+             stage.showAndWait();*/
 
            // customersShowData();
         }

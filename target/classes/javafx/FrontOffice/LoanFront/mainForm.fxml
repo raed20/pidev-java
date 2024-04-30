@@ -154,7 +154,7 @@
                                         <Separator layoutX="14.0" layoutY="193.0" prefHeight="3.0" prefWidth="851.0" visible="false" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="193.0" />
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="menu_form" layoutX="113.0" layoutY="181.0" prefHeight="600.0" prefWidth="878.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="m_form" layoutX="113.0" layoutY="181.0" prefHeight="600.0" prefWidth="878.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="566.0" prefWidth="512.0" stylesheets="@/Css/Front/mainFormDesign.css" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="17.0">
                                             <styleClass>

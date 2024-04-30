@@ -25,7 +25,7 @@ public class CardController implements Initializable {
     private Label bank_name;
 
     @FXML
-    private Label bank_price;
+    private Label bank_rate;
 
     @FXML
     private ImageView bank_imageView;
@@ -45,6 +45,8 @@ public class CardController implements Initializable {
     private SpinnerValueFactory<Integer> spin;
     LoanFormController l = new LoanFormController();
 
+    BankInterestRate bankRates = new BankInterestRate();
+
 
     public void setData(Bank bankData) {
         this.bankData = bankData;
@@ -54,6 +56,8 @@ public class CardController implements Initializable {
         String path = "File:" + bankData.getLogo();
         image = new Image(path, 190, 94, false, true);
         bank_imageView.setImage(image);
+        double interestRate = bankRates.getInterestRate(bankData.getNom());
+        bank_rate.setText(String.format("%.2f%%", interestRate));
     }
 
 

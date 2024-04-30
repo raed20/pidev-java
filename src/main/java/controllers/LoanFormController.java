@@ -9,6 +9,7 @@ import entities.Pret;
 import entities.Bank;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import javafx.util.StringConverter;
 
@@ -51,6 +52,13 @@ public class LoanFormController {
     private Label resultLabel;
 
     @FXML
+    private Label loanEMIValue;
+    @FXML
+    private Label totalInterestValue;
+    @FXML
+    private Label totalAmountValue;
+
+    @FXML
     private Button boutonEnregistrer;
 
     private LoanService serviceLoan = new LoanService();
@@ -58,6 +66,7 @@ public class LoanFormController {
     private Pret pretActuel;
 
     private int bankId; // Add a field to store the bank ID
+    BankInterestRate bankRates = new BankInterestRate();
 
 
 
@@ -137,10 +146,16 @@ public class LoanFormController {
 
     void gererEnregistrementPret() throws Exception {
 
+        //validate choose the bank
+        String bankname;
+        BankService bankService=new BankService();
+
+
+
         if (!validerSaisie()) {
             return;
         }
-// Retrieve values from form components
+        // Retrieve values from form components
         String gender = genderChoiceBox.getValue();
         String married = marriedChoiceBox.getValue();
         String education = educationChoiceBox.getValue();
@@ -152,6 +167,10 @@ public class LoanFormController {
         boolean creditHistory = creditHistoryCheckBox1.isSelected();
         String propertyArea = propertyAreaChoiceBox.getValue();
         if (pretActuel == null) {
+            Optional<Bank> optionalBank = bankService.findById(bankId);
+            Bank bank = optionalBank.get();
+            bankname = bank.getNom();
+            double interestRate = bankRates.getInterestRate(bankname);
             pretActuel=new Pret();
 
             // Handle form submission
@@ -170,6 +189,9 @@ public class LoanFormController {
             String loanStatus = serviceLoan.addLoan(pretActuel,this.bankId);
 
             resultLabel.setText("Loan Status Predicted: " + loanStatus);
+            if (loanStatus.equals("yes")){
+                calculateLoan(interestRate,loanAmount,loanAmountTerm);
+            }
 
             if (Objects.equals(loanStatus, "yes") || Objects.equals(loanStatus, "no")) {
                 afficherAlerte(Alert.AlertType.INFORMATION, "Success", "Loan added successfully.");
@@ -190,6 +212,13 @@ public class LoanFormController {
 
             String pretMisAJour = serviceLoan.updateLoan(pretActuel,serviceLoan.getBankIdByPretId(pretActuel.getId()));
             resultLabel.setText("Loan Status Predicted: " + pretMisAJour);
+            if (pretMisAJour.equals("yes")){
+                Optional<Bank> optionalBank = bankService.findById(serviceLoan.getBankIdByPretId(pretActuel.getId()));
+                Bank bank = optionalBank.get();
+                bankname = bank.getNom();
+                double interestRate = bankRates.getInterestRate(bankname);
+                calculateLoan(interestRate,loanAmount,loanAmountTerm);
+            }
 
             if (Objects.equals(pretMisAJour, "yes") || Objects.equals(pretMisAJour, "no")) {
                 afficherAlerte(Alert.AlertType.INFORMATION, "Success", "Loan updated successfully.");
@@ -372,4 +401,18 @@ public class LoanFormController {
         }
 
     }
+
+    private void calculateLoan(double interestRate , int loanAmount , int term ) {
+
+        double monthlyInterestRate = interestRate / 100 / 12;
+        double monthlyPayment = loanAmount * monthlyInterestRate * (Math.pow(1 + monthlyInterestRate, term) / (Math.pow(1 + monthlyInterestRate, term) - 1));
+        double totalPayment = monthlyPayment * term;
+        double totalInterest = totalPayment - loanAmount;
+
+        // Update the UI with the calculated values
+        loanEMIValue.setText(String.format("Monthly EMI: %.2f", monthlyPayment));
+        totalInterestValue.setText(String.format("Total Interest: %.2f", totalInterest));
+        totalAmountValue.setText(String.format("Total Amount: %.2f", totalPayment));
+    }
+
 }
