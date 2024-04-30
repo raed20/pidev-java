@@ -1,5 +1,8 @@
 package controllers;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.Initializable;
 
@@ -21,6 +24,7 @@ import services.LoanService;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,7 +35,7 @@ import java.util.ResourceBundle;
 public class LoanController implements Initializable {
 
 
-
+    LoanService loanService=new LoanService();
 
     @Override
     public void initialize(URL url, ResourceBundle resource) {
@@ -85,6 +89,33 @@ public class LoanController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public void generatePDF(int loanId) throws Exception {
+        // Get the selected loan details
+        Pret selectedLoan = loanService.getPretById(loanId);
+
+        // Create a PDF document
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("Loan_details.pdf"));
+        document.open();
+
+        // Add selected loan details to the PDF document
+        document.add(new Paragraph("Selected Loan Details:"));
+        document.add(new Paragraph("Loan ID: " + selectedLoan.getId()));
+        document.add(new Paragraph("Gender: " + selectedLoan.getGender()));
+        document.add(new Paragraph("Married: " + selectedLoan.getMarried()));
+        document.add(new Paragraph("Education: " + selectedLoan.getEducation()));
+        document.add(new Paragraph("Self Employed: " + selectedLoan.getSelfEmployed()));
+        document.add(new Paragraph("Applicant Income: " + selectedLoan.getApplicantIncome()));
+        document.add(new Paragraph("Coapplicant Income: " + selectedLoan.getCoapplicantIncome()));
+        document.add(new Paragraph("Loan Amount: " + selectedLoan.getLoanAmount()));
+        document.add(new Paragraph("Loan Amount Term: " + selectedLoan.getLoanAmountTerm()));
+        document.add(new Paragraph("Loan Status: " + selectedLoan.getLoanStatus()));
+        // Add more loan details as needed
+
+        document.close();
+    }
+
 
 
 

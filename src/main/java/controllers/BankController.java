@@ -21,7 +21,6 @@ public class BankController {
     @FXML private Button imageField;
     @FXML private TextField phonenum;
     @FXML private ImageView imageView;
-    @FXML private Label file_path;
     @FXML private TableView<Bank> tableView;
     @FXML private TableColumn<Bank, Integer> colId;
     @FXML private TableColumn<Bank, String> colnom;

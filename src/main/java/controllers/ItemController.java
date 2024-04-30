@@ -32,6 +32,8 @@ public class ItemController implements Initializable {
 
     @FXML
     private Button delete;
+    @FXML
+    private Button print;
 
     @FXML
     private Label bankname;
@@ -121,6 +123,31 @@ public class ItemController implements Initializable {
                 });
             }
         });
+        print.setOnAction(event -> {
+            System.out.println("test");
+            LoanController l = new LoanController();
+            if (this.selectedLoan != null) {
+                try {
+                    // Generate PDF for selected loan details
+                    l.generatePDF(selectedLoan.getId());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Attention !");
+                alert.setHeaderText(null);
+                alert.setContentText("You need to select a loan first!");
+
+                // Show the alert and wait for a button to be clicked
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        System.out.println("OK button clicked");
+                    }
+                });
+            }
+        });
+
 
     }
 
