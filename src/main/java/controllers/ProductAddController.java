@@ -1,35 +1,33 @@
 package controllers;
 
-import javafx.collections.FXCollections;
+import entities.Category;
+import entities.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import services.ProductService;
 import services.CategoryService;
-import entities.Product;
-import entities.Category;
+import services.ProductService;
 import tools.MyConnection;
-import java.util.HashMap;
-import java.util.Map;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductAddController {
 
@@ -77,21 +75,25 @@ public class ProductAddController {
     private CategoryService categoryService;
     private Product selectedProduct;
 
+    public Map<String, Integer> getCategoryMap() {
+        return categoryMap;
+    }
+
     public void setProduct(Product product) {
         selectedProduct = product;
         nameTF.setText(selectedProduct.getName());
         priceTF.setText(String.valueOf(selectedProduct.getPrice()));
-        discountTF.setText(String.valueOf(selectedProduct.getPrice()));
+        discountTF.setText(String.valueOf(selectedProduct.getDiscount()));
         descTF.setText(selectedProduct.getDescription());
 
         Integer categoryId = selectedProduct.getCategory();
         String categoryName = String.valueOf(categoryMap.get(categoryId));
         catTF.setValue(categoryName);
     }
+
     public ProductAddController() {
-        // Initialize ProductService and CategoryService with MyConnection
-        this.productService = new ProductService(new MyConnection(/* parameters for MyConnection */));
-        this.categoryService = new CategoryService(new MyConnection(/* parameters for MyConnection */));
+        this.productService = new ProductService(new MyConnection());
+        this.categoryService = new CategoryService(new MyConnection());
     }
 
     @FXML
@@ -113,11 +115,22 @@ public class ProductAddController {
 
     @FXML
     void AddProduct(ActionEvent event) {
-        // Validate inputs before attempting to add the product
+        // Validate inputs before attempting to add or update the product
         if (!validateInputs()) {
             return; // Exit method if inputs are not valid
         }
 
+        // Check if the selectedProduct is null
+        if (selectedProduct == null) {
+            // If selectedProduct is null, it means a new product is being added
+            addNewProduct();
+        } else {
+            // If selectedProduct is not null, it means an existing product is being updated
+            updateProduct();
+        }
+    }
+
+    private void addNewProduct() {
         // Create a new Product object with data from the form
         Product product = new Product();
         product.setName(nameTF.getText());
@@ -141,6 +154,27 @@ public class ProductAddController {
         product.setDiscount(discount);
 
         productService.add(product);
+
+        // Navigate to ProductList.fxml after adding the product
+        navigate(null);
+    }
+
+    private void updateProduct() {
+        // Update the selectedProduct with new data from the form
+        selectedProduct.setName(nameTF.getText());
+        selectedProduct.setPrice(Double.parseDouble(priceTF.getText()));
+        selectedProduct.setDescription(descTF.getText());
+        selectedProduct.setImage(imgPath.getText());
+        String categoryName = catTF.getValue();
+        Integer categoryId = categoryMap.get(categoryName);
+        selectedProduct.setCategory(categoryId);
+        selectedProduct.setDiscount(Double.parseDouble(discountTF.getText()));
+
+        // Call the ProductService to update the product in the database
+        productService.update(selectedProduct);
+
+        // Navigate to ProductList.fxml after updating the product
+        navigate(null);
     }
 
 
@@ -157,7 +191,6 @@ public class ProductAddController {
         } else {
             nameAlert.setText("");
         }
-
 
         // Check if the price is a valid double
         if (priceTF.getText().isEmpty()) {
@@ -206,7 +239,6 @@ public class ProductAddController {
             descAlert.setText("");
         }
 
-
         // Check if an image is uploaded
         if (imgPath.getText().isEmpty()) {
             imgAlert.setText("Please upload an image");
@@ -217,7 +249,6 @@ public class ProductAddController {
 
         return isValid;
     }
-
 
     @FXML
     void Upload(ActionEvent event) {
@@ -249,15 +280,23 @@ public class ProductAddController {
         }
     }
 
-
-
     @FXML
     void navigate(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Javafx/BackOffice/Product/ProductList.fxml"));
-            catTF.getScene().setRoot(root);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/BackOffice/Product/ProductList.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller of the loaded FXML
+            ProductListController productListController = loader.getController();
+
+            // Pass the category map to ProductListController
+            productListController.setCategoryMap(categoryMap);
+
+            // Get the stage and set the new scene
+            Stage window = (Stage) catTF.getScene().getWindow();
+            window.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
+    }
 }

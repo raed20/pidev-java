@@ -42,8 +42,9 @@ public class CategoryListController {
         ObservableList<Category> observableList = FXCollections.observableList(categories);
         tableview.setItems(observableList);
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        catCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        catCol.setCellValueFactory(new PropertyValueFactory<>("name")); // Set cell value factory for category name
     }
+
 
     @FXML
     void navigate(ActionEvent event) {

@@ -4,7 +4,8 @@
 }
 
 .title {
-    -fx-text-fill: rgb(56, 116, 255);
+    -fx-text-fill: black; /* Regular black color */
+    -fx-font-size: 25px; /* Font size 25 */
 }
 
 .button {

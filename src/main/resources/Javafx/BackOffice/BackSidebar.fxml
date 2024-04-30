@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="@../../Css/Back/Backsidebar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BackSideBarController">
+<AnchorPane stylesheets="@../../Css/Back/Backsidebar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BackSideBarController">
    <children>
       <BorderPane id="borderPane" fx:id="borderPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@../../Css/Front/Frontsidebar.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -56,7 +56,7 @@
          <left>
             <AnchorPane fx:id="slider" prefHeight="362.0" prefWidth="176.0" styleClass="sidebar">
                <children>
-                  <VBox layoutX="14.0" layoutY="35.0" prefHeight="200.0" prefWidth="100.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                  <VBox layoutX="14.0" layoutY="35.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" styleClass="sidebar-btn">
                            <children>

@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="476.0" prefWidth="698.0"  style="-fx-background-color: white;" stylesheets="@../../../Css/Back/Product/productstyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductListController">
+<AnchorPane prefHeight="476.0" prefWidth="698.0" style="-fx-background-color: white;" stylesheets="@../../../Css/Back/Product/productstyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductListController">
    <children>
-      <TableView fx:id="tableview" layoutX="37.0" layoutY="128.0" prefHeight="246.0" prefWidth="623.0">
+      <TableView fx:id="tableview" layoutX="27.0" layoutY="128.0" prefHeight="246.0" prefWidth="649.0">
          <columns>
-            <TableColumn fx:id="idCol" prefWidth="62.400054931640625" text="Reference" />
-            <TableColumn fx:id="nameCol" prefWidth="86.4000244140625" text="Name" />
+            <TableColumn fx:id="idCol" prefWidth="61.59997367858887" text="Reference" />
+            <TableColumn fx:id="nameCol" prefWidth="88.79999542236328" text="Name" />
             <TableColumn fx:id="priceCol" prefWidth="72.79998779296875" text="Price" />
-            <TableColumn fx:id="discountCol" text="Discount" />
-            <TableColumn fx:id="catCol" prefWidth="88.0" text="Category" />
-            <TableColumn fx:id="descCol" prefWidth="120.79995727539062" text="Description" />
-            <TableColumn fx:id="imgCol" prefWidth="110.39990234375" text="Image" />
+            <TableColumn fx:id="discountCol" prefWidth="58.39996337890625" text="Discount" />
+            <TableColumn fx:id="catCol" prefWidth="84.0" text="Category" />
+            <TableColumn fx:id="descCol" prefWidth="128.79995727539062" text="Description" />
+            <TableColumn fx:id="imgCol" prefWidth="154.4000244140625" text="Image" />
          </columns>
       </TableView>
       <Button layoutX="522.0" layoutY="84.0" mnemonicParsing="false" onAction="#navigate" text="Add Product" />

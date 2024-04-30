@@ -15,14 +15,14 @@ public class Main {
     public static void main(String[] args) {
 
        MyConnection cnx=new MyConnection();
-
-        CategoryService cs=new CategoryService(cnx);
-        Category category=new Category("Car");
-        cs.add(category);
-
-        System.out.println(cs.getAll());
-
-        ProductService productService=new ProductService(cnx);
+//
+//        CategoryService cs=new CategoryService(cnx);
+//        Category category=new Category("Car");
+//        cs.add(category);
+//
+//        System.out.println(cs.getAll());
+//
+//        ProductService productService=new ProductService(cnx);
 
 //        // Create a new product
 //        Product product = new Product();

@@ -10,34 +10,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="625.0" prefWidth="604.0"  style="-fx-background-color: white;" stylesheets="@../../../Css/Back/Product/productstyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductAddController">
+<AnchorPane prefHeight="625.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@../../../Css/Back/Product/productstyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductAddController">
    <children>
-      <Label alignment="CENTER" layoutX="2.0" layoutY="21.0" prefHeight="36.0" prefWidth="601.0" text="Add Product">
+      <Label alignment="CENTER" layoutX="299.0" layoutY="28.0" prefHeight="36.0" prefWidth="601.0" text="Add Product">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="462.0" layoutY="92.0" mnemonicParsing="false" onAction="#navigate" text="Product List" />
-      <Text layoutX="127.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-      <Text layoutX="130.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
-      <Text layoutX="119.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
-      <Text layoutX="119.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount" />
-      <Text layoutX="112.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-      <Text layoutX="126.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image" />
-      <TextField fx:id="nameTF" layoutX="197.0" layoutY="92.0" />
-      <TextField fx:id="priceTF" layoutX="197.0" layoutY="157.0" />
-      <TextField fx:id="discountTF" layoutX="197.0" layoutY="224.0" />
-      <ChoiceBox fx:id="catTF" layoutX="196.0" layoutY="292.0" prefWidth="150.0" />
-      <TextArea fx:id="descTF" layoutX="197.0" layoutY="372.0" prefHeight="70.0" prefWidth="200.0" />
-      <ImageView fx:id="imageTF" fitHeight="91.0" fitWidth="98.0" layoutX="332.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nameAlert" layoutX="197.0" layoutY="118.0" prefHeight="18.0" prefWidth="216.0" />
-      <Label fx:id="priceAlert" layoutX="196.0" layoutY="183.0" prefHeight="18.0" prefWidth="216.0" />
-      <Label fx:id="disAlert" layoutX="197.0" layoutY="250.0" prefHeight="18.0" prefWidth="216.0" />
-      <Label fx:id="catAlert" layoutX="196.0" layoutY="318.0" prefHeight="18.0" prefWidth="216.0" />
-      <Label fx:id="descAlert" layoutX="196.0" layoutY="442.0" prefHeight="18.0" prefWidth="216.0" />
-      <Button layoutX="196.0" layoutY="483.0" mnemonicParsing="false" onAction="#Upload" text="Upload image" />
-      <Text fx:id="imgPath" layoutX="456.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button layoutX="101.0" layoutY="565.0" mnemonicParsing="false" onAction="#AddProduct" text="Add Product" />
-      <Label fx:id="imgAlert" layoutX="195.0" layoutY="509.0" prefHeight="18.0" prefWidth="216.0" />
+      <Button layoutX="759.0" layoutY="99.0" mnemonicParsing="false" onAction="#navigate" text="Product List" />
+      <Text layoutX="424.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="427.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+      <Text layoutX="416.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
+      <Text layoutX="416.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount" />
+      <Text layoutX="409.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+      <Text layoutX="423.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image" />
+      <TextField fx:id="nameTF" layoutX="494.0" layoutY="99.0" />
+      <TextField fx:id="priceTF" layoutX="494.0" layoutY="164.0" />
+      <TextField fx:id="discountTF" layoutX="494.0" layoutY="231.0" />
+      <ChoiceBox fx:id="catTF" layoutX="493.0" layoutY="299.0" prefWidth="150.0" />
+      <TextArea fx:id="descTF" layoutX="494.0" layoutY="379.0" prefHeight="70.0" prefWidth="200.0" />
+      <ImageView fx:id="imageTF" fitHeight="91.0" fitWidth="98.0" layoutX="629.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nameAlert" layoutX="494.0" layoutY="125.0" prefHeight="18.0" prefWidth="248.0" />
+      <Label fx:id="priceAlert" layoutX="493.0" layoutY="190.0" prefHeight="18.0" prefWidth="248.0" />
+      <Label fx:id="disAlert" layoutX="494.0" layoutY="257.0" prefHeight="18.0" prefWidth="248.0" />
+      <Label fx:id="catAlert" layoutX="493.0" layoutY="331.0" prefHeight="18.0" prefWidth="248.0" />
+      <Label fx:id="descAlert" layoutX="493.0" layoutY="449.0" prefHeight="18.0" prefWidth="248.0" />
+      <Button layoutX="493.0" layoutY="490.0" mnemonicParsing="false" onAction="#Upload" text="Upload image" />
+      <Text fx:id="imgPath" layoutX="753.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button layoutX="398.0" layoutY="572.0" mnemonicParsing="false" onAction="#AddProduct" text="Add Product" />
+      <Label fx:id="imgAlert" layoutX="492.0" layoutY="516.0" prefHeight="18.0" prefWidth="216.0" />
    </children>
 </AnchorPane>

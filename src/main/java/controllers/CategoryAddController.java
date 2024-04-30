@@ -33,7 +33,7 @@ public class CategoryAddController {
         if (isValidInput(categoryName)) {
             try {
                 if (selectedCategory != null) {
-                    // Si une catégorie est sélectionnée, mettez à jour
+                    // update
                     selectedCategory.setName(categoryName);
                     cs.update(selectedCategory);
                 } else {
@@ -63,6 +63,9 @@ public class CategoryAddController {
             return false;
         } else if (!input.matches("[a-zA-Z]+")) {
             catAlert.setText("Only alphabetic characters!");
+            return false;
+        } else if (input.length() < 2) {
+            catAlert.setText("At least two letters!");
             return false;
         }
         return true;
