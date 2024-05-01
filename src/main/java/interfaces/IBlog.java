@@ -1,6 +1,7 @@
 package interfaces;
 
 import entities.Blog;
+import entities.Commentaire;
 
 import java.util.List;
 
@@ -15,6 +16,6 @@ public interface IBlog {
 
     List<Blog> displayAllList();
 
-    List<Blog> getCommentaireByBlogId(int CommentaireId);
+    List<Commentaire> getCommentaireByBlogId(int blogId);
 
 }

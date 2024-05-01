@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import entities.Blog;
+import entities.Commentaire;
 import interfaces.IBlog;
 import tools.MyConnection;
 
@@ -121,26 +122,27 @@ public class BlogService implements IBlog {
     }
 
     @Override
-    public List<Blog> getCommentaireByBlogId(int blogId) {
-        String query = "SELECT * FROM Blog WHERE id = ?";
-        List<Blog> blogs = new ArrayList<>();
+    public List<Commentaire> getCommentaireByBlogId(int blogId) {
+        String query = "SELECT * FROM Commentaire WHERE blog_id = ?";
+        List<Commentaire> list = new ArrayList<>();
+
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, blogId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Blog blog = new Blog();
-                    blog.setId(resultSet.getInt("id"));
-                    blog.setTitle(resultSet.getString("Title"));
-                    blog.setDescription(resultSet.getString("Description"));
-                    blog.setContent(resultSet.getString("Content"));
-                    blogs.add(blog);
+                    Commentaire commentaire = new Commentaire();
+                    commentaire.setId(resultSet.getInt("id"));
+                    commentaire.setContent(resultSet.getString("Content"));
+                    commentaire.setBlog_id(resultSet.getInt("blog_id"));
+                    list.add(commentaire);
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "An SQL Exception occurred:", e);
+            Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, e);
         }
-        return blogs;
+        return list;
     }
+
 
 
 }

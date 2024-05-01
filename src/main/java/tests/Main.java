@@ -1,6 +1,7 @@
 package tests;
 
 import entities.Blog;
+import entities.Commentaire;
 import services.BlogService;
 import tools.MyConnection;
 
@@ -18,15 +19,15 @@ public class Main {
         int blogId = 7;
 
         // Test getCommentaireByBlogId
-        List<Blog> blogsWithComments = blogService.getCommentaireByBlogId(blogId);
+        List<Commentaire> blogsWithComments = blogService.getCommentaireByBlogId(blogId);
 
         // Print the blogs with comments
         System.out.println("Blogs with Comments:");
-        for (Blog blog : blogsWithComments) {
-            System.out.println("Blog ID: " + blog.getId());
-            System.out.println("Title: " + blog.getTitle());
-            System.out.println("Description: " + blog.getDescription());
-            System.out.println("Content: " + blog.getContent());
+        for (Commentaire commentaire : blogsWithComments) {
+            // System.out.println("Blog ID: " + commentaire.getId());
+            // System.out.println("Title: " + commentaire.getTitle());
+            // System.out.println("Description: " + commentaire.getDescription());
+            // System.out.println("Content: " + commentaire.getContent());
             // Add code to display comments associated with this blog if needed
         }
 
