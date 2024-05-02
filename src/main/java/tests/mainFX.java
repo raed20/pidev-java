@@ -15,7 +15,7 @@ public class mainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Javafx/BackOffice/BackSideBar.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Javafx/FrontOffice/Command/Market.fxml"));
         try {
             Parent root=loader.load();
             Scene scene=new Scene(root);

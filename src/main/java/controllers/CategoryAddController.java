@@ -36,6 +36,7 @@ public class CategoryAddController {
                     // update
                     selectedCategory.setName(categoryName);
                     cs.update(selectedCategory);
+                    navigate(event); // Navigate back to category list after updating
                 } else {
                     addNewCategory(categoryName, event);
                 }
