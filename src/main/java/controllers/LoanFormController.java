@@ -63,7 +63,7 @@ public class LoanFormController {
 
     private LoanService serviceLoan = new LoanService();
 
-    private Pret pretActuel;
+    private Pret pretActuel ;
 
     private int bankId; // Add a field to store the bank ID
     BankInterestRate bankRates = new BankInterestRate();
@@ -72,6 +72,7 @@ public class LoanFormController {
 
 
     public void initialize() {
+        pretActuel=null ;
         updateFormTitle();
         initializeChoiceBoxes();
         boutonEnregistrer.setOnAction(event -> {

@@ -29,7 +29,5 @@ public class BankInterestRate {
 
     public static void main(String[] args) {
         BankInterestRate bankRates = new BankInterestRate();
-        System.out.println("Interest rate for Bank A: " + bankRates.getInterestRate("Bank A"));
-        System.out.println("Interest rate for Bank D: " + bankRates.getInterestRate("Bank D"));
     }
 }

@@ -18,9 +18,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -46,7 +48,6 @@ public class mainFormController implements Initializable {
 
     @FXML
     private GridPane menu_gridPane;
-    
 
     @FXML
     private AnchorPane dashboard_form;
@@ -115,6 +116,7 @@ public class mainFormController implements Initializable {
          if (event.getSource() == menu_btn) {
              dashboard_form.setVisible(false);
              loadPage("/javafx/FrontOffice/LoanFront/LoanShow.fxml");
+
              /*Parent form = loader.load();
              Stage stage = new Stage();
              stage.setScene(new Scene(form));
@@ -137,10 +139,8 @@ public class mainFormController implements Initializable {
     }
 // LETS PROCEED TO OUR DASHBOARD FORM : )
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
 
         try {
             menuGetData();

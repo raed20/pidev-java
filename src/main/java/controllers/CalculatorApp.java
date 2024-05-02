@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -48,6 +49,10 @@ public class CalculatorApp extends Application {
 
     @FXML
     private void calculateEMI() {
+
+        if (!validateInput()) {
+        return;
+        }
         double loanAmount = Double.parseDouble(loanAmountInput.getText());
         double interestRate = Double.parseDouble(interestRateInput.getText());
         int loanTenure = Integer.parseInt(loanTenureInput.getText());
@@ -66,4 +71,40 @@ public class CalculatorApp extends Application {
         pieChart.getData().add(new PieChart.Data("Total Interest", totalInterestPayable));
         pieChart.getData().add(new PieChart.Data("Principal Loan Amount", loanAmount));
     }
+
+    private boolean validateInput() {
+        try {
+            double loanAmount = Double.parseDouble(loanAmountInput.getText());
+            if (loanAmount <= 0) {
+                showAlert("Loan amount must be greater than zero");
+                return false;
+            }
+
+            double interestRate = Double.parseDouble(interestRateInput.getText());
+            if (interestRate <= 0) {
+                showAlert("Interest rate must be greater than zero");
+                return false;
+            }
+
+            int loanTenure = Integer.parseInt(loanTenureInput.getText());
+            if (loanTenure <= 0) {
+                showAlert("Loan tenure must be greater than zero");
+                return false;
+            }
+
+            return true;
+        } catch (NumberFormatException e) {
+            showAlert("Invalid input: Please enter numeric values");
+            return false;
+        }
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }

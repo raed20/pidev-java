@@ -80,6 +80,11 @@ public class CardController implements Initializable {
         });
     }
 
+    public Bank getData() {
+        return bankData;
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

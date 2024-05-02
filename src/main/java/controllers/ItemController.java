@@ -20,6 +20,7 @@ import tests.MainFX;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ItemController implements Initializable {
@@ -78,11 +79,27 @@ public class ItemController implements Initializable {
         edit.setOnAction(event -> {
             LoanController l=new LoanController();
             if (this.selectedLoan != null) {
-                try {
-                    l.goToEdit(loanService.getPretById(selectedLoan.getId()), selectedLoan.getIdBank());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                if (Objects.equals(this.selectedLoan.getLoanStatus(), "no")) {
+                    try {
+                        l.goToEdit(loanService.getPretById(selectedLoan.getId()), selectedLoan.getIdBank());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention !");
+                    alert.setHeaderText(null);
+                    alert.setContentText("You can't edit a loan already approved !");
+
+                    // Show the alert and wait for a button to be clicked
+                    alert.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.OK) {
+                            System.out.println("OK button clicked");
+                        }
+                    });
+                }
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Attention !");
@@ -130,7 +147,16 @@ public class ItemController implements Initializable {
                 try {
                     // Generate PDF for selected loan details
                     l.generatePDF(selectedLoan.getId());
-                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("PDF File generated .");
+
+                    // Show the alert and wait for a button to be clicked
+                    alert.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.OK) {
+                            System.out.println("OK button clicked");
+                        }
+                });
+                }catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             } else {

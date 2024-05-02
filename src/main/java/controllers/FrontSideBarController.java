@@ -1,11 +1,16 @@
 package controllers;
 
+import entities.Bank;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -59,6 +64,8 @@ public class FrontSideBarController implements Initializable {
     private AnchorPane slider;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private TextField searchField;
 
     private boolean isSidebarOpen = false;
 
@@ -148,6 +155,7 @@ public class FrontSideBarController implements Initializable {
             e.printStackTrace(); // Handle any potential errors loading the FXML file
         }
     }
+
 
     private void setIconAndLabel(Label label, FontAwesomeIcon iconType) {
         FontAwesomeIconView iconView = new FontAwesomeIconView(iconType);
@@ -296,4 +304,5 @@ public class FrontSideBarController implements Initializable {
         // Implement logic for when Disconnect menu item is clicked
         System.out.println("Disconnect clicked");
     }
+
 }
