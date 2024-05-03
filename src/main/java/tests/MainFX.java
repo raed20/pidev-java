@@ -45,11 +45,7 @@ public class MainFX extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
         // Définissez les paramètres de l'authentification
-        /*String AUTHORITY = "https://login.microsoftonline.com/abad0bf2-f44b-411f-afb8-39b8f810a35b";
-        String CLIENT_ID = "50856832-fec0-4e6f-8b73-570e0cb16b9b";
-        String CLIENT_SECRET = "-pR8Q~cSkhzXWcRBqMEjVumfhaIWVGuKUC8eRdAy";
-        String GROUP_ID = "abad0bf2-f44b-411f-afb8-39b8f810a35b";
-        String REPORT_ID = "d4ef8903-50e7-4839-9501-0ca2e4a9bad0";
+      /*
 
 
         ExecutorService service = Executors.newFixedThreadPool(1);
