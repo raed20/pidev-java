@@ -22,8 +22,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import services.LoanService;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -114,6 +116,8 @@ public class LoanController implements Initializable {
         // Add more loan details as needed
 
         document.close();
+        File file = new File("Loan_details.pdf");
+        Desktop.getDesktop().open(file);
     }
 
 
