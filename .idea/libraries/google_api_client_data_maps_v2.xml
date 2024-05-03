@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="google.api.client.data.maps.v2" type="repository">
+    <properties maven-id="com.google.api.client:google-api-data-maps-v2:1.0.10-alpha" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/api/client/google-api-data-maps-v2/1.0.10-alpha/google-api-data-maps-v2-1.0.10-alpha.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

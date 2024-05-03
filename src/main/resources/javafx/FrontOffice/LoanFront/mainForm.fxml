@@ -33,7 +33,7 @@
                                 <Button fx:id="menu_btn" layoutX="6.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@/Css/Front/mainFormDesign.css" text="Mes demandes" />
                                 <Button fx:id="calc_btn" layoutX="6.0" layoutY="352.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@/Css/Front/mainFormDesign.css" text="Calculatrice" />
 
-                                <Label layoutX="62.0" layoutY="560.0" text="Sign Out" textFill="WHITE" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="62.0">
+                                            <Label layoutX="62.0" layoutY="560.0" text="Sign Out" textFill="WHITE" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="62.0">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
@@ -167,7 +167,7 @@
                                 </AnchorPane>
                                 <AnchorPane fx:id="m_form" layoutX="113.0" layoutY="181.0" prefHeight="600.0" prefWidth="878.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="566.0" prefWidth="512.0" stylesheets="@/Css/Front/mainFormDesign.css" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="17.0">
+                                        <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="589.0" prefWidth="515.0" stylesheets="@/Css/Front/mainFormDesign.css" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="17.0">
                                             <styleClass>
                                                 <String fx:value="white-bg" />
                                                 <String fx:value="shadow" />
@@ -186,6 +186,7 @@
                                                     </rowConstraints>
                                                 </GridPane>
                                         </AnchorPane>
+                                  <Label fx:id="newsTickerLabel" layoutX="8.0" layoutY="611.0" style="-fx-background-color: black; -fx-font-weight: bold; -fx-font-size: 26px; -fx-text-fill: white; -fx-padding: 5px;" />
                                     </children>
                                 </AnchorPane>
                             </children>

@@ -139,7 +139,7 @@ public class FrontSideBarController implements Initializable {
         isSidebarOpen = !isSidebarOpen;
     }
 
-    private void loadPage(String fxmlPath) {
+    public void loadPage(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();

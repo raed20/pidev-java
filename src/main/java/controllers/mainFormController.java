@@ -5,12 +5,22 @@
  */
 package controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.*;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.apptasticsoftware.rssreader.Item;
+import com.apptasticsoftware.rssreader.RssReader;
 import entities.Bank;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,11 +32,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import services.BankService;
+
+import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -37,8 +53,17 @@ public class mainFormController implements Initializable {
     
     @FXML
     private AnchorPane m_form;
+    private static final String[] NEWS_FEED = {
+            "Bank of America announces new interest rates.",
+            "JP Morgan Chase reports record profits.",
+            "Federal Reserve announces new monetary policy.",
+            "Wells Fargo introduces new mobile banking app."
+    };
 
-    
+    private int newsIndex = 0;
+
+    @FXML
+    private Label newsTickerLabel;
 
     @FXML
     private Button menu_btn;
@@ -137,6 +162,34 @@ public class mainFormController implements Initializable {
         }
 
     }
+
+
+
+    public void rss() throws FileNotFoundException {
+        // Set the initial news
+        newsTickerLabel.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        newsTickerLabel.setText(NEWS_FEED[newsIndex]);
+
+        // Timeline to update the news ticker
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(5), e -> {
+                    newsIndex = (newsIndex + 1) % NEWS_FEED.length;
+                    newsTickerLabel.setText(NEWS_FEED[newsIndex]);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+        // Animation to scroll the news ticker
+        TranslateTransition tickerTransition = new TranslateTransition(Duration.seconds(10), newsTickerLabel);
+        tickerTransition.setFromX(newsTickerLabel.getLayoutBounds().getWidth());
+        tickerTransition.setToX(-newsTickerLabel.getLayoutBounds().getWidth());
+        tickerTransition.setInterpolator(Interpolator.LINEAR);
+        tickerTransition.setCycleCount(Timeline.INDEFINITE);
+        tickerTransition.play();
+    }
+
+
 // LETS PROCEED TO OUR DASHBOARD FORM : )
 
     @Override
@@ -144,16 +197,14 @@ public class mainFormController implements Initializable {
 
         try {
             menuGetData();
-        } catch (SQLException e) {
+            rss();
+        } catch (SQLException | FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         menuDisplayCard();
 
     }
+
+
     
 }
-
-
-// THATS IT FOR THIS VIDEO, THANKS FOR WATCHING!
-// SUBSCRIBE OUR CHANNEL FOR MORE UNIQUE TUTORIALS 
-// THANK YOU!

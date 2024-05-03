@@ -1,6 +1,9 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
@@ -9,7 +12,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import java.io.File;
+import java.io.IOException;
+import java.util.Random;
+
 import entities.Bank;
+import javafx.stage.Stage;
 import services.BankService;
 
 public class BankController {
@@ -17,8 +24,9 @@ public class BankController {
     @FXML private Label idField;
     @FXML private TextField banknameField;
     @FXML private TextField adresseField;
-    @FXML private TextField codeswift;
+    //@FXML private TextField codeswift;
     @FXML private Button imageField;
+    @FXML private Button dashbord;
     @FXML private TextField phonenum;
     @FXML private ImageView imageView;
     @FXML private TableView<Bank> tableView;
@@ -30,6 +38,7 @@ public class BankController {
     @FXML private TableColumn<Bank, String> colImage;
 
     private BankService b = new BankService();
+    private FrontSideBarController f=new FrontSideBarController();
 
     @FXML
     public void initialize() {
@@ -46,8 +55,24 @@ public class BankController {
                 selectData();
             }
         });
+        dashbord.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/BackOffice/DashbordBack.fxml"));
+            Parent form;
+            try {
+                form = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Get the current scene from the button
+            Scene currentScene = dashbord.getScene();
+
+            // Set the new content in the current scene
+            currentScene.setRoot(form);
+        });
     }
-    private boolean validateInput() {
+
+        private boolean validateInput() {
         String errorMessage = "";
 
         // Bank Name validation
@@ -67,12 +92,12 @@ public class BankController {
         }
 
         // CodeSwift validation (assuming it's a code format)
-        String codeSwift = codeswift.getText();
+        /*String codeSwift = codeswift.getText();
         if (codeSwift == null || codeSwift.isEmpty()) {
             errorMessage += "CodeSwift is required.\n";
         } else if (!codeSwift.matches("[a-zA-Z0-9]{8,11}")) {
             errorMessage += "CodeSwift must be between 8 and 11 characters and contain only uppercase letters and numbers.\n";
-        }
+        }*/
 
         // Phone Number validation
         String phoneNumber = phonenum.getText();
@@ -108,7 +133,7 @@ public class BankController {
         idField.setText(String.valueOf(data.getId()));
         banknameField.setText(data.getNom());
         adresseField.setText(data.getAdresse());
-        codeswift.setText(data.getCodeSwift());
+        //codeswift.setText(data.getCodeSwift());
         phonenum.setText(data.getPhoneNum());
 
         String picture ="file:" +  data.getLogo();
@@ -145,7 +170,7 @@ public class BankController {
             Bank ban = new Bank(
                     banknameField.getText(),
                     adresseField.getText(),
-                    codeswift.getText(),
+                    generateRandomSwiftCode(),
                     imageField.getText(),
                     phonenum.getText()
                     );
@@ -171,7 +196,8 @@ public class BankController {
             if (selected != null) {
                 selected.setNom(banknameField.getText());
                 selected.setAdresse(adresseField.getText());
-                selected.setCodeSwift(codeswift.getText());
+                selected.setCodeSwift(selected.getCodeSwift());
+                //selected.setCodeSwift(codeswift.getText());
                 selected.setPhoneNum(phonenum.getText());
                 selected.setLogo(imageField.getText());
                 if (!b.isBankExists(selected)) {
@@ -208,7 +234,7 @@ public class BankController {
         idField.setText("");
         banknameField.clear();
         adresseField.clear();
-        codeswift.clear();
+        //codeswift.clear();
         phonenum.clear();
         imageView.setImage(null);
     }
@@ -229,7 +255,7 @@ public class BankController {
             idField.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
             banknameField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             adresseField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
-            codeswift.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            //codeswift.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             phonenum.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
 
         }else if(banknameField.isFocused()){
@@ -237,7 +263,7 @@ public class BankController {
             idField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             banknameField.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
             adresseField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
-            codeswift.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            //codeswift.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             phonenum.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
 
         }else if(adresseField.isFocused()){
@@ -245,10 +271,10 @@ public class BankController {
             idField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             banknameField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             adresseField.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
-            codeswift.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
+            //codeswift.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             phonenum.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
 
-        }else if(codeswift.isFocused()){
+        }/*else if(codeswift.isFocused()){
 
             idField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             banknameField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
@@ -256,7 +282,31 @@ public class BankController {
             codeswift.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
             phonenum.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
 
-        }
+        }*/
 
     }
+    public static String generateRandomSwiftCode() {
+        StringBuilder swiftCode = new StringBuilder();
+        Random random = new Random();
+
+        // Générer les 4 premiers caractères (lettre majuscule)
+        for (int i = 0; i < 4; i++) {
+            char randomChar = (char) (random.nextInt(26) + 'A');
+            swiftCode.append(randomChar);
+        }
+
+        // Ajouter les caractères suivants (chiffres ou lettres majuscules)
+        for (int i = 0; i < 6; i++) {
+            if (random.nextBoolean()) {
+                char randomChar = (char) (random.nextInt(10) + '0');
+                swiftCode.append(randomChar);
+            } else {
+                char randomChar = (char) (random.nextInt(26) + 'A');
+                swiftCode.append(randomChar);
+            }
+        }
+
+        return swiftCode.toString();
+    }
+
 }

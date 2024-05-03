@@ -78,6 +78,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>adal4j</artifactId>
+            <version>1.6.5</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>de.jensd</groupId>
             <artifactId>fontawesomefx-fontawesome</artifactId>
             <version>4.7.0-9.1.2</version>
@@ -88,6 +95,13 @@
             <artifactId>itextpdf</artifactId>
             <version>5.5.13.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.apptasticsoftware</groupId>
+            <artifactId>rssreader</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+
 
 
     </dependencies>
@@ -104,6 +118,7 @@
             </plugin>
         </plugins>
     </build>
+
 
 
     <properties>
