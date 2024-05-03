@@ -1,0 +1,59 @@
+/* Add this CSS to your stylesheet */
+
+/* VBox styling */
+VBox {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+/* TextFields styling */
+TextField {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Button styling */
+Button {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 14px;
+    -fx-background-color: #2c62f5;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;
+}
+
+/* Button hover effect */
+Button:hover {
+    -fx-background-color: #87CEEB;
+}
+
+/* Label styling */
+Label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* PieChart styling */
+PieChart {
+    -fx-pref-width: 400px;
+    -fx-pref-height: 300px;
+}
+
+/* Apply padding to all sides of the VBox */
+VBox > * {
+    -fx-padding: 5px;
+}
+
+/* Apply padding to the top and bottom of the VBox */
+VBox > .padding-top-bottom {
+    -fx-padding: 10px 0;
+}

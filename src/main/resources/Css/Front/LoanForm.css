@@ -1,0 +1,58 @@
+/* AnchorPane styles */
+.anchor-pane {
+    -fx-background-color: #f9f9f9; /* Light gray background */
+}
+
+/* GridPane styles */
+.grid-pane {
+    -fx-padding: 20px; /* Add padding around the grid */
+}
+
+/* Label styles */
+
+.label {
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-font-weight: bold; /* Police en gras */
+}
+
+
+/* ChoiceBox styles */
+.choice-box {
+    -fx-pref-width: 200px; /* Set preferred width */
+    -fx-background-color: #f0f0f0; /* Light gray background */
+    -fx-border-color: #ccc; /* Light gray border */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Rounded corners */
+}
+
+/* TextField styles */
+.text-field {
+    -fx-pref-width: 200px; /* Set preferred width */
+    -fx-padding: 5px; /* Add padding inside the text field */
+    -fx-background-color: #f0f0f0; /* Light gray background */
+    -fx-border-color: #ccc; /* Light gray border */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Rounded corners */
+}
+
+/* CheckBox styles */
+.check-box {
+    -fx-font-size: 14px; /* Set font size */
+    -fx-text-fill: #333; /* Dark gray text color */
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: #4682b4; /* Steel blue background */
+    -fx-text-fill: white; /* White text color */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-padding: 8px 16px; /* Padding around the text */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-cursor: hand; /* Hand cursor on hover */
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    -fx-background-color: #87CEEB; /* Sky blue background on hover */
+}

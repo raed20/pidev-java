@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="1299.0" stylesheets="/Css/Back/backBank.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BankController">
+    <children>
+        <AnchorPane fx:id="left_main" prefHeight="500.0" prefWidth="335.0">
+            <TextField fx:id="banknameField" layoutX="103.0" layoutY="78.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="/Css/Back/backBank.css" AnchorPane.leftAnchor="103.0">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </TextField>
+            <Label layoutX="29.0" layoutY="82.0" text="name">
+                <font>
+                    <Font name="Microsoft Sans Serif" size="20.0" />
+                </font>
+            </Label>
+            <TextField fx:id="adresseField" layoutX="103.0" layoutY="119.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@/Css/Back/backBank.css">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </TextField>
+            <Label layoutX="19.0" layoutY="123.0" text="adresse">
+                <font>
+                    <Font name="Microsoft Sans Serif" size="20.0" />
+                </font>
+            </Label>
+            <Label layoutX="9.0" layoutY="168.0" text="codeSwift">
+                <font>
+                    <Font name="Microsoft Sans Serif" size="20.0" />
+                </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="305.0" text="Picture:">
+                <font>
+                    <Font name="Microsoft Sans Serif" size="20.0" />
+                </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="106.0" layoutX="155.0" layoutY="264.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+            <Button fx:id="insert" layoutX="19.0" layoutY="375.0" mnemonicParsing="false" onAction="#insert" prefHeight="46.0" prefWidth="87.0" styleClass="insert-button" stylesheets="@/Css/Back/backBank.css" text="Insert" />
+            <Button fx:id="update" layoutX="124.0" layoutY="398.0" mnemonicParsing="false" onAction="#update" prefHeight="46.0" prefWidth="87.0" styleClass="update-button" stylesheets="@/Css/Back/backBank.css" text="Update">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Button>
+            <Button fx:id="clear" layoutX="229.0" layoutY="375.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="46.0" prefWidth="87.0" styleClass="clear-button" stylesheets="@/Css/Back/backBank.css" text="Clear" />
+            <Button fx:id="delete" layoutX="229.0" layoutY="432.0" mnemonicParsing="false" onAction="#delete" prefHeight="46.0" prefWidth="87.0" styleClass="delete-button" stylesheets="@/Css/Back/backBank.css" text="Delete" />
+            <Button fx:id="print" layoutX="19.0" layoutY="432.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="87.0" styleClass="print-button" stylesheets="@/Css/Back/backBank.css" text="Print" />
+            <ImageView fx:id="imageView" fitHeight="110.0" fitWidth="110.0" layoutX="155.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="imageField" layoutX="155.0" layoutY="263.0" mnemonicParsing="false" onAction="#chooseImage" prefHeight="106.0" prefWidth="110.0" styleClass="insert-image-button" stylesheets="@/Css/Back/backBank.css" text="Insert Image" />
+            <TextField fx:id="codeswift" layoutX="104.0" layoutY="164.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@/Css/Back/backBank.css">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </TextField>
+            <TextField fx:id="phonenum" layoutX="104.0" layoutY="209.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@/Css/Back/backBank.css">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </TextField>
+            <Label layoutX="5.0" layoutY="213.0" text="phonenum">
+                <font>
+                    <Font name="Microsoft Sans Serif" size="20.0" />
+                </font>
+            </Label>
+            <Label fx:id="idField" layoutX="168.0" layoutY="40.0" visible="false">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+        </AnchorPane>
+        <AnchorPane layoutX="335.0" prefHeight="546.0" prefWidth="549.0">
+            <children>
+                <Separator layoutX="11.0" layoutY="14.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="1.0" />
+                <TableView fx:id="tableView" layoutX="82.0" layoutY="3.0" onMouseClicked="#selectData" prefHeight="546.0" prefWidth="823.0">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="67.0" text="ID" visible="false" />
+                        <TableColumn fx:id="colnom" prefWidth="83.0" text="bank" />
+                        <TableColumn fx:id="coladresse" prefWidth="75.0" text="adresse" />
+                        <TableColumn fx:id="colcodeswift" prefWidth="66.0" text="codeSwift" />
+                        <TableColumn fx:id="colImage" prefWidth="65.5999755859375" text="Picture" />
+                        <TableColumn fx:id="colphone" prefWidth="88.800048828125" text="phonenum" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

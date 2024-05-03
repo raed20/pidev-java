@@ -19,6 +19,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import tools.MyConnection;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -30,6 +31,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button RegistrationButton;
+    @FXML
+    private Button loginbtn;
     @FXML
     private Label LoginMessage;
     @FXML
@@ -48,7 +51,7 @@ public class LoginController implements Initializable {
         ProSyncImageView.setImage(ProSyncImage);
     }
 
-    public void LoginButtonOnAction(ActionEvent event) {
+    public void LoginButtonOnAction() {
 
 
         if (EmailTextField.getText().isBlank() == false && EnterPasswordField.getText().isBlank() == false) {
@@ -62,6 +65,7 @@ public class LoginController implements Initializable {
 
             LoginMessage.setText("Please enter your Email and Password");
         }
+
     }
 
     public void RegistrationButtonOnAction(ActionEvent event) {
@@ -90,6 +94,20 @@ public class LoginController implements Initializable {
                     LoginMessage.setStyle("-fx-text-fill: green;");
 
 
+                    // Load and display the homepage FXML
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/FrontSidebar.fxml"));
+                    Parent root = loader.load();
+                    Stage homepageStage = new Stage();
+                    homepageStage.setTitle("Homepage");
+                    homepageStage.setScene(new Scene(root));
+                    homepageStage.show();
+
+                    // Close the login window
+                    Stage loginStage = (Stage) loginbtn.getScene().getWindow();
+                    loginStage.close();
+
+
+
                 } else {
 
                     LoginMessage.setText("Invalid login. try again !");
@@ -105,7 +123,7 @@ public class LoginController implements Initializable {
     public void createAccountForm(Window previousWindow){
         try{
 
-            Parent root = FXMLLoader.load(getClass().getResource("/FrontOffice.Login/registration.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/javafx/FrontOffice/Registration/registration.fxml"));
             Stage RegisterStage = new Stage();
             RegisterStage.setTitle("ProSync");
             RegisterStage.setScene(new Scene(root,600,400));

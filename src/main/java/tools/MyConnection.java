@@ -2,6 +2,8 @@ package tools;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +41,12 @@ public class MyConnection {
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to close database connection!", e);
         }
+    }
+    public PreparedStatement prepareStatement(String query) throws SQLException {
+        return connection.prepareStatement(query);
+    }
+    public Statement createStatement() throws SQLException {
+        return connection.createStatement();
     }
 
 

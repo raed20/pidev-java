@@ -132,7 +132,7 @@ public class RegistrationController implements Initializable {
     public void loginForm(Window previousWindow){
         try{
 
-            Parent root = FXMLLoader.load(getClass().getResource("/FrontOffice.Login/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/javafx/FrontOffice/Login/login.fxml"));
             Stage RegisterStage = new Stage();
             RegisterStage.setTitle("ProSync");
             RegisterStage.setScene(new Scene(root,600,400));

@@ -15,7 +15,7 @@
    <left>
       <ImageView fx:id="shieldImageView" fitHeight="403.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../../../../../../Images/438032592_1466819873939024_8254370732506893689_n.jpg" />
+            <Image url="/Images/438032592_1466819873939024_8254370732506893689_n.jpg" />
          </image>
       </ImageView>
    </left>

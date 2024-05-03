@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="963.0" stylesheets="/Css/Front/loanShowDesign.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemController">
+    <effect>
+        <DropShadow color="#1b1eeb" />
+    </effect>
+    <Pane fx:id="pnlOverview" layoutX="105.0" layoutY="-14.0" prefHeight="451.0" prefWidth="575.0">
+        <Label layoutX="57.0" layoutY="25.0" text="Loan Orders" textFill="#3874ff">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER_LEFT" layoutX="36.0" layoutY="129.0" prefHeight="42.0" prefWidth="520.0" spacing="80.0" style="-fx-background-color: #3874FF;">
+            <Label text="Bank Name" textFill="#e7e5e5">
+                <HBox.margin>
+                    <Insets left="50.0" />
+                </HBox.margin>
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <Label text="Amount" textFill="#e7e5e5">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin>
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <Label text="Loan" textFill="#e7e5e5">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin>
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <Label text="Status" textFill="#e7e5e5">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin>
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+        </HBox>
+        <ScrollPane layoutX="79.0" layoutY="171.0" prefHeight="266.0" prefWidth="447.0">
+            <VBox fx:id="pnItems" alignment="TOP_RIGHT" spacing="10.0">
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </padding>
+            </VBox>
+        </ScrollPane>
+    </Pane>
+    <HBox alignment="TOP_CENTER" layoutX="282.0" layoutY="437.0" prefHeight="100.0" prefWidth="257.0">
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <padding>
+            <Insets top="10.0" />
+        </padding>
+        <Button fx:id="edit" mnemonicParsing="false" prefHeight="38.0" prefWidth="70.0" text="Manage">
+            <HBox.margin>
+                <Insets right="25.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="delete" mnemonicParsing="false" prefHeight="38.0" prefWidth="63.0" text="Delete" textAlignment="CENTER">
+            <HBox.margin>
+                <Insets right="25.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="print" mnemonicParsing="false" prefHeight="39.0" prefWidth="58.0" text="Print" />
+    </HBox>
+</AnchorPane>
