@@ -66,8 +66,19 @@ public class FrontSideBarController implements Initializable {
     private BorderPane borderPane;
     @FXML
     private TextField searchField;
+    @FXML
+    private Label profileLabel;
+
+
 
     private boolean isSidebarOpen = false;
+
+
+    private boolean checkIfAdmin() {
+        // Implement the logic to check if the connected user is an admin
+        return true; // For demonstration, always return true
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,9 +92,9 @@ public class FrontSideBarController implements Initializable {
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         creditCardButton.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        profileLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Profil.fxml"));
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
-        MenuItem AdminItem = new MenuItem("BackOffice");
         MenuItem disconnectItem = new MenuItem("Disconnect");
         boolean isAdmin = checkIfAdmin(); // Implement this method to check if the user is an admin
         if (isAdmin) {
@@ -115,6 +126,7 @@ public class FrontSideBarController implements Initializable {
         setIconAndLabel(crmLabel, FontAwesomeIcon.GROUP);
         setIconAndLabel(blogLabel, FontAwesomeIcon.NEWSPAPER_ALT);
         setIconAndLabel(productLabel, FontAwesomeIcon.SHOPPING_BAG);
+        setIconAndLabel(profileLabel, FontAwesomeIcon.USER);
 
     }
 
@@ -247,10 +259,7 @@ public class FrontSideBarController implements Initializable {
         });
     }
 
-    private boolean checkIfAdmin() {
-        // Implement the logic to check if the connected user is an admin
-        return true; // For demonstration, always return true
-    }
+
 
     private void addAdminMenuItem() {
         MenuItem adminItem = new MenuItem("BackOffice");
@@ -307,7 +316,7 @@ public class FrontSideBarController implements Initializable {
 
         try {
             // Load the login.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FrontOffice/Login/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/Login/login.fxml"));
             Parent root = loader.load();
 
             // Get the current stage

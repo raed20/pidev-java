@@ -12,7 +12,7 @@ public class MainUser extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/FrontOffice.Login/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/javafx/FrontOffice/Login/login.fxml"));
         primaryStage.setTitle("ProSync");
         primaryStage.setScene(new Scene(root,600,400));
         primaryStage.show();

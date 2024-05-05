@@ -135,6 +135,23 @@
                                         </Label>
                                     </children>
                                 </HBox>
+
+
+
+                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="140.0" styleClass="sidebar-btn">
+                                    <children>
+                                        <Label id="profileLabel" fx:id="profileLabel" styleClass="sidebar-btn" text="Mon profil" textFill="WHITE">
+                                            <padding>
+                                                <Insets left="10.0" />
+                                            </padding>
+                                            <font>
+                                                <Font name="Calibri" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+
+
                             </children>
                         </VBox>
                     </children>

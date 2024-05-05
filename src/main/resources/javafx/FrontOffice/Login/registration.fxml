@@ -46,6 +46,8 @@
             <Label fx:id="RegistrationMessageLabel" layoutX="250.0" layoutY="52.0" prefHeight="18.0" prefWidth="114.0" textFill="#00a126" />
             <Label fx:id="ConfirmPasswordLabel" alignment="CENTER_RIGHT" layoutX="203.0" layoutY="282.0" prefHeight="18.0" prefWidth="158.0" textFill="RED" />
             <ChoiceBox fx:id="RoleBox" accessibleRole="SLIDER" layoutX="105.0" layoutY="279.0" prefWidth="150.0" />
+            <Button fx:id="browseImageButton" layoutX="215.0" layoutY="314.0" mnemonicParsing="false" onAction="#browseImageButtonOnAction" prefHeight="26.0" prefWidth="71.0" text="Browse" />
+            <Label fx:id="selectedImageLabel" layoutX="100.0" layoutY="319.0" prefHeight="16.0" prefWidth="230.0" text="No image selected" textFill="#6b6b6b" />
          </children>
       </AnchorPane>
    </center>
