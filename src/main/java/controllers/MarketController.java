@@ -151,38 +151,4 @@ public class MarketController implements Initializable {
 
     }
 
-
-
-//    public MarketController() {
-//        MyConnection connection = new MyConnection();
-//        productService = new ProductService(connection);
-//    }
-//
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        List<Product> products = productService.getAll();
-//        int column=0;
-//        int row=0;
-//        try {
-//            for (int i =0;i<products.size();i++){
-//                FXMLLoader fxmlLoader=new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("Javafx/FrontOffice/Command/Item.fxml"));
-//                AnchorPane anchorPane=fxmlLoader.load();
-//
-//                ItemController itemController=fxmlLoader.getController();
-//                itemController.setData(products.get(i));
-//
-//                if(column==3){
-//                    column=0;
-//                    row++;
-//                }
-//                grid.add(anchorPane,column++,row);
-//                GridPane.setMargin(anchorPane,new Insets(10));
-//            }
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
 }

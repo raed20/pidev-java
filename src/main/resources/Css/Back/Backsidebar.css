@@ -1,53 +1,70 @@
-/* productstyle.css */
 
-/* AnchorPane */
-.root {
+
+.sidebar{
+    -fx-background-color: rgb(56, 116, 255);
+
+
+}
+.sidebar-user-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+.sidebar-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+.sidebar-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+
+}
+.sidebar-btn-icon{
+
+    -fx-text-fill: white;
     -fx-background-color: white;
 }
-
-/* Label */
-.label {
-    -fx-font-size: 25px;
+.menu-bar-btn{
+    -fx-background-color:white ;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 1px 0px 1px;
+    -fx-border-radius: 0px;
 }
-
-/* TextField */
-.text-field {
-    -fx-pref-width: 150px;
+.menu-bar-btns{
+    -fx-background-color:white ;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 1px 0px 0px ;
+    -fx-border-radius: 0px;
 }
+.menu-item:hover{
+    -fx-background-color: rgb(56, 116, 255);
 
-/* ChoiceBox */
-.choice-box {
-    -fx-pref-width: 150px;
 }
-
-/* TextArea */
-.text-area {
-    -fx-pref-width: 200px;
-    -fx-pref-height: 70px;
+.menu-bar-btns:hover{
+    -fx-background-color:rgb(56, 116, 255) ;
 }
-
-/* Button */
-.button {
-    -fx-pref-width: 100px;
+.menu-bar-btn:hover{
+    -fx-background-color:rgb(56, 116, 255) ;
 }
-
-/* ImageView */
-.image-view {
-    -fx-fit-width: 98px;
-    -fx-fit-height: 91px;
+.menu-bar-btns-icon{
+    -fx-fill: rgb(56, 116, 255);
 }
-
-/* Text */
-.text {
-    -fx-font-size: 14px;
+.menu-bar-btns:hover .menu-bar-btns-icon{
+    -fx-fill: white;
 }
+.menu-bar-btn:hover .menu-bar-btns-icon{
+    -fx-fill: white;
+}
+.menu-bar-field{
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
+}
+.menu-bar-search-field-box{
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0px 0px 1px 0px;
 
-/* Labels with specific fx:id */
-#nameAlert,
-#priceAlert,
-#disAlert,
-#catAlert,
-#descAlert,
-#imgAlert {
-    -fx-text-fill: red;
 }

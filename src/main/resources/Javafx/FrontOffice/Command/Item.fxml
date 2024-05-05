@@ -56,7 +56,7 @@
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin></Spinner>
-            <Button fx:id="addProd" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" styleClass="search-button" text="ADD TO CART" textFill="WHITE">
+            <Button fx:id="addProd" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="114.0" styleClass="search-button" text="ADD TO CART" textFill="WHITE">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>

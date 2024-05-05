@@ -232,8 +232,8 @@ public class ProductAddController {
         if (descTF.getText().isEmpty()) {
             descAlert.setText("Description must not be empty");
             isValid = false;
-        } else if (descTF.getText().length() < 20) {
-            descAlert.setText("Description must have at least 20 characters");
+        } else if (descTF.getText().length() < 20 || descTF.getText().length() > 250) {
+            descAlert.setText("Description must have between 20 and 250 characters");
             isValid = false;
         } else {
             descAlert.setText("");

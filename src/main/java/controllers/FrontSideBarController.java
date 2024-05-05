@@ -72,7 +72,7 @@ public class FrontSideBarController implements Initializable {
         pretLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Command/market.fxml"));
         creditCardButton.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");

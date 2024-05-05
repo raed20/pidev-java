@@ -24,7 +24,7 @@ public class PanierService implements IService<Panier> {
 
     @Override
     public void add(Panier panier) {
-        String query = "INSERT INTO Cart (product_id, quantity) VALUES (?, ?)";
+        String query = "INSERT INTO Panier (product_id, quantity) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
                 Product product = entry.getKey();
@@ -41,7 +41,7 @@ public class PanierService implements IService<Panier> {
 
     @Override
     public void update(Panier panier) {
-        String updateQuery = "UPDATE Cart SET product_id = ?, quantity = ? WHERE id = ?";
+        String updateQuery = "UPDATE Panier SET product_id = ?, quantity = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(updateQuery)) {
             for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
                 Product product = entry.getKey();
@@ -59,7 +59,7 @@ public class PanierService implements IService<Panier> {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM Cart WHERE id = ?";
+        String query = "DELETE FROM Panier WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             int rowsAffected = statement.executeUpdate();
@@ -76,13 +76,13 @@ public class PanierService implements IService<Panier> {
     @Override
     public List<Panier> getAll() {
         List<Panier> paniers = new ArrayList<>();
-        String query = "SELECT * FROM Cart";
+        String query = "SELECT * FROM Panier";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int cartId = resultSet.getInt("id");
+                int panierId = resultSet.getInt("id");
                 Panier panier = new Panier();
-                panier.setId(cartId);
+                panier.setId(panierId);
                 paniers.add(panier);
             }
         } catch (SQLException e) {
@@ -93,7 +93,7 @@ public class PanierService implements IService<Panier> {
 
     @Override
     public Panier getOne(int id) {
-        String query = "SELECT * FROM Cart WHERE id = ?";
+        String query = "SELECT * FROM Panier WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();

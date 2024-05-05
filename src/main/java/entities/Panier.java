@@ -1,5 +1,8 @@
 package entities;
 
+import javafx.scene.control.Spinner;
+
+import java.util.HashMap;
 import java.util.Map;
 
 public class Panier {
@@ -47,5 +50,16 @@ public class Panier {
                 "id=" + id +
                 ", products=" + products +
                 '}';
+    }
+
+    public void setProducts(int id, Spinner<Integer> qtyLabel) {
+        // Initialize the products map if it's not already initialized
+        if (this.products == null) {
+            this.products = new HashMap<>();
+        }
+        // Add the product and quantity to the map
+        Product product = new Product(); // Assuming you have a way to get the product
+        int quantity = qtyLabel.getValue();
+        this.products.put(product, quantity);
     }
 }

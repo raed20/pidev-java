@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Panier;
 import entities.Product;
 import interfaces.MyListener;
 import javafx.fxml.FXML;
@@ -7,9 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import services.PanierService;
+import tools.MyConnection;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,12 +44,14 @@ public class ItemController implements Initializable {
     @FXML
     private Spinner<Integer> qtyLabel;
 
+    private SpinnerValueFactory<Integer> spin;
     private Product product;
     private MyListener myListener;
 
+    private PanierService panierService;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        setQunatity();
     }
 
     void setData(Product product,MyListener myListener) {
@@ -66,8 +72,28 @@ public class ItemController implements Initializable {
             }
         }
     }
+    private int qty;
+    public void setQunatity(){
+        spin=new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100,0);
+        qtyLabel.setValueFactory(spin);
+    }
+    public ItemController(){
+        this.panierService=new PanierService(new MyConnection());
+    }
+
+
 
     public void click(javafx.scene.input.MouseEvent mouseEvent) {
         myListener.onClickListener(product);
+    }
+
+    public void addToCart(javafx.event.ActionEvent actionEvent) {
+        qty=qtyLabel.getValue();
+        if(qty!=0){
+            Panier panier=new Panier();
+            panier.setProducts(product.getId(),qtyLabel);
+
+            panierService.add(panier);
+        }
     }
 }

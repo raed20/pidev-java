@@ -8,12 +8,12 @@
 }
 
 .search-button{
-    -fx-background-color: #828282;
+    -fx-background-color: rgb(56, 116, 255);
     -fx-background-radius: 30;
 }
 
 .right-bar{
-    -fx-background-color: #D3D3D3;
+    -fx-background-color: #e4e7ed;
 }
 
 .shadow{
@@ -61,4 +61,8 @@
     -fx-background-color: lightgrey;
     -fx-padding: 5px;
     -fx-background-radius: 5;
+}
+.title {
+    -fx-font-family: "Calibri";
+    -fx-font-weight: bold;
 }
