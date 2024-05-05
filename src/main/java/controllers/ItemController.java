@@ -16,6 +16,8 @@ import services.PanierService;
 import tools.MyConnection;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ItemController implements Initializable {
@@ -88,12 +90,20 @@ public class ItemController implements Initializable {
     }
 
     public void addToCart(javafx.event.ActionEvent actionEvent) {
-        qty=qtyLabel.getValue();
-        if(qty!=0){
-            Panier panier=new Panier();
-            panier.setProducts(product.getId(),qtyLabel);
+        int qty = qtyLabel.getValue();
+        if (qty > 0) {
+            Panier panier = new Panier();
+            Map<Product, Integer> productsMap = new HashMap<>();
+            productsMap.put(product, qty);
+            panier.setProducts(productsMap);
 
+            PanierService panierService = new PanierService(new MyConnection());
             panierService.add(panier);
+
+            System.out.println("Product added to Cart!");
+        } else {
+            System.out.println("Please select a quantity.");
         }
     }
+
 }

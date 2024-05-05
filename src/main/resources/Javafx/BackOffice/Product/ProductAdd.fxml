@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductAddController">
+<AnchorPane fx:id="anchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductAddController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="417.0" layoutY="66.0" prefHeight="600.0" prefWidth="500.0" styleClass="chosen-product-card">
          <children>
-            <Label alignment="CENTER" prefHeight="36.0" prefWidth="600.0" text="Add Product">
+            <Label alignment="CENTER" prefHeight="36.0" prefWidth="600.0" styleClass="title" text="Add Product">
                <font>
                   <Font name="Calibri Bold" size="30.0" />
                </font>

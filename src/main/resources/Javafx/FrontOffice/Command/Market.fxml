@@ -106,7 +106,7 @@
                                         <Insets bottom="5.0" top="5.0" />
                                     </VBox.margin>
                                 </Spinner>
-                                <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="235.0" styleClass="search-button" text="ADD TO CART" textFill="WHITE">
+                                <Button fx:id="addProd" mnemonicParsing="false" onAction="#addToCart" prefHeight="51.0" prefWidth="235.0" styleClass="search-button" text="ADD TO CART" textFill="WHITE">
                                     <VBox.margin>
                                         <Insets bottom="10.0" top="5.0" />
                                     </VBox.margin>

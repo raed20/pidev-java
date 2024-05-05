@@ -28,3 +28,9 @@
 .divider{
     -fx-background-color: black;
 }
+.title {
+    -fx-font-family: "Calibri";
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(56, 116, 255);
+    -fx-font-size: 40px;
+}

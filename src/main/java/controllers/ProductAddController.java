@@ -6,16 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import services.CategoryService;
 import services.ProductService;
 import tools.MyConnection;
@@ -31,6 +30,8 @@ import java.util.Map;
 
 public class ProductAddController {
 
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private ImageView imageTF;
 
@@ -75,9 +76,6 @@ public class ProductAddController {
     private CategoryService categoryService;
     private Product selectedProduct;
 
-    public Map<String, Integer> getCategoryMap() {
-        return categoryMap;
-    }
 
     public void setProduct(Product product) {
         selectedProduct = product;
@@ -292,9 +290,7 @@ public class ProductAddController {
             // Pass the category map to ProductListController
             productListController.setCategoryMap(categoryMap);
 
-            // Get the stage and set the new scene
-            Stage window = (Stage) catTF.getScene().getWindow();
-            window.setScene(new Scene(root));
+            anchorPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

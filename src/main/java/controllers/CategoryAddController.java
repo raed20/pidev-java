@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import services.CategoryService;
 import tools.MyConnection;
 
@@ -15,6 +16,8 @@ import java.io.IOException;
 
 public class CategoryAddController {
 
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private TextField catTF;
     @FXML
@@ -77,7 +80,7 @@ public class CategoryAddController {
     void navigate(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/Javafx/BackOffice/Category/CategoryList.fxml"));
-            catTF.getScene().setRoot(root);
+            anchorPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

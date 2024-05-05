@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" styleClass="right-bar" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductListController">
+<AnchorPane fx:id="anchorPane" prefHeight="810.0" prefWidth="1315.0" styleClass="right-bar" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductListController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="315.0" layoutY="71.0" prefWidth="800.0">
+      <VBox alignment="TOP_CENTER" layoutX="253.0" layoutY="74.0" prefHeight="604.0" prefWidth="800.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="80.0">
          <children>
-            <Label alignment="CENTER" prefHeight="36.0" prefWidth="809.0" text="Product List" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="36.0" prefWidth="809.0" styleClass="title" text="Product List" textAlignment="CENTER">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
@@ -34,22 +34,22 @@
                </VBox.margin>
             </Button>
             <Pane prefHeight="87.0" prefWidth="800.0" />
-            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+            <VBox prefHeight="278.0" prefWidth="720.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tableview" prefHeight="330.0" prefWidth="722.0" stylesheets="@../../../Css/Front/Command/Market.css" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tableview" layoutX="27.0" layoutY="128.0" prefHeight="285.0" prefWidth="720.0" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="idCol" prefWidth="61.59997367858887" text="Reference" />
-                        <TableColumn fx:id="nameCol" prefWidth="107.199951171875" text="Name" />
-                        <TableColumn fx:id="priceCol" prefWidth="68.800048828125" text="Price" />
-                        <TableColumn fx:id="discountCol" prefWidth="92.79998779296875" text="Discount" />
-                        <TableColumn fx:id="catCol" prefWidth="84.7999267578125" text="Category" />
-                        <TableColumn fx:id="descCol" minWidth="0.0" prefWidth="168.00006103515625" text="Description" />
-                        <TableColumn fx:id="imgCol" prefWidth="137.5999755859375" text="Image" />
+                        <TableColumn fx:id="nameCol" prefWidth="88.79999542236328" text="Name" />
+                        <TableColumn fx:id="priceCol" prefWidth="72.79998779296875" text="Price" />
+                        <TableColumn fx:id="discountCol" prefWidth="58.39996337890625" text="Discount" />
+                        <TableColumn fx:id="catCol" prefWidth="84.0" text="Category" />
+                        <TableColumn fx:id="descCol" prefWidth="148.79995727539062" text="Description" />
+                        <TableColumn fx:id="imgCol" prefWidth="184.800048828125" text="Image" />
                      </columns>
                   </TableView>
                </children>
                <VBox.margin>
-                  <Insets left="40.0" right="40.0" />
+                  <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="349.0">

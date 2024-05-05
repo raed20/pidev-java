@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" styleClass="right-bar" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CategoryListController">
+<AnchorPane fx:id="anchorPane" prefHeight="810.0" prefWidth="1315.0" styleClass="right-bar" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CategoryListController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="446.0" layoutY="99.0" prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Css/Front/Command/Market.css">
+      <VBox alignment="TOP_CENTER" layoutX="373.0" layoutY="104.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../../Css/Front/Command/Market.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="100.0">
          <children>
-            <Label alignment="CENTER" prefHeight="36.0" prefWidth="600.0" text="Category List" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="70.0" prefWidth="600.0" styleClass="title" stylesheets="@../../../Css/Front/Command/Market.css" text="Category List" textAlignment="CENTER">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
@@ -25,11 +25,11 @@
                   <Font name="Calibri Bold" size="30.0" />
                </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </Label>
             <Pane prefHeight="60.0" prefWidth="500.0" />
-            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" text="Add Category">
+            <Button fx:id="addButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" text="Add Category">
                <VBox.margin>
                   <Insets left="300.0" />
                </VBox.margin>
@@ -40,7 +40,7 @@
                   <TableView fx:id="tableview" prefHeight="200.0" prefWidth="421.0" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="idCol" prefWidth="200.0" text="Reference" />
-                      <TableColumn fx:id="catCol" prefWidth="201.5999816894531" text="Category" />
+                      <TableColumn fx:id="catCol" prefWidth="213.5999816894531" text="Category" />
                     </columns>
                      <opaqueInsets>
                         <Insets />
@@ -48,7 +48,7 @@
                   </TableView>
                </children>
                <VBox.margin>
-                  <Insets left="50.0" right="50.0" />
+                  <Insets left="100.0" right="100.0" />
                </VBox.margin>
             </VBox>
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="500.0">

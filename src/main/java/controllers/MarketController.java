@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Panier;
 import entities.Product;
 import interfaces.MyListener;
 import javafx.collections.FXCollections;
@@ -11,17 +12,21 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import services.PanierService;
 import services.ProductService;
 import tools.MyConnection;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MarketController implements Initializable {
@@ -55,6 +60,8 @@ public class MarketController implements Initializable {
 
     @FXML
     private Label unsaledP;
+    private SpinnerValueFactory<Integer> spin;
+    private Product product;
 
     private MyListener myListener;
     //private final ProductService productService;
@@ -71,6 +78,7 @@ public class MarketController implements Initializable {
     }
 
     private void setChosenProduct(Product product) {
+        this.product = product; // Assigning the product to the class variable
         nameProd.setText(product.getName());
         unsaledP.setText(String.valueOf(product.getPrice()+" TND"));
         discountP.setText(String.valueOf("-"+product.getDiscount()+ "%"));
@@ -86,6 +94,7 @@ public class MarketController implements Initializable {
             }
         }
     }
+
 
     public void menuDisplayCard() {
         try {
@@ -140,8 +149,32 @@ public class MarketController implements Initializable {
         }
     }
 
+    private int qty;
+    public void setQunatity(){
+        spin=new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100,0);
+        qtyP.setValueFactory(spin);
+    }
+
+    public void addToCart(javafx.event.ActionEvent actionEvent) {
+        int qty = qtyP.getValue();
+        if (qty > 0) {
+            Panier panier = new Panier();
+            Map<Product, Integer> productsMap = new HashMap<>();
+            productsMap.put(product, qty);
+            panier.setProducts(productsMap);
+
+            PanierService panierService = new PanierService(new MyConnection());
+            panierService.add(panier);
+
+            System.out.println("Product added to Cart!");
+        } else {
+            System.out.println("Please select a quantity.");
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setQunatity();
         try {
             menuGetData();
         } catch (SQLException e) {

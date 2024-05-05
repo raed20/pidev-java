@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -16,17 +15,20 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 import services.ProductService;
 import tools.MyConnection;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ProductListController {
 
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private TableColumn<Product, String> catCol;
 
@@ -52,7 +54,7 @@ public class ProductListController {
     private TableView<Product> tableview;
 
     private final ProductService productService;
-    private Map<String, Integer> categoryMap;
+    private Map<String, Integer> categoryMap = new HashMap<>();
 
     public void setCategoryMap(Map<String, Integer> categoryMap) {
         this.categoryMap = categoryMap;
@@ -125,8 +127,7 @@ public class ProductListController {
 
                 // Get the controller of the loaded FXML
                 ProductAddController productAddController = loader.getController();
-                Stage window = (Stage) tableview.getScene().getWindow();
-                window.setScene(new Scene(root));
+                anchorPane.getChildren().setAll(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -167,9 +168,7 @@ public class ProductListController {
                 // Set the selected product in the AddProductController
                 productAddController.setProduct(selectedProduct);
 
-                // Get the stage and set the new scene
-                Stage window = (Stage) tableview.getScene().getWindow();
-                window.setScene(new Scene(root));
+                anchorPane.getChildren().setAll(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
