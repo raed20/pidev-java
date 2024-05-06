@@ -6,8 +6,9 @@ public class Blog {
     private String Title;
     private String Description;
     private String Content;
-    private String Img;
 
+    private String Img;
+    private double rating;
     public Blog() {}
 
     public Blog(String title, String description, String content, String img) {
@@ -15,14 +16,16 @@ public class Blog {
         Description = description;
         Content = content;
         Img = img;
+        this.rating= 0.1f;
     }
 
-    public Blog(int id, String title, String description, String content, String img) {
+    public Blog(int id, String title, String description, String content, String img,double rating) {
         this.id = id;
         Title = title;
         Description = description;
         Content = content;
         Img = img;
+        this.rating = rating;
     }
 
     public int getId() {
@@ -65,5 +68,11 @@ public class Blog {
         Img = img;
     }
 
+    public double getRating() {
+        return rating;
+    }
 
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
 }
