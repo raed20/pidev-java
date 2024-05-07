@@ -136,9 +136,9 @@ public class LoanFormController {
 
     private void updateFormTitle() {
         if (pretActuel == null) {
-            labelTitre.setText("Ajouter un Nouveau Prêt");
+            labelTitre.setText("Add a new Loan");
         } else {
-            labelTitre.setText("Modifier le Prêt");
+            labelTitre.setText("Edit a Loan");
         }
     }
 

@@ -114,7 +114,7 @@ public class LoanService implements ILoanService<Pret> {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println(this.classifier);
 
-                int idUser = 1;
+                int idUser = 3;
                 //int bankId = 1;
                 toemail = getEmailById(idUser);
 
@@ -195,10 +195,9 @@ public class LoanService implements ILoanService<Pret> {
         String toemail = null;
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
-            String query = "UPDATE pret SET gender = ?, married = ?, education = ?, self_employed = ?, applicant_income = ?, coapplicant_income = ?, loan_amount = ?, loan_amount_term = ?, credit_history = ?, property_area = ? , idBank= ? , loan_status= ? WHERE id = ?";
+            String query = "UPDATE pret SET gender = ?, married = ?, education = ?, self_employed = ?, applicant_income = ?, coapplicant_income = ?, loan_amount = ?, loan_amount_term = ?, credit_history = ?, property_area = ? , idBank= ? ,idUser= ? , loan_status= ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
-                int idUser = 1; // Assuming you're updating a specific loan for a specific user
-                //int bankId = 1; // Assuming you're updating a specific loan for a specific bank
+                int idUser = 3; // Assuming you're updating a specific loan for a specific user
 
                 toemail = getEmailById(idUser);
                 // Prepare an instance for prediction
@@ -233,8 +232,9 @@ public class LoanService implements ILoanService<Pret> {
                 statement.setInt(9, pret.getCreditHistory());
                 statement.setString(10, pret.getPropertyArea());
                 statement.setInt(11, bankId);
-                statement.setString(12, loanStatus);
-                statement.setInt(13, pret.getId()); // Set the ID of the loan to update
+                statement.setInt(12, idUser);
+                statement.setString(13, loanStatus);
+                statement.setInt(14, pret.getId()); // Set the ID of the loan to update
 
                 // Execute the update statement
                 statement.executeUpdate();

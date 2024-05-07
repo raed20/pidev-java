@@ -1,14 +1,14 @@
 package controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import tools.MyConnection;
 
@@ -165,13 +165,14 @@ public class DashbordBack implements Initializable {
                 "GROUP BY b.nom;";
 
 
+
         XYChart.Series chart = new XYChart.Series();
         try {
             prepare = cnx.prepareStatement(sql);
             result = prepare.executeQuery();
 
             while (result.next()) {
-                chart.getData().add(new XYChart.Data<>(result.getString(1), result.getInt(2)));
+                chart.getData().add(new XYChart.Data<>(result.getString(1), result.getFloat(2)));
             }
 
             dashboard_CustomerChart.getData().add(chart);
@@ -180,6 +181,12 @@ public class DashbordBack implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -66,7 +66,7 @@
                <Font size="16.0" />
             </font>
          </Label>
-         <Button fx:id="dashbord" layoutX="57.0" layoutY="-13.0" mnemonicParsing="false" text="Dashbord" />
+         <Button fx:id="dashbord" layoutX="57.0" layoutY="-13.0" mnemonicParsing="false" styleClass="dashbord-button" stylesheets="@/Css/Back/backBank.css" text="Dashbord" />
       </AnchorPane>
       <AnchorPane layoutX="335.0" prefHeight="546.0" prefWidth="549.0">
          <children>

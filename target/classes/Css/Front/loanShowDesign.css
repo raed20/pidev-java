@@ -17,7 +17,7 @@
 }
 
 .scroll-pane {
-    -fx-background-color: #02030A;
+    -fx-background-color: #fff;
 }
 
 .scroll-bar:horizontal, .scroll-bar:vertical{
@@ -38,15 +38,11 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color: #10165F;
+    -fx-background-color: #3874FF;
     -fx-background-radius: 5em;
 }
 
 .scroll-pane > .corner {
     -fx-background-color: black;
-}
-
-.selected-item {
-    -fx-background-color: #000;
 }
 

@@ -54,11 +54,18 @@ public class mainFormController implements Initializable {
     @FXML
     private AnchorPane m_form;
     private static final String[] NEWS_FEED = {
-            "Bank of America announces new interest rates.",
+            "STB announces new interest rates.",
             "JP Morgan Chase reports record profits.",
             "Federal Reserve announces new monetary policy.",
-            "Wells Fargo introduces new mobile banking app."
+            "Wells Fargo introduces new mobile banking app.",
+            "European Central Bank releases economic forecast.",
+            "HSBC launches sustainability initiative.",
+            "Goldman Sachs to invest in renewable energy.",
+            "Bank of America expands presence in Asia.",
+            "Citibank announces partnership with fintech startup.",
+            "Barclays introduces new credit card rewards program."
     };
+
 
     private int newsIndex = 0;
 
@@ -181,13 +188,14 @@ public class mainFormController implements Initializable {
         timeline.play();
 
         // Animation to scroll the news ticker
-        TranslateTransition tickerTransition = new TranslateTransition(Duration.seconds(10), newsTickerLabel);
-        tickerTransition.setFromX(newsTickerLabel.getLayoutBounds().getWidth());
+        TranslateTransition tickerTransition = new TranslateTransition(Duration.seconds(3), newsTickerLabel);
+        tickerTransition.setFromX(newsTickerLabel.getParent().getLayoutBounds().getWidth());
         tickerTransition.setToX(-newsTickerLabel.getLayoutBounds().getWidth());
         tickerTransition.setInterpolator(Interpolator.LINEAR);
         tickerTransition.setCycleCount(Timeline.INDEFINITE);
         tickerTransition.play();
     }
+
 
 
 // LETS PROCEED TO OUR DASHBOARD FORM : )

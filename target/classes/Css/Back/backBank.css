@@ -114,3 +114,19 @@
     -fx-background-color:#2e90cc;
     
 }
+
+.dashbord-button{
+
+    -fx-background-color:#333;
+    -fx-background-radius:20px;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:15px;
+
+}
+
+.dashbord-button:hover{
+
+    -fx-background-color:#444;
+
+}

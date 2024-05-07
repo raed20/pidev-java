@@ -61,3 +61,19 @@ and open the template in the editor.
 .table-view .column-header .label{
     -fx-text-fill: #fff;
 }
+
+.back-button{
+
+    -fx-background-color:#333;
+    -fx-background-radius:20px;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:15px;
+
+}
+
+.back-button:hover{
+
+    -fx-background-color:#444;
+
+}

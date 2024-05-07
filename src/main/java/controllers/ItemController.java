@@ -46,7 +46,6 @@ public class ItemController implements Initializable {
     private Label status;
 
     private LoanService loanService = new LoanService();
-    BankInterestRate bankRates = new BankInterestRate();
 
 
     private Pret selectedLoan;
@@ -213,6 +212,7 @@ public class ItemController implements Initializable {
             }
         }
     }
+
 
 
     public void setLoanData(Pret LoanData) {
