@@ -82,7 +82,7 @@ public class BankController {
             }
         });
         dashbord.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/BackOffice/DashbordBack.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/BackOffice/bank/DashbordBack.fxml"));
             Parent form;
             try {
                 form = loader.load();
@@ -117,23 +117,17 @@ public class BankController {
             errorMessage += "Address must be maximum 20 characters.\n";
         }
 
-        // CodeSwift validation (assuming it's a code format)
-        /*String codeSwift = codeswift.getText();
-        if (codeSwift == null || codeSwift.isEmpty()) {
-            errorMessage += "CodeSwift is required.\n";
-        } else if (!codeSwift.matches("[a-zA-Z0-9]{8,11}")) {
-            errorMessage += "CodeSwift must be between 8 and 11 characters and contain only uppercase letters and numbers.\n";
-        }*/
-
         // Phone Number validation
-        String phoneNumber = phonenum.getText();
+            String phoneNumber = phonenum.getText();
         if (phoneNumber == null || phoneNumber.isEmpty()) {
             errorMessage += "Phone number is required.\n";
-        } else if (!phoneNumber.matches("\\+216\\d{10}")) {
-            errorMessage += "Phone number must be 13 digits long.\n";
+        } if (!phoneNumber.matches("\\+\\d{8,13}")) {
+                errorMessage += "Phone number must start with a plus sign (+) and be between 8 and 13 digits long.\n";
         }
 
-        // Image validation
+
+
+            // Image validation
         String imagePath = imageField.getText();
         if (imagePath == null || imagePath.isEmpty() || !new File(imagePath).exists()) {
             errorMessage += "A valid image file must be selected.\n";
@@ -300,15 +294,7 @@ public class BankController {
             //codeswift.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
             phonenum.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
 
-        }/*else if(codeswift.isFocused()){
-
-            idField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
-            banknameField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
-            adresseField.setStyle("-fx-border-width:1px; -fx-background-color:transparent");
-            codeswift.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
-            phonenum.setStyle("-fx-border-width:2px; -fx-background-color:transparent");
-
-        }*/
+        }
 
     }
     public static String generateRandomSwiftCode() {
