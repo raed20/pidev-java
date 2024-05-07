@@ -11,7 +11,7 @@ public class stripetest  extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Load the FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/FrontOffice/Investissement/payment.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/FrontOffice/investissement/payment.fxml"));
         Parent root = loader.load();
 
         // Create the scene

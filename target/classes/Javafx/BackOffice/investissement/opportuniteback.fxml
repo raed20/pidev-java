@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -95,11 +96,17 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </Separator>
-             <ListView fx:id="opportuniteList" maxWidth="1100.0" prefHeight="500.0" prefWidth="1100.0" style="-fx-background-color: white;" styleClass="table_opp" stylesheets="@../../../Css/Back/Investisment/opportunitestyle.css">
-                 <VBox.margin>
-                     <Insets left="50.0" />
-                 </VBox.margin>
-             </ListView>
+            <AnchorPane fx:id="listviewPane" prefHeight="0.0" prefWidth="0.0">
+               <children>
+                   <ListView fx:id="opportuniteList" maxWidth="1000.0" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: white;" styleClass="table_opp" stylesheets="@../../../Css/Back/Investisment/opportunitestyle.css" />
+               </children>
+            </AnchorPane>
+            <Pagination fx:id="pagination" maxWidth="1100.0" pageCount="1" prefHeight="500.0" prefWidth="1050.0">
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+            </Pagination>
+
 
          </children>
          <padding>

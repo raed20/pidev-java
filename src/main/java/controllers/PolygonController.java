@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import models.StockQuote;
 import services.PolygonApiService;
@@ -39,6 +40,8 @@ public class PolygonController implements Initializable {
     private AnchorPane listviewanchorepane;
     @FXML
     private Pagination pagination;
+    @FXML
+    private BorderPane borderPane;
     private StockQuote stockquote;
 
     private String selectedCurrency = "USD"; // Default currency
@@ -60,7 +63,7 @@ public class PolygonController implements Initializable {
         convertToCurrency(selectedCurrency);
 
         // Set custom cell factory for the ListView
-        CustomCellFactoryFront cellFactory = new CustomCellFactoryFront();
+        CustomCellFactoryFront cellFactory = new CustomCellFactoryFront(borderPane);
         listView.setCellFactory(cellFactory);
     }
 
@@ -250,7 +253,7 @@ public class PolygonController implements Initializable {
         pageListView.setItems(FXCollections.observableArrayList(listView.getItems().subList(fromIndex, toIndex)));
 
         // Set custom cell factory for the page's ListView
-        CustomCellFactoryFront cellFactory = new CustomCellFactoryFront();
+        CustomCellFactoryFront cellFactory = new CustomCellFactoryFront(borderPane);
         pageListView.setCellFactory(cellFactory);
 
         return pageListView;

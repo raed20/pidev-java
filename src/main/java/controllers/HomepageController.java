@@ -25,7 +25,7 @@ public class HomepageController implements Initializable {
 
             Parent sidebar = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/FrontSidebar.fxml")));
            // Parent menubar = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/Menubar.fxml")));
-            Parent content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/Investissement/polygonshow.fxml")));
+            Parent content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Javafx/FrontOffice/investissement/polygonshow.fxml")));
             //border_pane.setTop(menubar);
             border_pane.setCenter(content);
             border_pane.setLeft(sidebar);

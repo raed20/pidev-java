@@ -86,7 +86,7 @@ public class InvestissementService implements IInvestissement {
                 investissement.setStockName(resultSet.getString("stock_name"));
                 investissement.setChangerate(resultSet.getFloat("changerate"));
                 investissement.setPrice(resultSet.getFloat("price"));
-                // Fetch Opportunite entity for this Investissement
+                // Fetch Opportunite entity for this investissement
                 OpportuniteService opportuniteService = new OpportuniteService(connection);
                 investissement.setOpport(opportuniteService.getOpportuniteById(resultSet.getInt("opport_id")).getId());
                 investissements.add(investissement);

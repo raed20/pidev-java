@@ -73,7 +73,7 @@ public class InvestissementBackController {
         stockNameColumn.setCellValueFactory(new PropertyValueFactory<>("stockName"));
         changerateColumn.setCellValueFactory(new PropertyValueFactory<>("changerate"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        addButton.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Investissement/investissementaddback.fxml"));
+        addButton.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/investissement/investissementaddback.fxml"));
 
         // Load data into TableView
         loadInvestissements();

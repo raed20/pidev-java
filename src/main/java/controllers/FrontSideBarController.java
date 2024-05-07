@@ -68,12 +68,12 @@ public class FrontSideBarController implements Initializable {
         initializeLabels();
         //Add the path of your fxml file
         homeLabel.setOnMouseClicked(event -> loadPage("/path/to/homePage.fxml"));
-        investmentLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        pretLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        creditCardButton.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        investmentLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/investissement/polygonshow.fxml"));
+        pretLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/investissement/polygonshow.fxml"));
+        crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/investissement/polygonshow.fxml"));
+        blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/investissement/polygonshow.fxml"));
+        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/investissement/polygonshow.fxml"));
+        creditCardButton.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/investissement/polygonshow.fxml"));
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
         MenuItem AdminItem = new MenuItem("BackOffice");

@@ -6,12 +6,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
-import models.StockQuote;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
+import models.StockQuote;
+
 public class CustomCellFactoryFront implements Callback<ListView<StockQuote>, ListCell<StockQuote>> {
+
+    private BorderPane borderPane;
+
+    public CustomCellFactoryFront(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
 
     @Override
     public ListCell<StockQuote> call(ListView<StockQuote> listView) {
@@ -31,16 +40,15 @@ public class CustomCellFactoryFront implements Callback<ListView<StockQuote>, Li
             @FXML
             private AnchorPane listviewCollum;
 
-            private FXMLLoader loader;
-
             {
-                loader = new FXMLLoader(getClass().getResource("/JavaFX/FrontOffice/investissement/listviewcollum.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/FrontOffice/investissement/listviewcollum.fxml"));
                 loader.setController(this);
                 try {
                     listviewCollum = loader.load();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
             }
 
             @Override
@@ -50,15 +58,33 @@ public class CustomCellFactoryFront implements Callback<ListView<StockQuote>, Li
                     setText(null);
                     setGraphic(null);
                 } else {
-                    nameLabel.setText(item.getName());
+                    nameLabel.setText(""+item.getName());
                     openLabel.setText("" + item.getOpen());
                     highLabel.setText("" + item.getHigh());
                     lowLabel.setText("" + item.getLow());
                     closeLabel.setText("" + item.getClose());
                     volumeLabel.setText("" + item.getVolume());
                     setGraphic(listviewCollum);
+                    nameLabel.setOnMouseClicked(event -> handleLabelClick(event, item.getName()));
+
                 }
             }
+
+            private void handleLabelClick(MouseEvent event, String selectedName) {
+                navigateToInvestissementFront(selectedName);
+            }
         };
+    }
+
+    private void navigateToInvestissementFront(String selectedName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/FrontOffice/investissement/investissementfront.fxml"));
+            AnchorPane investissementFrontView = loader.load();
+            InvestissementFrontController controller = loader.getController();
+            controller.setSelectedName(selectedName);
+            borderPane.setCenter(investissementFrontView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

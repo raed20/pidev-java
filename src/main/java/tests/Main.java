@@ -14,7 +14,7 @@ public class Main {
 
         InvestissementService investissementService = new InvestissementService(connection);
         OpportuniteService opportuniteService = new OpportuniteService(connection);
-        // Test Add operation for Investissement
+        // Test Add operation for investissement
         System.out.println("Adding a new investment...");
         Investissement newInvestissement = new Investissement();
         // Set properties for the new investment
