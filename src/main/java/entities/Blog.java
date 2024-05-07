@@ -9,6 +9,16 @@ public class Blog {
 
     private String Img;
     private double rating;
+    private int vu;
+
+    public int getVu() {
+        return vu;
+    }
+
+    public void setVu(int vu) {
+        this.vu = vu;
+    }
+
     public Blog() {}
 
     public Blog(String title, String description, String content, String img) {
@@ -19,13 +29,14 @@ public class Blog {
         this.rating= 0.1f;
     }
 
-    public Blog(int id, String title, String description, String content, String img,double rating) {
+    public Blog(int id, String title, String description, String content, String img,double rating,int vu) {
         this.id = id;
         Title = title;
         Description = description;
         Content = content;
         Img = img;
         this.rating = rating;
+        this.vu=vu;
     }
 
     public int getId() {

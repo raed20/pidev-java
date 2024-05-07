@@ -62,18 +62,21 @@ public class BlogService implements IBlog {
 
     @Override
     public void updateBlog(Blog blog) {
-        String query = "UPDATE blog SET Title = ?, Description = ?, Content = ?, Img = ? WHERE id = ?";
+        String query = "UPDATE blog SET Title = ?, Description = ?, Content = ?, Img = ?, Rating = ?, Vu = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, blog.getTitle());
             statement.setString(2, blog.getDescription());
             statement.setString(3, blog.getContent());
             statement.setString(4, blog.getImg());
-            statement.setInt(5, blog.getId());
+            statement.setDouble(5, blog.getRating());
+            statement.setInt(6, blog.getVu());
+            statement.setInt(7, blog.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "An SQL Exception occurred:", e);
         }
     }
+
 
     @Override
     public List<Blog> getAllBlog() {
@@ -88,6 +91,8 @@ public class BlogService implements IBlog {
                 blog.setDescription(resultSet.getString("Description"));
                 blog.setContent(resultSet.getString("Content"));
                 blog.setImg(resultSet.getString("Img"));
+                blog.setRating(resultSet.getFloat("Rating"));
+                blog.setVu(resultSet.getInt("Vu"));
                 blogs.add(blog);
             }
         } catch (SQLException e) {
@@ -111,6 +116,8 @@ public class BlogService implements IBlog {
                 b.setDescription(rs.getString(3));
                 b.setContent(rs.getString(4));
                 b.setImg(rs.getString(5));
+                b.setRating(rs.getFloat(6));
+                b.setVu(rs.getInt(7));
 
                 list.add(b);
             }
