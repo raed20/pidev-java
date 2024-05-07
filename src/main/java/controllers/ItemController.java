@@ -76,7 +76,7 @@ public class ItemController implements Initializable {
     }
     private int qty;
     public void setQunatity(){
-        spin=new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100,0);
+        spin=new SpinnerValueFactory.IntegerSpinnerValueFactory(1,100,0);
         qtyLabel.setValueFactory(spin);
     }
     public ItemController(){

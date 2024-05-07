@@ -70,8 +70,8 @@ public class BackSideBarController  implements Initializable{
         pretLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        categoryLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Category/CategoryList.fxml"));
-        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Product/ProductList.fxml"));
+        categoryLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Category/CategoryAdd.fxml"));
+        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Product/ProductAdd.fxml"));
 
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");

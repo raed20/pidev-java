@@ -28,28 +28,6 @@
                                 <Font name="Calibri Bold" size="35.0" />
                             </font>
                         </Label>
-<!--                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="370.0" stylesheets="@../../../Css/Front/Command/Market.css">-->
-<!--                            <VBox.margin>-->
-<!--                                <Insets left="30.0" right="30.0" />-->
-<!--                            </VBox.margin>-->
-<!--                            <children>-->
-<!--                                <TextField prefHeight="40.0" prefWidth="234.0" promptText="Type here to search" styleClass="transparent">-->
-<!--                                    <font>-->
-<!--                                        <Font size="18.0" />-->
-<!--                                    </font>-->
-<!--                                </TextField>-->
-<!--                                <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="92.0" styleClass="search-button" text="Search" textFill="WHITE">-->
-<!--                                    <font>-->
-<!--                                        <Font size="14.0" />-->
-<!--                                    </font>-->
-<!--                                </Button>-->
-<!--                            </children>-->
-<!--                            <styleClass>-->
-<!--                                <String fx:value="search-box" />-->
-<!--                                <String fx:value="shadow" />-->
-<!--                            </styleClass>-->
-<!--                        </HBox>-->
-                        <Pane prefHeight="31.0" prefWidth="430.0" />
                         <VBox fx:id="selectedProd" alignment="TOP_CENTER" prefHeight="627.0" prefWidth="370.0" stylesheets="@../../../Css/Front/Command/Market.css">
                             <VBox.margin>
                                 <Insets left="30.0" right="30.0" />

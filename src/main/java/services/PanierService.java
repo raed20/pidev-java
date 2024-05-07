@@ -153,4 +153,19 @@ public class PanierService implements IService<Panier> {
             throw new RuntimeException("Error deleting item from Cart: " + e.getMessage());
         }
     }
+
+    public void clearPanierTable() {
+        String query = "DELETE FROM Panier";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Panier table cleared successfully!");
+            } else {
+                System.out.println("Panier table is already empty.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error clearing Panier table: " + e.getMessage());
+        }
+    }
+
 }

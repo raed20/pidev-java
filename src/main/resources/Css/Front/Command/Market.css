@@ -68,3 +68,17 @@
     -fx-text-fill: rgb(56, 116, 255);
     -fx-font-size: 40px;
 }
+.red-button {
+    -fx-background-color: red;
+    -fx-background-radius: 30;
+    -fx-text-fill: white; /* Set text color to white */
+    -fx-font-size: 14pt; /* Adjust font size */
+    -fx-padding: 10px 20px; /* Adjust padding */
+}
+.blue-button {
+    -fx-background-color: rgb(56, 116, 255); /* Blue color */
+    -fx-background-radius: 30;
+    -fx-text-fill: white; /* Set text color to white */
+    -fx-font-size: 14pt; /* Adjust font size */
+    -fx-padding: 10px 20px; /* Adjust padding */
+}
