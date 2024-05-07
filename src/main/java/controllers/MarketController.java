@@ -9,12 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -23,6 +25,7 @@ import services.PanierService;
 import services.ProductService;
 import tools.MyConnection;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -30,6 +33,11 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MarketController implements Initializable {
+
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private ImageView cartButton;
 
     @FXML
     private Label descP;
@@ -184,4 +192,18 @@ public class MarketController implements Initializable {
 
     }
 
+    public void cartNav(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/FrontOffice/Command/Cart.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller of the loaded FXML
+            CartController cartController = loader.getController();
+
+
+            anchorPane.getChildren().setAll(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

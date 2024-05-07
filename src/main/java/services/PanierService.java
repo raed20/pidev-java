@@ -72,24 +72,53 @@ public class PanierService implements IService<Panier> {
             throw new RuntimeException("Error deleting cart: " + e.getMessage());
         }
     }
-
     @Override
     public List<Panier> getAll() {
         List<Panier> paniers = new ArrayList<>();
-        String query = "SELECT * FROM Panier";
+        String query = "SELECT p.id AS panier_id, p.product_id, p.quantity, pr.* " +
+                "FROM Panier p " +
+                "LEFT JOIN Product pr ON p.product_id = pr.id";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int panierId = resultSet.getInt("id");
-                Panier panier = new Panier();
-                panier.setId(panierId);
-                paniers.add(panier);
+                int panierId = resultSet.getInt("panier_id");
+                int productId = resultSet.getInt("product_id");
+                int quantity = resultSet.getInt("quantity");
+
+                // Check if the Panier already exists in the list
+                Panier panier = null;
+                for (Panier existingPanier : paniers) {
+                    if (existingPanier.getId() == panierId) {
+                        panier = existingPanier;
+                        break;
+                    }
+                }
+                // If the Panier doesn't exist, create a new one
+                if (panier == null) {
+                    panier = new Panier();
+                    panier.setId(panierId);
+                    paniers.add(panier);
+                }
+
+                // Create a Product object and add it to the Panier
+                Product product = new Product();
+                product.setId(productId);
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setDescription(resultSet.getString("description"));
+                product.setImage(resultSet.getString("image"));
+                product.setDiscount(resultSet.getDouble("discount"));
+
+                // Add the Product to the Panier with its quantity
+                panier.getProducts().put(product, quantity);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving carts: " + e.getMessage());
         }
         return paniers;
     }
+
+
 
     @Override
     public Panier getOne(int id) {
@@ -108,6 +137,20 @@ public class PanierService implements IService<Panier> {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving cart: " + e.getMessage());
+        }
+    }
+    public void DeleteFromCart(int productId) {
+        String query = "DELETE FROM Panier WHERE product_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, productId);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Item deleted from Cart successfully!");
+            } else {
+                System.out.println("No item found in the Cart with product ID " + productId);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting item from Cart: " + e.getMessage());
         }
     }
 }

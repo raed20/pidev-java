@@ -6,13 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Panier {
-    //Attributes
+    // Attributes
     private int id;
     private Map<Product, Integer> products;
 
-    //Constructors
+    // Constructors
 
     public Panier() {
+        this.products = new HashMap<>(); // Initialize the products map
     }
 
     public Panier(int id, Map<Product, Integer> products) {
@@ -24,7 +25,7 @@ public class Panier {
         this.products = products;
     }
 
-    //Getters & Setters
+    // Getters & Setters
 
     public int getId() {
         return id;
@@ -42,7 +43,8 @@ public class Panier {
         this.products = products;
     }
 
-    //Display
+
+    // Display
 
     @Override
     public String toString() {
@@ -52,6 +54,7 @@ public class Panier {
                 '}';
     }
 
+    // Method to set products with quantity
     public void setProducts(int id, Spinner<Integer> qtyLabel) {
         // Initialize the products map if it's not already initialized
         if (this.products == null) {

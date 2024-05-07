@@ -1,20 +1,27 @@
 package org.example;
 
-import entities.Category;
 import entities.Panier;
-import entities.Product;
-import services.CategoryService;
 import services.PanierService;
-import services.ProductService;
 import tools.MyConnection;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
        MyConnection cnx=new MyConnection();
+
+
+        // Initialize PanierService
+        PanierService panierService = new PanierService(cnx);
+
+        // Retrieve all carts from the database
+        List<Panier> paniers = panierService.getAll();
+
+        // Display the retrieved carts
+        for (Panier panier : paniers) {
+            System.out.println(panier);
+        }   
 //
 //        CategoryService cs=new CategoryService(cnx);
 //        Category category=new Category("Car");

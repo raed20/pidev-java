@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarketController">
+<AnchorPane fx:id="anchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarketController">
     <children>
         <BorderPane layoutX="21.0" layoutY="22.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -128,7 +128,7 @@
                     <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="73.0" prefWidth="886.0" stylesheets="@../../../Css/Front/Command/Market.css">
                             <children>
-                                <ImageView fitHeight="47.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="cartButton" fitHeight="47.0" fitWidth="49.0" onMousePressed="#cartNav" pickOnBounds="true" preserveRatio="true">
                                     <HBox.margin>
                                         <Insets bottom="10.0" right="30.0" top="10.0" />
                                     </HBox.margin>
