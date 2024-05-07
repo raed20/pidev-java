@@ -13,10 +13,15 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
 
 import entities.Bank;
-import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import services.BankService;
 
 public class BankController {
@@ -38,7 +43,8 @@ public class BankController {
     @FXML private TableColumn<Bank, String> colImage;
 
     private BankService b = new BankService();
-    private FrontSideBarController f=new FrontSideBarController();
+    private final CountryController countryController = new CountryController();
+
 
     @FXML
     public void initialize() {
@@ -49,6 +55,26 @@ public class BankController {
         colImage.setCellValueFactory(new PropertyValueFactory<>("logo"));
         colphone.setCellValueFactory(new PropertyValueFactory<>("phoneNum"));
         loadTableData();
+
+        TextFields.bindAutoCompletion(adresseField, input -> {
+            String userText = input.getUserText();
+            try {
+                return countryController.getSuggestions(userText);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+        adresseField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                String dialCode = findAndPrintDialCode(newValue);
+                if (dialCode != null) {
+                    phonenum.setText(dialCode);
+                }
+            }
+        });
+
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -87,7 +113,7 @@ public class BankController {
         String address = adresseField.getText();
         if (address == null || address.isEmpty()) {
             errorMessage += "Address is required.\n";
-        } else if (address.length() > 20) {
+        } else if (address.length() > 30) {
             errorMessage += "Address must be maximum 20 characters.\n";
         }
 
@@ -103,8 +129,8 @@ public class BankController {
         String phoneNumber = phonenum.getText();
         if (phoneNumber == null || phoneNumber.isEmpty()) {
             errorMessage += "Phone number is required.\n";
-        } else if (!phoneNumber.matches("\\+216\\d{8}")) {
-            errorMessage += "Phone number must start with +216 and be 11 digits long.\n";
+        } else if (!phoneNumber.matches("\\+216\\d{10}")) {
+            errorMessage += "Phone number must be 13 digits long.\n";
         }
 
         // Image validation
@@ -309,4 +335,38 @@ public class BankController {
         return swiftCode.toString();
     }
 
+    public String findAndPrintDialCode(String countryName) {
+        try {
+            // Read the JSON file containing country data
+            String jsonString = new String(Files.readAllBytes(Paths.get("\\Users\\gigab\\Desktop\\pidev-java\\src\\main\\resources\\CountryCodes.json")));
+
+            // Parse the JSON string into a JSONArray
+            JSONArray countries = new JSONArray(jsonString);
+
+            // Search for the dial code of a country by name
+            String dialCode = findDialCode(countries, countryName);
+            if (dialCode != null) {
+                return dialCode;
+            }
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static String findDialCode(JSONArray countries, String countryName) {
+        for (int i = 0; i < countries.length(); i++) {
+            try {
+                JSONObject country = countries.getJSONObject(i);
+                if (country.getString("name").equals(countryName)) {
+                    return country.getString("dial_code");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null; // Dial code not found
+    }
 }
+
+
