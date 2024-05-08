@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,9 +29,29 @@
                                 <Font name="Calibri Bold" size="35.0" />
                             </font>
                         </Label>
+                  <HBox alignment="CENTER" prefHeight="64.0" prefWidth="390.0">
+                     <children>
+                        <TextField fx:id="searchTextField" prefHeight="62.0" prefWidth="256.0" styleClass="search-box" />
+                        <Button mnemonicParsing="false" onKeyReleased="#searchProducts" prefHeight="39.0" prefWidth="83.0" styleClass="search-button" text="Search" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
                         <VBox fx:id="selectedProd" alignment="TOP_CENTER" prefHeight="627.0" prefWidth="370.0" stylesheets="@../../../Css/Front/Command/Market.css">
                             <VBox.margin>
-                                <Insets left="30.0" right="30.0" />
+                                <Insets left="30.0" right="30.0" top="20.0" />
                             </VBox.margin>
                             <children>
                                 <ImageView fx:id="imgP" fitHeight="206.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">

@@ -10,12 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -33,6 +31,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MarketController implements Initializable {
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private AnchorPane anchorPane;
@@ -189,7 +190,8 @@ public class MarketController implements Initializable {
             throw new RuntimeException(e);
         }
         menuDisplayCard();
-
+        // Set up event handler for searchTextField
+        searchTextField.setOnKeyPressed(this::searchProducts);
     }
 
     public void cartNav(MouseEvent mouseEvent) {
@@ -200,10 +202,90 @@ public class MarketController implements Initializable {
             // Get the controller of the loaded FXML
             CartController cartController = loader.getController();
 
-
             anchorPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void searchProducts(KeyEvent keyEvent) {
+        try {
+            String searchText = searchTextField.getText();
+            ObservableList<Product> searchResults = searchProductsByName(searchText);
+            displaySearchResults(searchResults);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQL exception
+        }
+    }
+
+    private ObservableList<Product> searchProductsByName(String searchText) throws SQLException {
+        MyConnection connection = new MyConnection();
+        ProductService productService = new ProductService(connection);
+        return FXCollections.observableArrayList(productService.searchByName(searchText));
+    }
+
+    private void displaySearchResults(ObservableList<Product> searchResults) {
+        if (searchResults != null && !searchResults.isEmpty()) {
+            setChosenProduct(searchResults.get(0));
+            myListener = new MyListener() {
+                @Override
+                public void onClickListener(Product product) {
+                    setChosenProduct(product);
+                }
+            };
+        } else {
+            // Clear the selected product UI elements if no search results found
+            clearSelectedProduct();
+        }
+
+        try {
+            products.clear();
+            products.addAll(searchResults);
+
+            // Update the grid with search results
+            int row = 0;
+            int column = 0;
+
+            grid.getChildren().clear();
+            grid.getRowConstraints().clear();
+            grid.getColumnConstraints().clear();
+
+            for (int q = 0; q < products.size(); q++) {
+                FXMLLoader load = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/Command/Item.fxml"));
+                AnchorPane pane = load.load();
+                ItemController cardC = load.getController();
+                cardC.setData(products.get(q), myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row += 1;
+                }
+
+                grid.add(pane, column++, row);
+
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.prefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_COMPUTED_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.prefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
+
+                GridPane.setMargin(pane, new Insets(10));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clearSelectedProduct() {
+        nameProd.setText("");
+        unsaledP.setText("");
+        discountP.setText("");
+        saledP.setText("");
+        descP.setText("");
+        imgP.setImage(null);
+    }
+
 }

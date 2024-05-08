@@ -109,4 +109,27 @@ public class ProductService implements IService<Product> {
         }
         throw new IllegalArgumentException("Product with id " + id + " not found");
     }
+
+    public List<Product> searchByName(String searchText) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM product WHERE name LIKE ?";
+        try (Connection conn = connection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, "%" + searchText + "%");
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setName(rs.getString("name"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setDescription(rs.getString("description"));
+                    product.setImage(rs.getString("image"));
+                    product.setDiscount(rs.getDouble("discount"));
+                    product.setCategory(rs.getInt("category_id"));
+                    products.add(product);
+                }
+            }
+        }
+        return products;
+    }
 }
