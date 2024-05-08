@@ -18,6 +18,7 @@ import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Window;
+import services.UtilisateurService;
 import tools.MyConnection;
 
 import java.sql.Connection;
@@ -46,7 +47,7 @@ public class LoginController implements Initializable {
     @FXML
     private ImageView ProSyncImageView;
     @FXML
-    private TextField EmailTextField;
+    private TextField EmailAddressTextField;
     @FXML
     private PasswordField EnterPasswordField;
     @FXML
@@ -69,7 +70,7 @@ public class LoginController implements Initializable {
         String rememberedPassword = prefs.get(REMEMBER_PASSWORD_KEY, null);
 
         if (rememberedEmail != null && !rememberedEmail.isEmpty()) {
-            EmailTextField.setText(rememberedEmail);
+            EmailAddressTextField.setText(rememberedEmail);
             rememberMeCheckBox.setSelected(true);
         }
         if (rememberedPassword != null && !rememberedPassword.isEmpty()) {
@@ -80,7 +81,7 @@ public class LoginController implements Initializable {
 
     @FXML
     public void emailTextFieldOnKeyReleased(KeyEvent event) {
-        String enteredEmail = EmailTextField.getText();
+        String enteredEmail = EmailAddressTextField.getText();
         // Vérifie si une adresse e-mail correspondante est enregistrée dans les préférences
         String rememberedPassword = prefs.get(enteredEmail, null);
         if (rememberedPassword != null && !rememberedPassword.isEmpty()) {
@@ -96,12 +97,12 @@ public class LoginController implements Initializable {
     public void LoginButtonOnAction() {
 
 
-        if (EmailTextField.getText().isBlank() && EnterPasswordField.getText().isBlank()) {
+        if (EmailAddressTextField.getText().isBlank() && EnterPasswordField.getText().isBlank()) {
 
             LoginMessage.setText("Please enter your Email and Password");
-        } else if (EmailTextField.getText().isBlank() == false && EnterPasswordField.getText().isBlank() == true){
+        } else if (EmailAddressTextField.getText().isBlank() == false && EnterPasswordField.getText().isBlank() == true){
             LoginMessage.setText("Please enter your Password");
-        } else if (EmailTextField.getText().isBlank() == true && EnterPasswordField.getText().isBlank() == false){
+        } else if (EmailAddressTextField.getText().isBlank() == true && EnterPasswordField.getText().isBlank() == false){
             LoginMessage.setText("Please enter your Email");
         } else {
 
@@ -113,7 +114,7 @@ public class LoginController implements Initializable {
         boolean rememberMe = rememberMeCheckBox.isSelected();
         if (rememberMe) {
             // Enregistre l'adresse e-mail et le mot de passe dans les préférences si "Remember Me" est coché
-            prefs.put(REMEMBER_EMAIL_KEY, EmailTextField.getText());
+            prefs.put(REMEMBER_EMAIL_KEY, EmailAddressTextField.getText());
             prefs.put(REMEMBER_PASSWORD_KEY, EnterPasswordField.getText());
         } else {
             // Supprime l'adresse e-mail et le mot de passe des préférences si "Remember Me" n'est pas coché
@@ -136,7 +137,7 @@ public class LoginController implements Initializable {
 
         String hashedPassword = hashPassword(EnterPasswordField.getText());
 
-        String verifyLogin = "SELECT * FROM user WHERE email ='" + EmailTextField.getText() + "' AND password ='" + hashedPassword + "'";
+        String verifyLogin = "SELECT * FROM user WHERE email ='" + EmailAddressTextField.getText() + "' AND password ='" + hashedPassword + "'";
 
         try {
             Statement statement = connectDB.createStatement();
@@ -145,6 +146,15 @@ public class LoginController implements Initializable {
 
 
                 if (queryResult.next()) {
+                    Utilisateurs utilisateurConnecte = new Utilisateurs();
+                    utilisateurConnecte.setLastname(queryResult.getString("lastname"));
+                    utilisateurConnecte.setNumtel(queryResult.getInt("numtel"));
+                    utilisateurConnecte.setEmail(queryResult.getString("email"));
+                    utilisateurConnecte.setAdresse(queryResult.getString("adresse"));
+                    utilisateurConnecte.setRoles(queryResult.getString("roles"));
+
+                    // récupérer l'utilisateur connecté depuis la base de données ou d'où vous stockez les utilisateurs
+                    UtilisateurService.setUtilisateurConnecte(utilisateurConnecte);
 
                     LoginMessage.setText("You are Logged in!");
                     LoginMessage.setStyle("-fx-text-fill: green;");
@@ -161,6 +171,8 @@ public class LoginController implements Initializable {
                     // Close the login window
                     Stage loginStage = (Stage) loginbtn.getScene().getWindow();
                     loginStage.close();
+
+
 
 
 
@@ -181,7 +193,7 @@ public class LoginController implements Initializable {
         // Code pour enregistrer les informations de connexion dans un emplacement sécurisé
     }
 
-    private String hashPassword(String password) {
+    private static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = md.digest(password.getBytes());
@@ -217,12 +229,15 @@ public class LoginController implements Initializable {
     }
 
     public Utilisateurs getUtilisateurConnecte() {
+        if (EmailAddressTextField == null) {
+            return null; // Return null or handle the case appropriately
+        }
         MyConnection connectNow = new MyConnection();
         Connection connectDB = connectNow.getConnection();
 
-        Utilisateurs utilisateurConnecte = new Utilisateurs();
+        Utilisateurs utilisateurConnecte = null;
 
-        String email = EmailTextField.getText();
+        String email = EmailAddressTextField.getText();
         String hashedPassword = hashPassword(EnterPasswordField.getText());
 
         String query = "SELECT * FROM user WHERE email ='" + email + "' AND password ='" + hashedPassword + "'";
@@ -232,8 +247,8 @@ public class LoginController implements Initializable {
             ResultSet resultSet = statement.executeQuery(query);
 
             if (resultSet.next()) {
-                utilisateurConnecte.setLastname(resultSet.getString("nom"));
-
+                utilisateurConnecte = new Utilisateurs();
+                utilisateurConnecte.setLastname(resultSet.getString("lastname"));
                 utilisateurConnecte.setNumtel(resultSet.getInt("numtel"));
                 utilisateurConnecte.setEmail(resultSet.getString("email"));
                 utilisateurConnecte.setAdresse(resultSet.getString("adresse"));

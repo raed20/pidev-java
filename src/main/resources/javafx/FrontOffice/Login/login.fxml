@@ -20,7 +20,7 @@
          <children>
             <ImageView fx:id="ProSyncImageView" fitHeight="380.0" fitWidth="206.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/Images/438032592_1466819873939024_8254370732506893689_n.jpg" />
+                  <Image url="@/Images/438032592_1466819873939024_8254370732506893689_n.jpg" />
                </image>
             </ImageView>
          </children>
@@ -42,7 +42,7 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="EmailTextField" layoutX="57.0" layoutY="136.0" prefHeight="26.0" prefWidth="282.0" promptText="Azerty@Exemple.com" />
+            <TextField fx:id="EmailAddressTextField" layoutX="57.0" layoutY="136.0" prefHeight="26.0" prefWidth="282.0" promptText="Azerty@Exemple.com" />
             <Label layoutX="34.0" layoutY="176.0" text="Password" textFill="#6e6e6e" />
             <PasswordField fx:id="EnterPasswordField" layoutX="56.0" layoutY="200.0" prefHeight="26.0" prefWidth="282.0" promptText="Your Password" />
             <Button fx:id="loginbtn" layoutX="171.0" layoutY="308.0" mnemonicParsing="false" onAction="#LoginButtonOnAction" style="-fx-background-color: #0437F2;" text="Sign in" textFill="WHITE" />

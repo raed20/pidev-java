@@ -19,9 +19,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import tools.MyConnection;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class BackSideBarController implements Initializable{
@@ -58,6 +60,10 @@ public class BackSideBarController implements Initializable{
     private AnchorPane slider;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Label usersLabel;
+    @FXML
+    private Label adduserLabel;
 
     private boolean isSidebarOpen = false;
 
@@ -73,6 +79,8 @@ public class BackSideBarController implements Initializable{
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         categoryLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        usersLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/ViewAllUsers.fxml"));
+        adduserLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Adduser.fxml"));
 
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
@@ -84,6 +92,12 @@ public class BackSideBarController implements Initializable{
         // event handlers for menu items
         settingsItem.setOnAction(event -> handleSettingsClicked());
         disconnectItem.setOnAction(event -> handleDisconnectClicked());
+
+        // Créer une instance de MyConnection pour obtenir la connexion à la base de données
+
+
+
+
 
         // Add menu items to the cogButton
         cogButton.getItems().addAll(settingsItem, disconnectItem);
@@ -109,6 +123,8 @@ public class BackSideBarController implements Initializable{
         setIconAndLabel(blogLabel, FontAwesomeIcon.NEWSPAPER_ALT);
         setIconAndLabel(categoryLabel, FontAwesomeIcon.DROPBOX);
         setIconAndLabel(productLabel, FontAwesomeIcon.SHOPPING_BAG);
+        setIconAndLabel(usersLabel, FontAwesomeIcon.USERS);
+        setIconAndLabel(adduserLabel, FontAwesomeIcon.USER_PLUS);
 
     }
 

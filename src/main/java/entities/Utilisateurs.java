@@ -10,8 +10,7 @@ public class Utilisateurs {
     private String roles;
 
 
-    public Utilisateurs() {
-    }
+    
 
 
     public Utilisateurs(int id, String lastname, String email, int numtel, String adresse, String roles,  String password) {
@@ -22,6 +21,9 @@ public class Utilisateurs {
         this.email = email;
         this.password = password;
         this.roles = roles;
+    }
+
+    public Utilisateurs() {
     }
 
 

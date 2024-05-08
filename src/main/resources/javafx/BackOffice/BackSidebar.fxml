@@ -144,7 +144,7 @@
                                 </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" styleClass="sidebar-btn">
                            <children>
-                              <Label id="usersLabel" fx:id="usersLabel1" styleClass="sidebar-btn" text="View All Users" textFill="WHITE">
+                              <Label id="usersLabel" fx:id="usersLabel" styleClass="sidebar-btn" text="View All Users" textFill="WHITE">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -156,7 +156,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="139.0" styleClass="sidebar-btn">
                            <children>
-                              <Label id="adduserLabel" fx:id="adduserLabel1" styleClass="sidebar-btn" text="Add User" textFill="WHITE">
+                              <Label id="adduserLabel" fx:id="adduserLabel" styleClass="sidebar-btn" text="Add User" textFill="WHITE">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>

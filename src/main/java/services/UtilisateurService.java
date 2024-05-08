@@ -11,9 +11,19 @@ import java.util.List;
 
 public class UtilisateurService implements UService<Utilisateurs> {
     private Connection connection;
+    private static Utilisateurs utilisateurConnecte;
 
     public UtilisateurService(Connection connection) {
         this.connection = connection;
+
+    }
+
+    public static void setUtilisateurConnecte(Utilisateurs utilisateur) {
+        utilisateurConnecte = utilisateur;
+    }
+
+    public static Utilisateurs getUtilisateurConnecte() {
+        return utilisateurConnecte;
     }
 
     @Override
@@ -36,7 +46,7 @@ public class UtilisateurService implements UService<Utilisateurs> {
     public void deleteUtilisateur(int id) throws SQLException { // Change parameter type to int
         String query = "DELETE FROM user WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, id);
+            statement.setInt(1, utilisateurConnecte.getId());
             statement.executeUpdate();
         }
     }
@@ -73,6 +83,12 @@ public class UtilisateurService implements UService<Utilisateurs> {
                 utilisateursList.add(utilisateur);
             }
         }
+        System.out.println("ViewAllUsers : ");
+        for (Utilisateurs utilisateur : utilisateursList) {
+            System.out.println(utilisateur);
+        }
         return utilisateursList;
     }
+
+
 }

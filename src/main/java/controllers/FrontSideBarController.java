@@ -1,6 +1,7 @@
 package controllers;
 
 // import entities.Bank;
+import entities.Utilisateurs;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import services.UtilisateurService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -72,18 +74,30 @@ public class FrontSideBarController implements Initializable {
 
 
     private boolean isSidebarOpen = false;
+    private LoginController loginController = new LoginController();
 
 
-    private boolean checkIfAdmin() {
-        // Implement the logic to check if the connected user is an admin
-        return true; // For demonstration, always return true
+
+
+
+    private void addAdminMenuItem() {
+        MenuItem adminItem = new MenuItem("BackOffice");
+        adminItem.setOnAction(event -> handleAdminClicked());
+        cogButton.getItems().add(adminItem);
     }
-
+    private boolean checkIfAdmin(Utilisateurs user) {
+        return user.getRoles().equalsIgnoreCase("Admin");
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        Utilisateurs connectedUser = UtilisateurService.getUtilisateurConnecte();
         initializeSidebar();
         initializeLabels();
+
+
         //Add the path of your fxml file
         homeLabel.setOnMouseClicked(event -> loadPage("/path/to/homePage.fxml"));
         investmentLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
@@ -92,14 +106,17 @@ public class FrontSideBarController implements Initializable {
         blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
         creditCardButton.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        profileLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Profil.fxml"));
+        profileLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Monprofil/Profil.fxml"));
+
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
         MenuItem disconnectItem = new MenuItem("Disconnect");
-        boolean isAdmin = checkIfAdmin(); // Implement this method to check if the user is an admin
+
+        boolean isAdmin = checkIfAdmin(connectedUser); // Implement this method to check if the user is an admin
         if (isAdmin) {
             addAdminMenuItem();
         }
+
         // event handlers for menu items
         settingsItem.setOnAction(event -> handleSettingsClicked());
         disconnectItem.setOnAction(event -> handleDisconnectClicked());
@@ -109,6 +126,7 @@ public class FrontSideBarController implements Initializable {
 
 
     }
+
 
     private void initializeSidebar() {
         slider.setTranslateX(-176);
@@ -261,11 +279,8 @@ public class FrontSideBarController implements Initializable {
 
 
 
-    private void addAdminMenuItem() {
-        MenuItem adminItem = new MenuItem("BackOffice");
-        adminItem.setOnAction(event -> handleAdminClicked());
-        cogButton.getItems().add(adminItem);
-    }
+
+
 
     // Event handler for Settings menu item
     private void handleSettingsClicked() {
@@ -275,7 +290,7 @@ public class FrontSideBarController implements Initializable {
 
     private void handleAdminClicked( ) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BackOffice/BackSidebar.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/BackOffice/BackSidebar.fxml"));
             Parent root = loader.load();
 
             // Create a new scene with the sidebar

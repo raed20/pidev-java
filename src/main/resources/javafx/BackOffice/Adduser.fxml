@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.AddUserController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox alignment="CENTER" spacing="10">
+        <Label text="Ajouter un nouvel utilisateur" />
+        <TextField fx:id="FullNameTextField" promptText="Nom" />
+        <TextField fx:id="EmailAddressTextField" promptText="Email" />
+        <ChoiceBox fx:id="RoleBox" accessibleRole="SLIDER" />
+        <TextField fx:id="PhoneNumberTextField" promptText="Numéro de téléphone" />
+        <TextField fx:id="AddressTextField" promptText="Adresse" />
+        <TextField fx:id="SetPasswordField" promptText="Mot de passe" />
+        <Button text="Ajouter" onAction="#ajouterUtilisateur" />
+        <Label fx:id="AddMessageLabel" />
+    </VBox>
+
+</AnchorPane>
