@@ -15,7 +15,7 @@
         <ChoiceBox fx:id="RoleBox" accessibleRole="SLIDER" />
         <TextField fx:id="PhoneNumberTextField" promptText="Numéro de téléphone" />
         <TextField fx:id="AddressTextField" promptText="Adresse" />
-        <TextField fx:id="SetPasswordField" promptText="Mot de passe" />
+        <PasswordField fx:id="SetPasswordField" promptText="Mot de passe" />
         <Button text="Ajouter" onAction="#ajouterUtilisateur" />
         <Label fx:id="AddMessageLabel" />
     </VBox>

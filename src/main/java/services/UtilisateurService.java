@@ -19,7 +19,10 @@ public class UtilisateurService implements UService<Utilisateurs> {
         connection = myConnection.getConnection();
 
     }
-    public UtilisateurService(){}
+    public UtilisateurService(){
+        MyConnection myConnection = new MyConnection();
+        connection = myConnection.getConnection();
+    }
 
     public static void setUtilisateurConnecte(Utilisateurs utilisateur) {
         utilisateurConnecte = utilisateur;
@@ -57,7 +60,7 @@ public class UtilisateurService implements UService<Utilisateurs> {
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, email); // Utiliser l'ID passé en paramètre de la méthode
                 statement.executeUpdate();
-                System.out.println("L'utilisateur avec l'ID " + email + " a été supprimé avec succès.");
+                System.out.println("L'utilisateur avec l'Email " + email + " a été supprimé avec succès.");
             } catch (SQLException e) {
                 System.out.println("Erreur lors de la suppression de l'utilisateur : " + e.getMessage());
                 e.printStackTrace();
@@ -76,15 +79,32 @@ public class UtilisateurService implements UService<Utilisateurs> {
 
     @Override
     public void updateUtilisateur(Utilisateurs utilisateur) throws SQLException {
-        String query = "UPDATE user SET lastname = ?, email = ?, roles = ?, numtel = ?, adresse = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, utilisateur.getLastname());
-            statement.setString(2, utilisateur.getEmail());
-            statement.setString(3, utilisateur.getRoles());
-            statement.setInt(4, utilisateur.getNumtel());
-            statement.setString(5, utilisateur.getAdresse());
-            statement.setInt(6, utilisateur.getId());
-            statement.executeUpdate();
+        // Initialize the connection
+        MyConnection myConnection = new MyConnection();
+        Connection connection = myConnection.getConnection();
+
+        // Check if the connection is not null
+        if (connection != null) {
+            String query = "UPDATE user SET lastname = ?, email = ?, roles = ?, numtel = ?, adresse = ? WHERE email = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, utilisateur.getLastname());
+                statement.setString(2, utilisateur.getEmail());
+                statement.setString(3, utilisateur.getRoles());
+                statement.setInt(4, utilisateur.getNumtel());
+                statement.setString(5, utilisateur.getAdresse());
+                statement.setString(6, utilisateur.getEmail());
+                statement.executeUpdate();
+                System.out.println("Profil mis à jour avec succès !");
+            } catch (SQLException e) {
+                System.out.println("Erreur lors de la mise à jour du profil : " + e.getMessage());
+                e.printStackTrace();
+                // Handle SQL exception
+            } finally {
+                // Close the connection after use
+                connection.close();
+            }
+        } else {
+            System.out.println("La connexion à la base de données n'a pas pu être établie.");
         }
     }
 
@@ -92,6 +112,8 @@ public class UtilisateurService implements UService<Utilisateurs> {
     public List<Utilisateurs> getData() throws SQLException {
         List<Utilisateurs> utilisateursList = new ArrayList<>();
         String query = "SELECT * FROM user";
+        MyConnection myConnection = new MyConnection();
+        Connection connection = myConnection.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {

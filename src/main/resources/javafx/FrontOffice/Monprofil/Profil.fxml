@@ -34,7 +34,7 @@
             </ImageView>
         </graphic>
     </Button>
-    <Button layoutX="235" layoutY="300" onAction="#supprimerProfil">
+    <Button fx:id="delbtn" layoutX="235" layoutY="300" onAction="#supprimerProfil">
         <graphic>
             <ImageView fitWidth="50" fitHeight="50" >
                 <Image url="@../../../Images/delete_icon.png"/>

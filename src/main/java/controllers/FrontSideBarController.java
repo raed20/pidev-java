@@ -324,7 +324,7 @@ public class FrontSideBarController implements Initializable {
 
 
     // Event handler for Disconnect menu item
-    private void handleDisconnectClicked() {
+    public void handleDisconnectClicked() {
         // Implement logic for when Disconnect menu item is clicked
         System.out.println("Disconnect clicked");
 

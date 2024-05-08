@@ -52,6 +52,10 @@ public class LoginController implements Initializable {
     private PasswordField EnterPasswordField;
     @FXML
     private CheckBox rememberMeCheckBox;
+    @FXML
+    private ImageView passwordVisibilityIcon;
+
+    private boolean passwordVisible = false;
 
 
     private Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
@@ -76,9 +80,23 @@ public class LoginController implements Initializable {
         if (rememberedPassword != null && !rememberedPassword.isEmpty()) {
             EnterPasswordField.setText(rememberedPassword);
         }
+        passwordVisibilityIcon.setOnMouseClicked(event -> togglePasswordVisibility());
     }
 
 
+    private void togglePasswordVisibility() {
+        if (passwordVisible) {
+            // Si le mot de passe est actuellement visible, le masquer
+            EnterPasswordField.setManaged(true);
+            EnterPasswordField.setVisible(true);
+            passwordVisible = false;
+        } else {
+            // Si le mot de passe est actuellement masqué, le rendre visible
+            EnterPasswordField.setManaged(false);
+            EnterPasswordField.setVisible(false);
+            passwordVisible = true;
+        }
+    }
     @FXML
     public void emailTextFieldOnKeyReleased(KeyEvent event) {
         String enteredEmail = EmailAddressTextField.getText();

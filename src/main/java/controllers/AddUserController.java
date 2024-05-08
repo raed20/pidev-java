@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.UtilisateurService;
 import tools.MyConnection;
@@ -38,7 +39,7 @@ public class AddUserController implements Initializable {
     @FXML
     private TextField AddressTextField;
     @FXML
-    private TextField SetPasswordField;
+    private PasswordField SetPasswordField;
     @FXML
     private Label AddMessageLabel;
 
@@ -108,18 +109,20 @@ public class AddUserController implements Initializable {
 
     }
 
+
     private String hashPassword(String password) {
         try {
-            // Créer un objet de hachage avec SHA-256
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            // Mettre le mot de passe dans l'objet de hachage
-            byte[] hashBytes = digest.digest(password.getBytes());
-            // Convertir le hachage en une chaîne hexadécimale
-            String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
-            return hashedPassword;
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes());
+
+            // Convert byte array to hexadecimal string
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            // Gérer les erreurs d'algorithme de hachage indisponible
-            System.out.println("Algorithme de hachage non disponible.");
             e.printStackTrace();
             return null;
         }
