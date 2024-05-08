@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -62,6 +63,10 @@ public class CartController {
 
     @FXML
     private Label total;
+    @FXML
+    private Button btnStripePayment;
+
+    private CartCheckoutController cartCheckoutController;
 
     private PanierService panierService;
     private ProductService productService;
@@ -70,9 +75,11 @@ public class CartController {
         MyConnection connection = new MyConnection();
         panierService = new PanierService(connection);
         productService = new ProductService(connection);
+        cartCheckoutController = new CartCheckoutController();
     }
 
     public void initialize() {
+        btnStripePayment.setOnAction(event -> stripePayment());
         List<Panier> paniers = panierService.getAll();
         for (Panier panier : paniers) {
             for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
@@ -170,7 +177,7 @@ public class CartController {
             e.printStackTrace();
         }
     }
-    public void command(javafx.scene.input.MouseEvent mouseEvent) {
+    public void exportPDF(javafx.scene.input.MouseEvent mouseEvent) {
         List<Panier> paniers = panierService.getAll();
         if (paniers.isEmpty()) {
             // Display message in panierAlert label
@@ -186,8 +193,8 @@ public class CartController {
                 PdfWriter.getInstance(document, new FileOutputStream(selectedFile));
                 document.open();
 
-                Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 32, Font.BOLD, new BaseColor(114, 0, 0));
-                Paragraph title = new Paragraph("Panier", titleFont);
+                Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 32, Font.BOLD, new BaseColor(56, 116, 255));
+                Paragraph title = new Paragraph("Receipt", titleFont);
                 title.setAlignment(Element.ALIGN_CENTER);
                 title.setSpacingBefore(50);
                 title.setSpacingAfter(30);
@@ -222,22 +229,38 @@ public class CartController {
 
 
     private void addCartItems(PdfPTable table, List<Panier> paniers) {
+        double totalPrice = 0;
         for (Panier panier : paniers) {
             for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
                 Product product = entry.getKey();
                 int quantity = entry.getValue();
 
+                double finalPrice = calculateFinalPrice(product, quantity);
+                totalPrice += finalPrice;
+
                 addDataCell(table, product.getName(), new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL), new BaseColor(255, 255, 255));
                 addDataCell(table, String.valueOf(quantity), new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL), new BaseColor(255, 255, 255));
-                addDataCell(table, String.format("%.2f TND", calculateFinalPrice(product, quantity)), new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL), new BaseColor(255, 255, 255));
+                addDataCell(table, String.format("%.2f TND", finalPrice), new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL), new BaseColor(255, 255, 255));
             }
         }
+
+        // Add a row for the total price
+        addTableHeader(table, "Total Price", new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD, BaseColor.WHITE));
+        PdfPCell totalPriceCell = new PdfPCell(new Paragraph(String.format("%.2f TND", totalPrice), new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL)));
+        totalPriceCell.setBackgroundColor(new BaseColor(255, 255, 255));
+        totalPriceCell.setBorderColor(new BaseColor(255, 255, 255));
+        totalPriceCell.setPaddingTop(10);
+        totalPriceCell.setPaddingBottom(10);
+        totalPriceCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        totalPriceCell.setColspan(2); // Spanning across 2 columns
+        table.addCell(totalPriceCell);
     }
+
 
     private void addTableHeader(PdfPTable table, String header, Font font) {
         PdfPCell cell = new PdfPCell(new Paragraph(header, font));
-        cell.setBackgroundColor(new BaseColor(114, 0, 0));
-        cell.setBorderColor(new BaseColor(114, 0, 0));
+        cell.setBackgroundColor(new BaseColor(56, 116, 255));
+        cell.setBorderColor(new BaseColor(56, 116, 255));
         cell.setPaddingTop(10);
         cell.setPaddingBottom(10);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -253,6 +276,39 @@ public class CartController {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
     }
+
+    public void stripePayment() {
+        List<Panier> paniers = panierService.getAll();
+        if (!paniers.isEmpty()) {
+            for (Panier panier : paniers) {
+                for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
+                    Product product = entry.getKey();
+                    int quantity = entry.getValue();
+
+                    String clientSecret = cartCheckoutController.createPaymentIntent((int) (product.getPrice() * 100), "TND");
+                    if (clientSecret != null) {
+                        panierAlert.setText("Payment session created successfully for product: " + product.getName());
+                        // Pass clientSecret to frontend
+                        // Your code to open a new JavaFX scene with a WebView to load HTML/JavaScript containing Stripe.js integration
+                    } else {
+                        showAlert("Error", "An error occurred while processing payment for product: " + product.getName() + ". Please try again later.");
+                    }
+                }
+            }
+        } else {
+            showAlert("Error", "The cart is empty. Please add products to the cart before proceeding with payment.");
+        }
+    }
+
+    // Helper method to show alerts
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 
 }

@@ -75,7 +75,7 @@
                   <Insets left="10.0" right="10.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="btnPDF" mnemonicParsing="false" onMouseClicked="#exportPDF" prefHeight="30.0" prefWidth="66.0" styleClass="search-button" text="Receipt" />
+            <Button fx:id="btnPDF" mnemonicParsing="false" onMouseClicked="#exportPDF" prefHeight="30.0" prefWidth="66.0" styleClass="search-button" text="Receipt" textFill="WHITE" />
             <Label fx:id="panierAlert" textFill="RED">
                <font>
                   <Font size="15.0" />
