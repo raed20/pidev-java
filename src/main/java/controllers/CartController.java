@@ -5,6 +5,10 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import javafx.scene.control.Alert;
 import entities.Panier;
 import entities.Product;
 import javafx.event.ActionEvent;
@@ -12,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -66,7 +69,6 @@ public class CartController {
     @FXML
     private Button btnStripePayment;
 
-    private CartCheckoutController cartCheckoutController;
 
     private PanierService panierService;
     private ProductService productService;
@@ -75,11 +77,10 @@ public class CartController {
         MyConnection connection = new MyConnection();
         panierService = new PanierService(connection);
         productService = new ProductService(connection);
-        cartCheckoutController = new CartCheckoutController();
     }
 
     public void initialize() {
-        btnStripePayment.setOnAction(event -> stripePayment());
+
         List<Panier> paniers = panierService.getAll();
         for (Panier panier : paniers) {
             for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
@@ -135,7 +136,7 @@ public class CartController {
             panierService.update(panier);
 
             double totalPrice = calculateTotalPrice(panierService.getAll());
-            total.setText("Total: " + String.format("%.2f TND", totalPrice));
+            total.setText(String.format("%.2f TND", totalPrice));
         });
     }
 
@@ -277,38 +278,49 @@ public class CartController {
         table.addCell(cell);
     }
 
-    public void stripePayment() {
+    @FXML
+    private void handleStripePayment(ActionEvent event) {
         List<Panier> paniers = panierService.getAll();
-        if (!paniers.isEmpty()) {
-            for (Panier panier : paniers) {
-                for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
-                    Product product = entry.getKey();
-                    int quantity = entry.getValue();
-
-                    String clientSecret = cartCheckoutController.createPaymentIntent((int) (product.getPrice() * 100), "TND");
-                    if (clientSecret != null) {
-                        panierAlert.setText("Payment session created successfully for product: " + product.getName());
-                        // Pass clientSecret to frontend
-                        // Your code to open a new JavaFX scene with a WebView to load HTML/JavaScript containing Stripe.js integration
-                    } else {
-                        showAlert("Error", "An error occurred while processing payment for product: " + product.getName() + ". Please try again later.");
-                    }
-                }
-            }
+        if (paniers.isEmpty()) {
+            // Display message that the cart is empty
+            showAlert("Error", "The cart is empty!");
         } else {
-            showAlert("Error", "The cart is empty. Please add products to the cart before proceeding with payment.");
+            double totalPrice = calculateTotalPrice(paniers);
+
+            try {
+                Stripe.apiKey = "sk_test_51PDwNDP6gcmiyTDaf8oJd5hUwlGUDSH46x4a3NEalpMdZA78jPqmqh93ZSoleW6Drnydkla6PcdlLSI6etrzhr6d00B5D4NGRs";
+                PaymentIntent intent = PaymentIntent.create(Map.of(
+                        "amount", (int) (totalPrice * 100), // Amount is in cents
+                        "currency", "usd"
+                ));
+
+                // If payment is successful, show success message
+                showAlert("Success", "Payment successful. Command added with success.");
+
+                // Clear panier table
+                if (!paniers.isEmpty()) {
+                    panierService.clearPanierTable();
+                }
+
+                // Navigate back to Market.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Javafx/FrontOffice/Command/Market.fxml"));
+                Parent root = loader.load();
+                anchorPane.getChildren().setAll(root);
+            } catch (StripeException | IOException e) {
+                e.printStackTrace();
+                showAlert("Error", "An error occurred while processing payment. Please try again later.");
+            }
         }
     }
 
-    // Helper method to show alerts
+
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 
 
 }

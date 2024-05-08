@@ -32,7 +32,7 @@
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="390.0">
                      <children>
                         <TextField fx:id="searchTextField" prefHeight="62.0" prefWidth="256.0" styleClass="search-box" />
-                        <Button mnemonicParsing="false" onKeyReleased="#searchProducts" prefHeight="39.0" prefWidth="83.0" styleClass="search-button" text="Search" textFill="WHITE">
+                        <Button mnemonicParsing="false" onKeyReleased="#searchProducts" prefHeight="36.0" prefWidth="83.0" styleClass="search-button" text="Search" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -42,7 +42,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="search-box" />
