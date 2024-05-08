@@ -18,17 +18,16 @@ import java.util.List;
 import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
-        try {
-            // Establish database connection
-            MyConnection connection = new MyConnection();
+        // Establish database connection
+        MyConnection connection = new MyConnection();
 
-            // Create IService instance
-            // IService<Personnes> personneService = new PersonneService(connection.getConnection());
+        // Create IService instance
+        // IService<Personnes> personneService = new PersonneService(connection.getConnection());
 
 
-            UtilisateurService utilisateurService = new UtilisateurService(connection.getConnection());
+        UtilisateurService utilisateurService = new UtilisateurService(connection.getConnection());
 
-            //Update user
+        //Update user
            /* System.out.println("Updating a User...");
             Utilisateurs UpUser = new Utilisateurs();
             UpUser.setId(1);
@@ -44,12 +43,7 @@ public class Main {
             System.out.println("Utilisateur mis à jour avec succès.");  */
 
 
-
-
-
-
-
-            //Liste des users
+        //Liste des users
           /* System.out.println("Liste des utilisateurs :");
             List<Utilisateurs> utilisateursList = utilisateurService.getData();
             for (Utilisateurs user : utilisateursList) {
@@ -64,11 +58,7 @@ public class Main {
             } */
 
 
-
-
-
-
-            //AddUser
+        //AddUser
          /*    Utilisateurs nvUser = new Utilisateurs();
             nvUser.setLastname("h");
             nvUser.setAdresse("sdgbdg");
@@ -80,53 +70,41 @@ public class Main {
             System.out.println("user added succes");   */
 
 
-
-
-
-
-            // Delete user
-             System.out.println("Deleting a User...");
+        // Delete user
+          /*   System.out.println("Deleting a User...");
             utilisateurService.deleteUtilisateur(3);
-            System.out.println("User deleted successfully");
+            System.out.println("User deleted successfully");*/
 
 
+        // Suppose you have an existing Personne with ID 1 in the database
+        //Personnes existingPersonne = new Personnes(1, "taher", "ezzine");
+        //existingPersonne.setNom("Abdou");
+        //existingPersonne.setPrenom("Bouafif");
+        // personneService.updatePerson(existingPersonne);
+        // System.out.println("Personne updated successfully: " + existingPersonne);
+
+        // Test Read operation
+        //  System.out.println("Retrieving all Personnes...");
+        // List<Personnes> personnesList = personneService.getData();
+        // for (Personnes personne : personnesList) {
+        //   System.out.println(personne);
+        //  }
+
+        // Test Delete operation
+        // System.out.println("Deleting a Personne...");
 
 
-
-            // Suppose you have an existing Personne with ID 1 in the database
-            //Personnes existingPersonne = new Personnes(1, "taher", "ezzine");
-            //existingPersonne.setNom("Abdou");
-            //existingPersonne.setPrenom("Bouafif");
-            // personneService.updatePerson(existingPersonne);
-            // System.out.println("Personne updated successfully: " + existingPersonne);
-
-            // Test Read operation
-            //  System.out.println("Retrieving all Personnes...");
-            // List<Personnes> personnesList = personneService.getData();
-            // for (Personnes personne : personnesList) {
-            //   System.out.println(personne);
-            //  }
-
-            // Test Delete operation
-            // System.out.println("Deleting a Personne...");
+        //System.out.println("Deleting a User...");
 
 
-            //System.out.println("Deleting a User...");
+        // Suppose you want to delete the same Personne with ID 1
+        //  personneService.deletePerson(2);
+        //  System.out.println("Personne deleted successfully");
 
 
-            // Suppose you want to delete the same Personne with ID 1
-            //  personneService.deletePerson(2);
-            //  System.out.println("Personne deleted successfully");
+        // Close database connection
+        connection.closeConnection();
 
 
-
-
-            // Close database connection
-            connection.closeConnection();
-
-
-        } catch (SQLException e) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, "SQL Exception occurred: " + e.getMessage());
-        }
     }
 }

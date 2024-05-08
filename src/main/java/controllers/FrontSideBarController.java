@@ -34,27 +34,27 @@ import java.util.ResourceBundle;
 public class FrontSideBarController implements Initializable {
 
     @FXML
-    private Label homeLabel; // Assuming this is the label for the Home button
+    private Label homeLabel;
 
     @FXML
-    private Label investmentLabel; // Label for the Investment button
+    private Label investmentLabel;
     @FXML
-    private Label pretLabel; // Label for the pret button
+    private Label pretLabel;
 
     @FXML
-    private Label crmLabel; // Label for the CRM button
+    private Label crmLabel;
 
     @FXML
-    private Label blogLabel; // Label for the Blog button
+    private Label blogLabel;
     @FXML
-    private Label productLabel; // Label for the Stock button
+    private Label productLabel;
 
     @FXML
-    private Button searchButton; // Label for the search button
+    private Button searchButton;
     @FXML
-    private Button creditCardButton; // Label for the search button
+    private Button creditCardButton;
     @FXML
-    private MenuButton cogButton; // Label for the search button
+    private MenuButton cogButton;
 
     @FXML
     private Label Menu;

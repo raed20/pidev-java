@@ -304,5 +304,23 @@ public class BackSideBarController implements Initializable{
     private void handleDisconnectClicked() {
         // Implement logic for when Disconnect menu item is clicked
         System.out.println("Disconnect clicked");
+
+
+        try {
+            // Load the login.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/Login/login.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

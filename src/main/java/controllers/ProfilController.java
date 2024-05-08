@@ -13,6 +13,7 @@ import tools.MyConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ProfilController implements Initializable {
@@ -31,7 +32,11 @@ public class ProfilController implements Initializable {
     private ChoiceBox<String> RoleBox;
    // @FXML
     //private Label selectedImageLabel;
+    UtilisateurService utilisateurService=new UtilisateurService();
+    int userId;
 
+
+   // Utilisateurs utilisateurConnecte= new Utilisateurs();
 
 
 
@@ -42,7 +47,13 @@ public class ProfilController implements Initializable {
         LoginController loginController = new LoginController();
         Utilisateurs utilisateurConnecte = UtilisateurService.getUtilisateurConnecte();
 
+
+
         if (utilisateurConnecte != null) {
+            //this.utilisateurConnecte = utilisateurConnecte;
+            userId=utilisateurConnecte.getId();
+            System.out.println(userId);
+            System.out.println(utilisateurConnecte.getEmail());
             FullNameTextField.setText(utilisateurConnecte.getLastname());
             PhoneNumberTextField.setText(String.valueOf(utilisateurConnecte.getNumtel()));
             EmailAddressTextField.setText(utilisateurConnecte.getEmail());
@@ -67,31 +78,27 @@ public class ProfilController implements Initializable {
     }
 
     public void supprimerProfil(ActionEvent event) {
-
         Utilisateurs utilisateurConnecte = UtilisateurService.getUtilisateurConnecte();
-        if (utilisateurConnecte != null) {
-            try {
-                MyConnection myConnection = new MyConnection();
-                Connection connection = myConnection.getConnection();
-                // Vérifier si la connexion existe déjà
-                if (connection != null) {
-                    // Supprimer le profil de l'utilisateur de la base de données
-                    int userId = utilisateurConnecte.getId(); // Récupérer l'ID de l'utilisateur connecté
 
-                    String query = "DELETE FROM user WHERE id = ?";
-                    try (PreparedStatement statement = connection.prepareStatement(query)) {
-                        statement.setInt(1, userId);
-                        statement.executeUpdate();
-                    }
-                    UtilisateurService.setUtilisateurConnecte(null); // Appeler deleteUtilisateur sur l'instance de UtilisateurService
-                } else {
-                    System.out.println("La connexion à la base de données n'a pas pu être établie.");
-                }
-            } catch (Exception e) {
+        if (utilisateurConnecte!= null) {
+            try {
+                System.out.println(userId);
+                this.utilisateurService.deleteUtilisateur(utilisateurConnecte.getEmail());
+// Appeler deleteUtilisateur sur l'instance de UtilisateurService
+                UtilisateurService.setUtilisateurConnecte(null); // Définir l'utilisateur connecté sur null après la suppression
+            } catch (SQLException e) {
+                System.out.println("Erreur lors de la suppression du profil : " + e.getMessage());
                 e.printStackTrace();
-                // Gérer l'exception
+                // Gérer l'exception SQL de manière appropriée
+            } catch (Exception e) {
+                System.out.println("Erreur inattendue lors de la suppression du profil : " + e.getMessage());
+                e.printStackTrace();
+                // Gérer d'autres exceptions de manière appropriée
             }
+        } else {
+            System.out.println("L'utilisateur connecté est null. Impossible de supprimer le profil.");
         }
     }
+
 }
 

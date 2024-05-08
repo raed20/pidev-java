@@ -25,8 +25,7 @@ import java.security.NoSuchAlgorithmException;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 import javafx.stage.FileChooser;
@@ -154,11 +153,9 @@ public class RegistrationController implements Initializable {
 
     }
 
-    public void registerUser(){
-
+    public void registerUser() {
         MyConnection connectNow = new MyConnection();
         Connection connectDB = connectNow.getConnection();
-
 
         String EmailAddress = EmailAddressTextField.getText();
         String FullName = FullNameTextField.getText();
@@ -169,27 +166,43 @@ public class RegistrationController implements Initializable {
         String hashedPassword = hashPassword(Password);
         String imagePath = selectedImageLabel.getText();
 
+        // Query to check if the email already exists
+        String queryCheckEmail = "SELECT COUNT(*) FROM user WHERE email = ?";
 
-        String insertFields = "INSERT INTO user (email, lastname, numtel, adresse, password, roles, image) VALUES ('";
-        String insertValues = EmailAddress + "','" + FullName + "','" + PhoneNum + "','" + Address + "','" + hashedPassword + "','" + Role + "','" + imagePath + "')";
-        String insertToRegister = insertFields + insertValues;
-
-        try {
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate((insertToRegister));
-
-            RegistrationMessageLabel.setText("User register done!");
-            ConfirmPasswordLabel.setStyle("-fx-text-fill: green;");
-
-        } catch (Exception e){
+        try (PreparedStatement statementCheckEmail = connectDB.prepareStatement(queryCheckEmail)) {
+            statementCheckEmail.setString(1, EmailAddress);
+            try (ResultSet resultSet = statementCheckEmail.executeQuery()) {
+                if (resultSet.next() && resultSet.getInt(1) > 0) {
+                    // Email already exists, show alert and exit method
+                    showAlert("Email Already Exists", "Please choose a different email address.");
+                    return;
+                }
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
-            e.getCause();
+            // Handle SQL exception
+            return;
         }
 
+        String insertToRegister = "INSERT INTO user (email, lastname, numtel, adresse, password, roles, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        try (PreparedStatement statement = connectDB.prepareStatement(insertToRegister)) {
+            statement.setString(1, EmailAddress);
+            statement.setString(2, FullName);
+            statement.setString(3, PhoneNum);
+            statement.setString(4, Address);
+            statement.setString(5, hashedPassword);
+            statement.setString(6, Role);
+            statement.setString(7, imagePath);
 
+            statement.executeUpdate();
 
-
+            RegistrationMessageLabel.setText("User register done");
+            ConfirmPasswordLabel.setStyle("-fx-text-fill: green;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQL exception
+        }
     }
 
 
@@ -237,6 +250,14 @@ public class RegistrationController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }
