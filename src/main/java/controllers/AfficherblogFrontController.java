@@ -13,12 +13,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseButton;
 
+import java.util.Optional;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
@@ -28,6 +36,7 @@ import javafx.stage.Stage;
 import services.BlogService;
 
 import java.awt.*;
+
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -40,14 +49,10 @@ import java.util.ResourceBundle;
 import java.io.FileInputStream;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert;
+
 import services.CommentaireService;
 import tools.MyConnection;
 import javafx.scene.text.Font;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ListView;
 import org.controlsfx.control.Rating;
 
 import javax.sound.midi.Synthesizer;
@@ -246,6 +251,31 @@ public class AfficherblogFrontController implements Initializable {
                         List<Commentaire> updatedComments = bs.getCommentaireByBlogId(item.getId());
                         for (Commentaire comment : updatedComments) {
                             commentsList.add(comment.getContent());
+                        }
+                    });
+
+
+                    ContextMenu contextMenu = new ContextMenu();
+                    MenuItem deleteMenuItem = new MenuItem("Delete");
+                    contextMenu.getItems().add(deleteMenuItem);
+
+                    deleteMenuItem.setOnAction(event3 -> {
+                        String selectedComment = commentsListView.getSelectionModel().getSelectedItem();
+                        Optional<Commentaire> selectedCommentaire = comments.stream()
+                                .filter(comment -> comment.getContent().equals(selectedComment))
+                                .findFirst();
+                        selectedCommentaire.ifPresent(comment -> {
+                            cs.deleteCommentaire(comment.getId());
+                            comments.remove(comment); // Remove the comment from the list
+                            commentsList.remove(selectedComment); // Remove the comment from the observable list
+                            commentsListView.refresh(); // Refresh the ListView
+                        });
+                    });
+
+                    commentsListView.setContextMenu(contextMenu);
+                    commentsListView.setOnMouseClicked(event4 -> {
+                        if (event4.getButton() == MouseButton.SECONDARY) {
+                            contextMenu.show(commentsListView, event4.getScreenX(), event4.getScreenY());
                         }
                     });
 
