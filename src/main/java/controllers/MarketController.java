@@ -133,7 +133,7 @@ public class MarketController implements Initializable {
             for (int q = 0; q < products.size(); q++) {
                 FXMLLoader load = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/Command/Item.fxml"));
                 AnchorPane pane = load.load();
-                ItemController cardC = load.getController();
+                ItemProductController cardC = load.getController();
                 cardC.setData(products.get(q),myListener);
 
                 if (column == 3) {
@@ -254,7 +254,7 @@ public class MarketController implements Initializable {
             for (int q = 0; q < products.size(); q++) {
                 FXMLLoader load = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/Command/Item.fxml"));
                 AnchorPane pane = load.load();
-                ItemController cardC = load.getController();
+                ItemProductController cardC = load.getController();
                 cardC.setData(products.get(q), myListener);
 
                 if (column == 3) {

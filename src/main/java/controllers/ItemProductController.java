@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ItemController implements Initializable {
+public class ItemProductController implements Initializable {
 
     @FXML
     private Button addProd;
@@ -79,7 +79,7 @@ public class ItemController implements Initializable {
         spin=new SpinnerValueFactory.IntegerSpinnerValueFactory(1,100,0);
         qtyLabel.setValueFactory(spin);
     }
-    public ItemController(){
+    public ItemProductController(){
         this.panierService=new PanierService(new MyConnection());
     }
 

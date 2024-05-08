@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cardForm" onMousePressed="#click" prefHeight="303.0" prefWidth="271.0" styleClass="product-item" stylesheets="@../../../Css/Front/Command/Market.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemController">
+<AnchorPane fx:id="cardForm" onMousePressed="#click" prefHeight="303.0" prefWidth="271.0" styleClass="product-item" stylesheets="@../../../Css/Front/Command/Market.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemProductController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="44.0" layoutY="-17.0" prefHeight="303.0" prefWidth="271.0" styleClass="chosen-product-card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
