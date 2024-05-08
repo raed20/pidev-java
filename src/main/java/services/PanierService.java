@@ -24,20 +24,43 @@ public class PanierService implements IService<Panier> {
 
     @Override
     public void add(Panier panier) {
-        String query = "INSERT INTO Panier (product_id, quantity) VALUES (?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        String query = "SELECT * FROM Panier WHERE product_id = ?";
+        String insertQuery = "INSERT INTO Panier (product_id, quantity) VALUES (?, ?)";
+        String updateQuery = "UPDATE Panier SET quantity = ? WHERE product_id = ?";
+
+        try (PreparedStatement selectStatement = connection.prepareStatement(query);
+             PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+             PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+
             for (Map.Entry<Product, Integer> entry : panier.getProducts().entrySet()) {
                 Product product = entry.getKey();
                 int quantity = entry.getValue();
-                statement.setInt(1, product.getId());
-                statement.setInt(2, quantity);
-                statement.executeUpdate();
+
+                // Check if the product already exists in the cart
+                selectStatement.setInt(1, product.getId());
+                ResultSet resultSet = selectStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    // Product already exists in the cart, update its quantity
+                    int currentQuantity = resultSet.getInt("quantity");
+                    int newQuantity = currentQuantity + quantity;
+                    updateStatement.setInt(1, newQuantity);
+                    updateStatement.setInt(2, product.getId());
+                    updateStatement.executeUpdate();
+                } else {
+                    // Product doesn't exist in the cart, insert it as a new entry
+                    insertStatement.setInt(1, product.getId());
+                    insertStatement.setInt(2, quantity);
+                    insertStatement.executeUpdate();
+                }
             }
-            System.out.println("Product added to Cart!");
+
+            System.out.println("Product(s) added to Cart!");
         } catch (SQLException e) {
             throw new RuntimeException("Error adding cart: " + e.getMessage());
         }
     }
+
 
     @Override
     public void update(Panier panier) {
