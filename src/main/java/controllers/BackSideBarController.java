@@ -1,4 +1,5 @@
 package controllers;
+
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +9,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import javafx.scene.layout.AnchorPane;
@@ -18,12 +19,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import tools.MyConnection;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
-public class BackSideBarController  implements Initializable{
+public class BackSideBarController implements Initializable{
     @FXML
     private Label homeLabel; // Assuming this is the label for the Home button
 
@@ -57,6 +60,10 @@ public class BackSideBarController  implements Initializable{
     private AnchorPane slider;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Label usersLabel;
+    @FXML
+    private Label adduserLabel;
 
     private boolean isSidebarOpen = false;
 
@@ -65,13 +72,15 @@ public class BackSideBarController  implements Initializable{
         initializeSidebar();
         initializeLabels();
         //Add the path of your fxml file
-        homeLabel.setOnMouseClicked(event -> loadPage("/path/to/homePage.fxml"));
-        investmentLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/Investissement/opportuniteback.fxml"));
-        pretLabel.setOnMouseClicked(event -> loadPage("/javafx/BackOffice/bank/Bank.fxml"));
+        homeLabel.setOnMouseClicked(event -> loadPage("/javafx/BackOffice/investissement/dashboard.fxml"));
+        investmentLabel.setOnMouseClicked(event -> loadPage("/javafx/BackOffice/investissement/opportuniteback.fxml"));
+        pretLabel.setOnMouseClicked(event -> loadPage("/javafx/BackOffice/Bank/Bank.fxml"));
         crmLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        blogLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        categoryLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
-        productLabel.setOnMouseClicked(event -> loadPage("/Javafx/FrontOffice/Investissement/polygonshow.fxml"));
+        blogLabel.setOnMouseClicked(event -> loadPage("/javafx/BackOffice/Blog/AfficheBack.fxml"));
+        categoryLabel.setOnMouseClicked(event -> loadPage("/javafx/BackOffice/Category/CategoryAdd.fxml"));
+        productLabel.setOnMouseClicked(event -> loadPage("/javafx/BackOffice/Product/ProductAdd.fxml"));
+        usersLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/User/ViewAllUsers.fxml"));
+        adduserLabel.setOnMouseClicked(event -> loadPage("/Javafx/BackOffice/User/Adduser.fxml"));
 
         //drop down menu for user settings
         MenuItem settingsItem = new MenuItem("Settings");
@@ -83,6 +92,12 @@ public class BackSideBarController  implements Initializable{
         // event handlers for menu items
         settingsItem.setOnAction(event -> handleSettingsClicked());
         disconnectItem.setOnAction(event -> handleDisconnectClicked());
+
+        // Créer une instance de MyConnection pour obtenir la connexion à la base de données
+
+
+
+
 
         // Add menu items to the cogButton
         cogButton.getItems().addAll(settingsItem, disconnectItem);
@@ -108,6 +123,8 @@ public class BackSideBarController  implements Initializable{
         setIconAndLabel(blogLabel, FontAwesomeIcon.NEWSPAPER_ALT);
         setIconAndLabel(categoryLabel, FontAwesomeIcon.DROPBOX);
         setIconAndLabel(productLabel, FontAwesomeIcon.SHOPPING_BAG);
+        setIconAndLabel(usersLabel, FontAwesomeIcon.USERS);
+        setIconAndLabel(adduserLabel, FontAwesomeIcon.USER_PLUS);
 
     }
 
@@ -287,5 +304,23 @@ public class BackSideBarController  implements Initializable{
     private void handleDisconnectClicked() {
         // Implement logic for when Disconnect menu item is clicked
         System.out.println("Disconnect clicked");
+
+
+        try {
+            // Load the login.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/FrontOffice/Login/login.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" stylesheets="@../../../Css/Back/Investisment/investissementStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashbaordController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <HBox prefHeight="1000.0" prefWidth="1000.0">
+               <children>
+                  <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="1.0" prefWidth="100.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="110.0" styleClass="pane" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0">
+                           <children>
+                              <HBox prefWidth="1000.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <AnchorPane id="inv_card" fx:id="cardPane1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="250.0" styleClass="inv_card">
+                                       <children>
+                                          <Label id="invname" fx:id="viewLabel" layoutX="39.0" layoutY="14.0" styleClass="text" text="viewLabel" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="amount" layoutX="39.0" layoutY="50.0" styleClass="text" text="Blog views" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="chgrate" fx:id="eyeLabel" layoutX="39.0" layoutY="75.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="1.0" prefWidth="110.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="110.0" styleClass="pane" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0">
+                           <children>
+                              <HBox prefWidth="1000.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <AnchorPane id="inv_card" fx:id="cardPane11" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="250.0" styleClass="inv_card">
+                                       <children>
+                                          <Label id="invname" fx:id="totalLabel" layoutX="39.0" layoutY="14.0" styleClass="text" text="totalLabel" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="amount" layoutX="39.0" layoutY="50.0" styleClass="text" text="Sales" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="chgrate" fx:id="eyeLabel1" layoutX="39.0" layoutY="75.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="392.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="1.0" prefWidth="110.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="110.0" styleClass="pane" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0">
+                           <children>
+                              <HBox prefWidth="1000.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <AnchorPane id="inv_card" fx:id="cardPane111" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="250.0" styleClass="inv_card">
+                                       <children>
+                                          <Label id="invname" fx:id="loanLabel" layoutX="39.0" layoutY="14.0" styleClass="text" text="loanLabel" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="amount" fx:id="" layoutX="39.0" layoutY="50.0" styleClass="text" text="Loans" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="chgrate" fx:id="eyeLabel11" layoutX="39.0" layoutY="75.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="773.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="1.0" prefWidth="110.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="110.0" styleClass="pane" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="50.0">
+                           <children>
+                              <HBox prefWidth="1000.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <AnchorPane id="inv_card" fx:id="cardPane1111" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="250.0" styleClass="inv_card">
+                                       <children>
+                                          <Label id="invname" fx:id="productLabel" layoutX="39.0" layoutY="14.0" styleClass="text" text="productLabel" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="amount" layoutX="39.0" layoutY="50.0" styleClass="text" text="Products" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label id="chgrate" fx:id="eyeLabel111" layoutX="39.0" layoutY="75.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="1.0" prefWidth="100.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="110.0" styleClass="table-pane" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0">
+                           <children>
+                              <Label styleClass="title" text="Recent Requests">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="50.0" top="30.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Calibri Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefWidth="1000.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <AnchorPane id="inv_card" fx:id="cardPane12" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <children>
+                                          <ListView fx:id="CRMListView" prefHeight="400.0" prefWidth="800.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="1.0" prefWidth="100.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="110.0" styleClass="table-pane" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0">
+                           <children>
+                              <Label styleClass="title" text="Recent Requests">
+                                 <font>
+                                    <Font name="Calibri Bold" size="17.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="30.0" top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox prefWidth="300.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <AnchorPane id="inv_card" fx:id="customerviewPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <children>
+                                          <ListView fx:id="customerListeView" prefHeight="400.0" prefWidth="300.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

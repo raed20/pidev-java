@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarketController">
+    <children>
+        <BorderPane layoutX="21.0" layoutY="22.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <VBox prefHeight="810.0" prefWidth="429.0" styleClass="right-bar" stylesheets="@../../../Css/Front/Command/Market.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="90.0" prefWidth="433.0" text="Selected Product">
+                            <font>
+                                <Font name="Calibri Bold" size="35.0" />
+                            </font>
+                        </Label>
+                  <HBox alignment="CENTER" prefHeight="64.0" prefWidth="390.0">
+                     <children>
+                        <TextField fx:id="searchTextField" prefHeight="62.0" prefWidth="256.0" styleClass="search-box" />
+                        <Button mnemonicParsing="false" onKeyReleased="#searchProducts" prefHeight="36.0" prefWidth="83.0" styleClass="search-button" text="Search" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                        <VBox fx:id="selectedProd" alignment="TOP_CENTER" prefHeight="627.0" prefWidth="370.0" stylesheets="@../../../Css/Front/Command/Market.css">
+                            <VBox.margin>
+                                <Insets left="30.0" right="30.0" top="20.0" />
+                            </VBox.margin>
+                            <children>
+                                <ImageView fx:id="imgP" fitHeight="206.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" top="15.0" />
+                                    </VBox.margin>
+                                </ImageView>
+                                <Label fx:id="nameProd" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="258.0" text="Name" textAlignment="CENTER">
+                                    <font>
+                                        <Font name="System Bold" size="22.0" />
+                                    </font>
+                                </Label>
+                                <HBox alignment="CENTER" prefHeight="38.0" prefWidth="370.0">
+                                    <children>
+                                        <Label fx:id="unsaledP" styleClass="unsold" text="Label">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                                        </Label>
+                              <Label fx:id="discountP" styleClass="discount" text="Label" textFill="#ef3b3b">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                                    </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                                </HBox>
+                                  <Label fx:id="saledP" text="Label" textFill="RED">
+                                      <font>
+                                          <Font name="System Bold" size="25.0" />
+                                      </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                                  </Label>
+                        <Label fx:id="descP" prefHeight="111.0" prefWidth="327.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                                <Spinner fx:id="qtyP" prefHeight="42.0" prefWidth="86.0">
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </VBox.margin>
+                                </Spinner>
+                                <Button fx:id="addProd" mnemonicParsing="false" onAction="#addToCart" prefHeight="51.0" prefWidth="235.0" styleClass="search-button" text="ADD TO CART" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" top="5.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                            <styleClass>
+                                <String fx:value="chosen-product-card" />
+                                <String fx:value="shadow" />
+                            </styleClass>
+                        </VBox>
+                    </children>
+                </VBox>
+            </left>
+            <center>
+                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="73.0" prefWidth="886.0" stylesheets="@../../../Css/Front/Command/Market.css">
+                            <children>
+                                <ImageView fx:id="cartButton" fitHeight="47.0" fitWidth="49.0" onMousePressed="#cartNav" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" right="30.0" top="10.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../../../Images/shopping-cart_4034601.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="95.0" prefWidth="886.0">
+                            <children>
+                                <ImageView fitHeight="118.0" fitWidth="885.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../Images/hotdeal.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </HBox>
+                  <Pane prefHeight="22.0" prefWidth="886.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <ScrollPane fx:id="scroll" prefHeight="574.0" prefWidth="884.0" styleClass="transparent" stylesheets="@../../../Css/Front/Command/Market.css">
+                                    <content>
+                                        <GridPane fx:id="grid">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                                        </GridPane>
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

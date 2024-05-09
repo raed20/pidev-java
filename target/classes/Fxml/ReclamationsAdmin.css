@@ -1,0 +1,24 @@
+/* Styling for the TableView */
+#reclamationTable {
+    -fx-background-color: #f4f4f4;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+/* Styling for the Update Status button */
+.action-button {
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #45a049; /* Darker Green */
+}
+
+.action-button:pressed {
+    -fx-background-color: #388e3c; /* Even Darker Green */
+}

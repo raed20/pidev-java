@@ -179,7 +179,7 @@ public class mainFormController implements Initializable {
 
         // Timeline to update the news ticker
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(5), e -> {
+                new KeyFrame(Duration.seconds(3), e -> {
                     newsIndex = (newsIndex + 1) % NEWS_FEED.length;
                     newsTickerLabel.setText(NEWS_FEED[newsIndex]);
                 })

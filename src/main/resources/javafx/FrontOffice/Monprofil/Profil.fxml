@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.ProfilController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Label text="Full Name:" layoutX="50" layoutY="50"/>
+    <TextField  fx:id="FullNameTextField" layoutX="150" layoutY="50"/>
+
+    <Label text="Email Address:" layoutX="50" layoutY="100"/>
+    <TextField fx:id="EmailAddressTextField"  layoutX="150" layoutY="100"/>
+
+    <Label text="Phone Number:" layoutX="50" layoutY="150"/>
+    <TextField  fx:id="PhoneNumberTextField" layoutX="150" layoutY="150"/>
+
+    <Label text="Address:" layoutX="50" layoutY="200"/>
+    <TextField  fx:id="AddressTextField" layoutX="150" layoutY="200"/>
+
+    <Label text="Role:" layoutX="50" layoutY="250"/>
+    <ChoiceBox  fx:id="RoleBox" layoutX="150" layoutY="250"/>
+    <Button layoutX="50" layoutY="300" onAction="#editerProfil">
+        <graphic>
+            <ImageView fitWidth="50" fitHeight="50">
+                <Image url="@../../../Images/edit_icon.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="delbtn" layoutX="235" layoutY="300" onAction="#supprimerProfil">
+        <graphic>
+            <ImageView fitWidth="50" fitHeight="50" >
+                <Image url="@../../../Images/delete_icon.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</AnchorPane>

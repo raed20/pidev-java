@@ -1,0 +1,87 @@
+/* ReclamationList.css */
+
+/* Apply styles to the BorderPane */
+.border-pane {
+    background-color: #f5f5f5; /* Set background color */
+}
+
+/* Style TableView */
+#reclamationTable {
+    -fx-pref-width: 800px; /* Set preferred width */
+    -fx-pref-height: 400px; /* Set preferred height */
+    -fx-background-color: white; /* Set background color */
+}
+
+/* Style TableView rows */
+.table-row-cell {
+    -fx-background-color: #ffffff; /* Set background color */
+    -fx-text-fill: #333333; /* Set text color */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+/* Style TableView row on hover */
+.table-row-cell:hover {
+    -fx-background-color: #e0e0e0; /* Set background color on hover */
+}
+
+/* Style TableView selected row */
+.table-row-cell:selected {
+    -fx-background-color: #80cbc4; /* Set background color for selected row */
+    -fx-text-fill: white; /* Set text color for selected row */
+}
+
+/* Style TableView column headers */
+.table-column .label {
+    -fx-font-weight: bold; /* Set font weight */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+/* Style buttons */
+.button {
+    -fx-background-color: #4caf50; /* Set background color */
+    -fx-text-fill: white; /* Set text color */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-padding: 8px 16px; /* Set padding */
+    -fx-border-radius: 5px; /* Set border radius */
+    -fx-background-radius: 5px; /* Set background radius */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0); /* Add drop shadow */
+}
+
+/* Style buttons on hover */
+.button:hover {
+    -fx-background-color: #388e3c; /* Set background color on hover */
+}
+
+/* Style delete button */
+#deleteButton {
+    -fx-background-color: #f44336; /* Set background color */
+}
+
+/* Style delete button on hover */
+#deleteButton:hover {
+    -fx-background-color: #d32f2f; /* Set background color on hover */
+}
+
+/* Add space between buttons */
+.hbox > .button {
+    -fx-margin: 0 10px; /* Set margin between buttons */
+}
+
+/* Add icons to buttons using FontAwesome */
+.button > .icon {
+    -fx-font-family: 'FontAwesome'; /* Set FontAwesome as font family */
+    -fx-font-size: 16px; /* Set icon size */
+}
+
+/* Add animation to buttons on hover */
+.button:hover > .icon {
+    -fx-rotate: 360; /* Rotate icon 360 degrees */
+    -fx-transition: all 0.5s ease; /* Add transition animation */
+}
+
+.icon {
+    -fx-font-size: 20px; /* Set icon size */
+    -fx-fill: white; /* Set icon color */
+    -fx-margin-right: 5px; /* Add margin between icon and text */
+}
+

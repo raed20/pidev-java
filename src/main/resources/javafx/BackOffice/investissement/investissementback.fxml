@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane  fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.InvestissementBackController"  >
+
+    <children>
+        <Label layoutX="33.0" layoutY="31.0" text="Investment Management" />
+        <TableView fx:id="investmentTable" layoutX="33.0" layoutY="71.0" prefHeight="271.0" prefWidth="534.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="montantColumn" prefWidth="75.0" text="Amount" />
+                <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="totalValueColumn" prefWidth="75.0" text="Total Value" />
+                <TableColumn fx:id="stockNameColumn" prefWidth="75.0" text="Stock Name" />
+                <TableColumn fx:id="changerateColumn" prefWidth="75.0" text="Change Rate" />
+                <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
+            </columns>
+        </TableView>
+        <Button fx:id="addButton" layoutX="33.0" layoutY="358.0" mnemonicParsing="false" text="Add" />
+        <Button fx:id="updateButton" layoutX="105.0" layoutY="358.0" mnemonicParsing="false" text="Update" />
+        <Button fx:id="deleteButton" layoutX="179.0" layoutY="358.0" mnemonicParsing="false" text="Delete" />
+    </children>
+
+
+</AnchorPane>
+

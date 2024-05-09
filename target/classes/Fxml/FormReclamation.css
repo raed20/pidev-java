@@ -1,0 +1,44 @@
+/* Style for the container VBox */
+.container {
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-background-color: #f0f0f0; /* Set background color */
+}
+
+/* Style for the title label */
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 5px;
+}
+
+/* Style for labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333; /* Set text color */
+}
+
+/* Style for text fields */
+.text-field {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-background-color: #fff; /* Set background color */
+    -fx-border-radius: 5px;
+    -fx-border-color: #ccc; /* Set border color */
+    -fx-border-width: 1px;
+}
+
+/* Style for buttons */
+.button {
+    -fx-font-size: 14px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    -fx-background-color: #45a049;
+}

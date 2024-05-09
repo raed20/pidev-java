@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherblogFrontController">
+   <children>
+      <TilePane fx:id="blog_tile" layoutX="20.0" layoutY="38.0" prefHeight="323.0" prefWidth="570.0" />
+   </children>
+</AnchorPane>

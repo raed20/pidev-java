@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="730.0" stylesheets="@../../../Css/Back/Affichebackstyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BlogBackController">
+
+    <children>
+        <Label layoutX="52.0" layoutY="27.0" text="Blogs">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+        <TableView fx:id="blogTable" layoutX="33.0" layoutY="71.0" prefHeight="350.0" prefWidth="678.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="94.4000244140625" text="ID" />
+                <TableColumn fx:id="Title" prefWidth="119.199951171875" text="Title" />
+                <TableColumn fx:id="Description" prefWidth="206.39996337890625" text="Description" />
+            </columns>
+        </TableView>
+        <Button fx:id="addButton" layoutX="61.0" layoutY="430.0" mnemonicParsing="false" text="Add" />
+    </children>
+
+
+</AnchorPane>

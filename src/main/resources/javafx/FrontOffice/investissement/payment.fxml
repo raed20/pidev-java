@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
+    <children>
+        <VBox prefHeight="600.0" prefWidth="800.0">
+            <children>
+                <Label fx:id="selectedNameLabel" style="-fx-text-fill: rgb(56, 116, 255);" text="name">
+                    <font>
+                        <Font name="Calibri Bold" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                    </VBox.margin>
+                </Label>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label prefWidth="100.0" text="Amount">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="amountField" prefWidth="250.0" promptText="Stock amount">
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Label fx:id="amountLabel" textFill="#fc0707">
+                            <HBox.margin>
+                                <Insets left="10.0" top="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <Separator prefWidth="100.0" scaleX="0.9" />
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="40.0" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label prefWidth="100.0" text="Card information">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <VBox prefHeight="200.0" prefWidth="600.0">
+                            <children>
+                                <HBox prefHeight="100.0" prefWidth="600.0">
+                                    <children>
+                                        <TextField fx:id="cardNumberField" prefWidth="250.0" promptText="1234 1234 1234 1234">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Label fx:id="cardNumberLabel" textFill="RED">
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="5.0" />
+                                            </HBox.margin>
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <DatePicker fx:id="cardDateField" prefWidth="125.0" promptText="MM / YY">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin></DatePicker>
+                                        <TextField fx:id="cvcField" layoutX="10.0" layoutY="11.0" prefWidth="125.0" promptText="CVC">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin></TextField>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </HBox>
+                                <Label fx:id="cardDateLabel" textFill="RED">
+                                    <font>
+                                        <Font name="Calibri" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="cvcLabel" layoutX="10.0" layoutY="61.0" textFill="RED">
+                                    <font>
+                                        <Font name="Calibri" size="14.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="40.0" />
+                    </VBox.margin>
+                </HBox>
+                <Separator layoutX="10.0" layoutY="306.0" prefWidth="100.0" scaleX="0.9" />
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label prefWidth="100.0" text="Cardholder name">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="cardholderNameField" prefWidth="250.0" promptText="Full name on card">
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Label fx:id="cardholderNameLabel" textFill="RED">
+                            <HBox.margin>
+                                <Insets left="10.0" top="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="40.0" />
+                    </VBox.margin>
+                </HBox>
+                <Separator layoutX="10.0" layoutY="208.0" prefWidth="100.0" scaleX="0.9" />
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="225.0" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <Label prefWidth="100.0" text="Billing address">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <VBox prefHeight="250.0" prefWidth="600.0">
+                            <children>
+                                <HBox prefHeight="110.0" prefWidth="600.0">
+                                    <children>
+                                        <TextField fx:id="countryField" prefWidth="250.0" promptText="Country">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Label fx:id="countryLabel" textFill="RED">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="600.0">
+                                    <children>
+                                        <TextField fx:id="addressField" prefWidth="250.0" promptText="Adress line">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Label fx:id="addressLabel" textFill="RED">
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="5.0" />
+                                            </HBox.margin>
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <TextField fx:id="postalCodeField" prefWidth="125.0" promptText="Postal code">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <TextField fx:id="cityField" layoutX="10.0" layoutY="11.0" prefWidth="125.0" promptText="City">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin></TextField>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </HBox>
+                                <Label fx:id="postalCodeLabel" textFill="RED">
+                                    <font>
+                                        <Font name="Calibri" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="cityLabel" textFill="RED">
+                                    <font>
+                                        <Font name="Calibri" size="14.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="40.0" />
+                    </VBox.margin>
+                </HBox>
+                <Separator layoutX="10.0" layoutY="109.0" prefWidth="100.0" scaleX="0.9" />
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="payButton" minHeight="38.0" mnemonicParsing="false" onAction="#handlePayment" prefWidth="80.0" text="Buy">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="cancelButton" minHeight="38.0" mnemonicParsing="false" prefWidth="80.0" text="Cancel">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductAddController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="417.0" layoutY="66.0" prefHeight="600.0" prefWidth="500.0" styleClass="chosen-product-card">
+         <children>
+            <Label alignment="CENTER" prefHeight="36.0" prefWidth="600.0" styleClass="title" text="Add Product">
+               <font>
+                  <Font name="Calibri Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#navigate" text="Product List">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="275.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <HBox prefHeight="60.0" prefWidth="439.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="31.693359375">
+                     <HBox.margin>
+                        <Insets right="47.0" top="6.0" />
+                     </HBox.margin>
+                  </Text>
+                  <VBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="275.0">
+                     <children>
+                        <TextField fx:id="nameTF" prefHeight="30.0" prefWidth="350.0" />
+                        <Label fx:id="nameAlert" prefHeight="18.0" prefWidth="434.0" styleClass="alert-message" textFill="RED">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="60.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+                     <HBox.margin>
+                        <Insets right="53.0" top="6.0" />
+                     </HBox.margin>
+                  </Text>
+                  <VBox prefHeight="60.0" prefWidth="275.0">
+                     <children>
+                        <TextField fx:id="priceTF" prefHeight="30.0" prefWidth="350.0" />
+                        <Label fx:id="priceAlert" prefHeight="18.0" prefWidth="279.0" textFill="RED" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="60.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
+                     <HBox.margin>
+                        <Insets right="32.0" top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <VBox prefHeight="60.0" prefWidth="275.0">
+                     <children>
+                        <ChoiceBox fx:id="catTF" prefHeight="26.0" prefWidth="209.0" />
+                        <Label fx:id="catAlert" prefHeight="18.0" prefWidth="278.0" textFill="RED" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="60.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Discount">
+                     <HBox.margin>
+                        <Insets right="33.0" top="6.0" />
+                     </HBox.margin>
+                  </Text>
+                  <VBox prefHeight="60.0" prefWidth="275.0">
+                     <children>
+                        <TextField fx:id="discountTF" prefHeight="30.0" prefWidth="230.0" />
+                        <Label fx:id="disAlert" prefHeight="18.0" prefWidth="291.0" textFill="RED" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="82.0" prefWidth="439.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                     <HBox.margin>
+                        <Insets right="20.0" top="18.0" />
+                     </HBox.margin>
+                  </Text>
+                  <VBox prefHeight="80.0" prefWidth="275.0">
+                     <children>
+                        <TextArea fx:id="descTF" prefHeight="60.0" prefWidth="230.0" />
+                        <Label fx:id="descAlert" prefHeight="18.0" prefWidth="296.0" textFill="RED" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Image">
+                     <HBox.margin>
+                        <Insets right="46.0" top="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Button mnemonicParsing="false" onAction="#Upload" prefHeight="26.0" prefWidth="87.0" text="Upload">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="imgAlert" prefHeight="18.0" prefWidth="216.0" textFill="RED" />
+                  <ImageView fx:id="imageTF" fitHeight="91.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="imgPath" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#AddProduct" text="Add Product" />
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../../Css/Back/Product/productstyle.css" />
+      <URL value="@../../../Css/Front/Command/Market.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="right-bar" />
+      <String fx:value="shadow" />
+   </styleClass>
+</AnchorPane>

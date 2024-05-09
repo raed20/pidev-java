@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?> <!-- Import FontAwesomeIconView -->
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.ReclamationsController"
+            stylesheets="@ReclamationList.css"> <!-- Add reference to CSS file -->
+   <center>
+      <TableView fx:id="reclamationTable">
+         <!-- Define table columns -->
+      </TableView>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" spacing="10">
+         <!-- Add FontAwesomeIconView for icons -->
+         <Button onAction="#addReclamation">
+            <graphic>
+               <FontAwesomeIconView glyphName="PLUS"/> <!-- Example icon: PLUS -->
+            </graphic>
+            <text>Add</text>
+         </Button>
+         <Button onAction="#updateReclamations">
+            <graphic>
+               <FontAwesomeIconView glyphName="EDIT"/> <!-- Example icon: EDIT -->
+            </graphic>
+            <text>Update</text>
+         </Button>
+         <Button onAction="#deleteReclamations">
+            <graphic>
+               <FontAwesomeIconView glyphName="TRASH"/> <!-- Example icon: TRASH -->
+            </graphic>
+            <text>Delete</text>
+         </Button>
+         <Button text="Generate PDF" onAction="#generatePDF"/>
+         <Button text="Admin" onAction="#adminSide"/>
+      </HBox>
+   </bottom>
+</BorderPane>
+
+
+

@@ -9,6 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+
+
+        <dependency>
+            <groupId>org.geonames</groupId>
+            <artifactId>geonames</artifactId>
+            <version>1.0</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -112,8 +119,16 @@
             <artifactId>controlsfx</artifactId>
             <version>11.1.0</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>io.fair-acc</groupId>
+            <artifactId>chartfx</artifactId>
+            <version>11.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.24</version>
+        </dependency>
 
 
 

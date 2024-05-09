@@ -13,7 +13,7 @@ public class StripeService {
         Stripe.apiKey = stripeSecretKey;
     }
 
-    public Session createPaymentSession(String productName, int amountInCents, String successUrl, String cancelUrl) throws StripeException {
+    public Session createPaymentSession(String productName, int amountInCents, long quantity,String successUrl, String cancelUrl) throws StripeException {
         Session session = Session.create(
                 SessionCreateParams.builder()
                         .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
@@ -31,7 +31,7 @@ public class StripeService {
                                                         )
                                                         .build()
                                         )
-                                        .setQuantity(1L)
+                                        .setQuantity(quantity)
                                         .build()
                         )
                         .setSuccessUrl(successUrl)

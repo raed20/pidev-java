@@ -1,0 +1,44 @@
+/* Styling for TableView */
+.table-view {
+    -fx-background-color: #f5f5f5; /* Background color */
+}
+
+/* Styling for TableColumns */
+.table-column {
+    -fx-alignment: CENTER_LEFT; /* Align text to the left */
+}
+
+/* Styling for column headers */
+.table-column .label {
+    -fx-font-weight: bold; /* Bold font for column headers */
+}
+
+/* Styling for odd rows */
+.table-row-cell:odd {
+    -fx-background-color: #ffffff; /* White background color for odd rows */
+}
+
+/* Styling for even rows */
+.table-row-cell:even {
+    -fx-background-color: #f0f0f0; /* Light gray background color for even rows */
+}
+
+/* Styling for selected rows */
+.table-row-cell:selected {
+    -fx-background-color: #a9d9ff; /* Light blue background color for selected rows */
+}
+
+/* Styling for buttons */
+.button {
+    -fx-background-color: #2196F3; /* Blue background color for buttons */
+    -fx-text-fill: white; /* White text color for buttons */
+    -fx-font-size: 12px; /* Font size for buttons */
+    -fx-padding: 6px 12px; /* Smaller padding for buttons */
+    -fx-border-radius: 4px; /* Rounded corners for buttons */
+    -fx-cursor: hand; /* Cursor style for buttons */
+}
+
+/* Styling for button hover effect */
+.button:hover {
+    -fx-background-color: #1976D2; /* Darker blue background color on hover */
+}

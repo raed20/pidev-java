@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="cardForm" onMousePressed="#click" prefHeight="303.0" prefWidth="271.0" styleClass="product-item" stylesheets="@../../../Css/Front/Command/Market.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemProductController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="44.0" layoutY="-17.0" prefHeight="303.0" prefWidth="271.0" styleClass="chosen-product-card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imgProd" fitHeight="138.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="294.0" text="name" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="31.0" prefWidth="226.0">
+               <children>
+                  <Label fx:id="priceLabel" styleClass="unsold" text="price" textFill="#00000080" underline="true">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="discountLabel" styleClass="discount" text="\%" textFill="#f46850">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="salePriceLabel" text="finalprice" textFill="#e12121">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Spinner fx:id="qtyLabel" prefHeight="26.0" prefWidth="77.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin></Spinner>
+            <Button fx:id="addProd" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="114.0" styleClass="search-button" text="ADD TO CART" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

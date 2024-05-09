@@ -1,0 +1,36 @@
+.card {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 0, 7, 0, 0);
+}
+
+.title {
+    -fx-text-fill: black; /* Regular black color */
+    -fx-font-size: 25px; /* Font size 25 */
+}
+
+.button {
+    -fx-background-color: rgb(56, 116, 255);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s;
+}
+
+.button:hover {
+    -fx-background-color: rgba(56, 116, 255, 0.51);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s;
+}
+.listcollum:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+
+}
+.divider{
+    -fx-background-color: black;
+}
+.title {
+    -fx-font-family: "Calibri";
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(56, 116, 255);
+    -fx-font-size: 40px;
+}

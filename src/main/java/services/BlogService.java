@@ -1,4 +1,5 @@
 package services;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -6,8 +7,7 @@ import entities.Blog;
 import entities.Commentaire;
 import interfaces.IBlog;
 import tools.MyConnection;
-import java.sql.Statement;
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,18 +18,31 @@ public class BlogService implements IBlog {
     private MyConnection connection;
     private static final Logger LOGGER = Logger.getLogger(MyConnection.class.getName());
 
+    private Statement st;
+    private ResultSet rs;
+
 
     public BlogService(MyConnection connection) {
         this.connection = connection;
     }
 
+    public BlogService() {
+        MyConnection cs=MyConnection.getInstance();
+        try {
+            st=cs.getConnection().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
-    public void addBlog(Blog Blog) {
-        String query = "INSERT INTO Blog (Title, Description, Content) VALUES (?, ?, ?)";
+    public void addBlog(Blog blog) {
+        String query = "INSERT INTO Blog (titre, Description, contenu, image) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, Blog.getTitle());
-            statement.setString(2, Blog.getDescription());
-            statement.setString(3, Blog.getContent());
+            statement.setString(1, blog.getTitle());
+            statement.setString(2, blog.getDescription());
+            statement.setString(3, blog.getContent());
+            statement.setString(4, blog.getImg());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "An SQL Exception occurred:", e);
@@ -48,60 +61,95 @@ public class BlogService implements IBlog {
     }
 
     @Override
-    public void updateBlog(Blog Blog) {
-        String query = "UPDATE Blog SET Title = ?, Description = ?, Content = ? WHERE id = ?";
+    public void updateBlog(Blog blog) {
+        String query = "UPDATE blog SET titre = ?, Description = ?, contenu = ?, image = ?, Rating = ?, Vu = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, Blog.getTitle());
-            statement.setString(2, Blog.getDescription());
-            statement.setString(3, Blog.getContent());
-
+            statement.setString(1, blog.getTitle());
+            statement.setString(2, blog.getDescription());
+            statement.setString(3, blog.getContent());
+            statement.setString(4, blog.getImg());
+            statement.setDouble(5, blog.getRating());
+            statement.setInt(6, blog.getVu());
+            statement.setInt(7, blog.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "An SQL Exception occurred:", e);
         }
     }
 
+
     @Override
     public List<Blog> getAllBlog() {
-        List<Blog> Blogs = new ArrayList<>();
-        String query = "SELECT * FROM Blog";
+        List<Blog> blogs = new ArrayList<>();
+        String query = "SELECT * FROM blog";
         try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 Blog blog = new Blog();
                 blog.setId(resultSet.getInt("id"));
-                blog.setTitle(resultSet.getString("Title"));
+                blog.setTitle(resultSet.getString("titre"));
                 blog.setDescription(resultSet.getString("Description"));
-                blog.setContent(resultSet.getString("Content"));
-                // Fetch Commentaire entity for this Blog
-                CommentaireService commentaireServiceService = new CommentaireService(connection);
-                blog.setComment(commentaireServiceService.getCommentaireById(resultSet.getInt("comment_id")).getId());
-                Blogs.add(blog);
-            }
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "An SQL Exception occurred:", e);
-        }
-        return Blogs;
-    }
-    @Override
-    public List<Blog> getCommentaireByBlogId(int CommentaireId) {
-        String query = "SELECT * FROM commentaire WHERE id = (SELECT comment_id FROM blog WHERE id = ?)";
-        List<Blog> blogs = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, CommentaireId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    Commentaire commentaire = new Commentaire();
-                    commentaire.setId(resultSet.getInt("id"));
-                    commentaire.setContent(resultSet.getString("Content"));
-                    Blog blog = new Blog();
-                    blog.setComment(commentaire.getId());
-                    blogs.add(blog);
-                }
+                blog.setContent(resultSet.getString("contenu"));
+                blog.setImg(resultSet.getString("image"));
+                blog.setRating(resultSet.getFloat("Rating"));
+                blog.setVu(resultSet.getInt("Vu"));
+                blogs.add(blog);
             }
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "An SQL Exception occurred:", e);
         }
         return blogs;
     }
+
+    @Override
+    public List<Blog> displayAllList() {
+        String query = "SELECT * FROM blog";
+        List<Blog> list=new ArrayList<>();
+
+        try {
+            st=MyConnection.getInstance().getConnection().createStatement();
+            rs=st.executeQuery(query);
+            while(rs.next()){
+                Blog b=new Blog();
+                b.setId(rs.getInt(1));
+                b.setTitle(rs.getString(2));
+                b.setDescription(rs.getString(3));
+                b.setContent(rs.getString(5));
+                b.setImg(rs.getString(4));
+                b.setRating(rs.getFloat(6));
+                b.setVu(rs.getInt(7));
+
+                list.add(b);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Commentaire> getCommentaireByBlogId(int blogId) {
+        String query = "SELECT * FROM Commentaire WHERE idblog_id = ?";
+        List<Commentaire> list = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, blogId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Commentaire commentaire = new Commentaire();
+                    commentaire.setId(resultSet.getInt("id"));
+                    commentaire.setContent(resultSet.getString("contenue"));
+                    commentaire.setBlog_id(resultSet.getInt("idblog_id"));
+                    list.add(commentaire);
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return list;
+    }
+
+
+
 }

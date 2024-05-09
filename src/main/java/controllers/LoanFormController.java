@@ -411,7 +411,7 @@ public class LoanFormController {
         double totalInterest = totalPayment - loanAmount;
 
         // Update the UI with the calculated values
-        loanEMIValue.setText(String.format("Monthly EMI: %.2f", monthlyPayment));
+        loanEMIValue.setText(String.format("Monthly EMI: %.2f ", monthlyPayment));
         totalInterestValue.setText(String.format("Total Interest: %.2f", totalInterest));
         totalAmountValue.setText(String.format("Total Amount: %.2f", totalPayment));
     }

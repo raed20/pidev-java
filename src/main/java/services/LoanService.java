@@ -45,23 +45,7 @@ public class LoanService implements ILoanService<Pret> {
         return dataset;
     }
 
-    public static String getEmailById(int idUser) throws SQLException {
-        String email = null;
-        MyConnection myConnection = new MyConnection();
 
-        try (Connection connection = myConnection.getConnection()) {
-            String query = "SELECT email FROM user WHERE id = ?";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setInt(1, idUser);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        email = resultSet.getString("email");
-                    }
-                }
-            }
-        }
-        return email;
-    }
 
     public static String getBankNameById(int idBank) throws SQLException {
         String bankName = null;
@@ -106,6 +90,7 @@ public class LoanService implements ILoanService<Pret> {
     @Override
     public String addLoan(Pret pret,int bankId) throws Exception {
         String toemail = null;
+        int idUser;
         MyConnection myConnection = new MyConnection();
         try (Connection connection = myConnection.getConnection()) {
             String query = "INSERT INTO pret (gender, married, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_amount_term, credit_history, property_area, loan_status, idBank, idUser) " +
@@ -114,9 +99,9 @@ public class LoanService implements ILoanService<Pret> {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println(this.classifier);
 
-                int idUser = 3;
                 //int bankId = 1;
-                toemail = getEmailById(idUser);
+                toemail = UtilisateurService.getUtilisateurConnecte().getEmail();
+                idUser=getIdByEmail(toemail);
 
 
                 // Prepare an instance for prediction
@@ -193,13 +178,14 @@ public class LoanService implements ILoanService<Pret> {
     @Override
     public String updateLoan(Pret pret,int bankId) throws Exception {
         String toemail = null;
+        int idUser;
         MyConnection myConnection = new MyConnection();
+        toemail = UtilisateurService.getUtilisateurConnecte().getEmail();
+        idUser=getIdByEmail(toemail);
         try (Connection connection = myConnection.getConnection()) {
             String query = "UPDATE pret SET gender = ?, married = ?, education = ?, self_employed = ?, applicant_income = ?, coapplicant_income = ?, loan_amount = ?, loan_amount_term = ?, credit_history = ?, property_area = ? , idBank= ? ,idUser= ? , loan_status= ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
-                int idUser = 3; // Assuming you're updating a specific loan for a specific user
 
-                toemail = getEmailById(idUser);
                 // Prepare an instance for prediction
                 Instance instance = new DenseInstance(10);
                 instance.setDataset(this.trainData);
@@ -251,12 +237,15 @@ public class LoanService implements ILoanService<Pret> {
 
     @Override
     public List<Pret> getDataLoan() throws Exception {
+        UtilisateurService utilisateurService=new UtilisateurService();
+        int idUser;
         List<Pret> pretList = new ArrayList<>();
         MyConnection myConnection = new MyConnection();
+        idUser=getIdByEmail(UtilisateurService.getUtilisateurConnecte().getEmail());
         try (Connection connection = myConnection.getConnection()) {
             String query = "SELECT * FROM pret WHERE idUser=? ";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setInt(1, 1);
+                statement.setInt(1, idUser);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     Pret pret = new Pret();
@@ -332,6 +321,23 @@ public class LoanService implements ILoanService<Pret> {
             myConnection.closeConnection();
         }
         throw new SQLException("Pret with id " + pretId + " not found.");
+    }
+    public static int getIdByEmail(String email) throws SQLException {
+        int idUser = -1;
+        MyConnection myConnection = new MyConnection();
+
+        try (Connection connection = myConnection.getConnection()) {
+            String query = "SELECT id FROM user WHERE email = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, email);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        idUser = resultSet.getInt("id");
+                    }
+                }
+            }
+        }
+        return idUser;
     }
 
 }

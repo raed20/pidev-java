@@ -3,7 +3,24 @@ import java.util.Collection;
 public class Commentaire {
     private int id;
     private String Content;
-    private Collection<Blog> Blog;
+    private int blog_id;
+    private int userid;
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public int getBlog_id() {
+        return blog_id;
+    }
+
+    public void setBlog_id(int blog_id) {
+        this.blog_id = blog_id;
+    }
 
     public Commentaire() {
     }
@@ -28,11 +45,5 @@ public class Commentaire {
         Content = content;
     }
 
-    public Collection<Blog> getBlog() {
-        return Blog;
-    }
 
-    public void setBlog(Collection<Blog> blog) {
-        Blog = blog;
-    }
 }

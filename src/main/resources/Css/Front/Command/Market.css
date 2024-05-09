@@ -1,0 +1,84 @@
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: rgb(56, 116, 255);
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #e4e7ed;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.chosen-product-card{
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+}
+
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+.product-item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+}
+
+.unsold {
+    -fx-text-fill: lightgrey; /* Sets text color to light grey */
+    -fx-strikethrough: true; /* Draws a line through the text */
+}
+
+
+.discount {
+    color:orange;
+    -fx-background-color: lightgrey;
+    -fx-padding: 5px;
+    -fx-background-radius: 5;
+}
+.title {
+    -fx-font-family: "Calibri";
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(56, 116, 255);
+    -fx-font-size: 40px;
+}
+.red-button {
+    -fx-background-color: red;
+    -fx-background-radius: 40;
+    -fx-text-fill: white; /* Set text color to white */
+    -fx-font-size: 14pt; /* Adjust font size */
+    -fx-padding: 10px 20px; /* Adjust padding */
+}
+.blue-button {
+    -fx-background-color: rgb(56, 116, 255); /* Blue color */
+    -fx-background-radius: 40;
+    -fx-text-fill: white; /* Set text color to white */
+    -fx-font-size: 14pt; /* Adjust font size */
+    -fx-padding: 10px 20px; /* Adjust padding */
+}

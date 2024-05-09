@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?> <!-- Import FontAwesomeIconView -->
+
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.AddReclamationsController"
+      stylesheets="@AddReclamation.css"> <!-- Add reference to CSS file -->
+    <HBox alignment="CENTER">
+        <FontAwesomeIconView glyphName="BELL" styleClass="icon"/>
+        <Label text="Add Reclamation" styleClass="label"/>
+    </HBox>
+    <TextField fx:id="objetField" promptText="Objet"/>
+    <TextField fx:id="descriptionField" promptText="Description"/>
+    <HBox alignment="CENTER">
+        <Button fx:id="uploadImageButton" text="Choose Image" onAction="#chooseImage" />
+        <ImageView fx:id="imageView" fitWidth="100" fitHeight="100" preserveRatio="true"/>
+    </HBox>
+    <Button text="Add" onAction="#addReclamations">
+        <graphic>
+            <FontAwesomeIconView glyphName="PLUS" styleClass="icon"/>
+        </graphic>
+    </Button>
+</VBox>
+
+
+
+
+
+

@@ -2,6 +2,7 @@ package interfaces;
 
 import entities.Investissement;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IInvestissement {
@@ -11,7 +12,7 @@ public interface IInvestissement {
 
     void updateInvestissement(Investissement investissement);
 
-    List<Investissement> getAllInvestissements();
+    List<Investissement> getAllInvestissements() throws SQLException;
     List<Investissement> getOpportuniteByInvestissementId(int opportuniteId);
 
 }

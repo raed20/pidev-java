@@ -1,0 +1,29 @@
+.card {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 0, 7, 0, 0);
+}
+
+.title {
+    -fx-text-fill: rgb(56, 116, 255);
+}
+
+.button {
+    -fx-background-color: rgb(56, 116, 255);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s;
+}
+
+.button:hover {
+    -fx-background-color: rgba(56, 116, 255, 0.51);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s;
+}
+.listcollum:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+
+}
+.divider{
+-fx-background-color: black;
+}

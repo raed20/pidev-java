@@ -1,0 +1,61 @@
+/* UpdateReclamation.css */
+
+/* Style VBox */
+#vbox {
+    -fx-padding: 20px; /* Add padding */
+    -fx-spacing: 10px; /* Add spacing between elements */
+    -fx-alignment: center; /* Center align elements */
+    -fx-background-color: #f9f9f9; /* Set background color */
+}
+
+/* Style Label */
+.label {
+    -fx-font-size: 24px; /* Set font size */
+    -fx-text-fill: #333333; /* Set text color */
+}
+
+/* Style TextField */
+.text-field {
+    -fx-pref-width: 300px; /* Set preferred width */
+    -fx-pref-height: 40px; /* Set preferred height */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-padding: 5px; /* Add padding */
+    -fx-border-radius: 5px; /* Set border radius */
+    -fx-background-radius: 5px; /* Set background radius */
+    -fx-border-color: #cccccc; /* Set border color */
+}
+
+/* Style text typed inside the input fields */
+.text-input {
+    -fx-text-fill: #333333; /* Set text color */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+/* Style Button */
+.button {
+    -fx-background-color: #2196f3; /* Set background color */
+    -fx-text-fill: white; /* Set text color */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-padding: 10px 20px; /* Set padding */
+    -fx-border-radius: 5px; /* Set border radius */
+    -fx-background-radius: 5px; /* Set background radius */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0); /* Add drop shadow */
+}
+
+/* Style Button on hover */
+.button:hover {
+    -fx-background-color: #1976d2; /* Set background color on hover */
+}
+
+/* Style FontAwesomeIconView */
+.icon {
+    -fx-font-size: 24px; /* Set icon size */
+    -fx-fill: #ffffff; /* Set icon color */
+    -fx-margin-right: 5px; /* Add margin between icon and text */
+}
+
+/* Add animation to FontAwesomeIconView on hover */
+.icon:hover {
+    -fx-rotate: 360; /* Rotate icon 360 degrees */
+    -fx-transition: all 0.5s ease; /* Add transition animation */
+}

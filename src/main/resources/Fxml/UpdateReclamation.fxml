@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?> <!-- Import FontAwesomeIconView -->
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.UpdateReclamationsController"
+      stylesheets="@UpdateReclamation.css"> <!-- Add reference to CSS file -->
+    <HBox alignment="CENTER">
+        <FontAwesomeIconView glyphName="EDIT" styleClass="icon"/>
+        <Label text="Update Reclamation" styleClass="label"/>
+    </HBox>
+    <TextField fx:id="objetField" promptText="Objet"/>
+    <TextField fx:id="descriptionField" promptText="Description"/>
+    <Button text="Update" onAction="#updateReclamations">
+        <graphic>
+            <FontAwesomeIconView glyphName="EDIT" styleClass="icon"/>
+        </graphic>
+    </Button>
+</VBox>
+
+

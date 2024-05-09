@@ -6,9 +6,37 @@ public class Blog {
     private String Title;
     private String Description;
     private String Content;
-    private int Comment;
 
-    public Blog() {
+    private String Img;
+    private double rating;
+    private int vu;
+
+    public int getVu() {
+        return vu;
+    }
+
+    public void setVu(int vu) {
+        this.vu = vu;
+    }
+
+    public Blog() {}
+
+    public Blog(String title, String description, String content, String img) {
+        Title = title;
+        Description = description;
+        Content = content;
+        Img = img;
+        this.rating= 0.1f;
+    }
+
+    public Blog(int id, String title, String description, String content, String img,double rating,int vu) {
+        this.id = id;
+        Title = title;
+        Description = description;
+        Content = content;
+        Img = img;
+        this.rating = rating;
+        this.vu=vu;
     }
 
     public int getId() {
@@ -43,13 +71,19 @@ public class Blog {
         Content = content;
     }
 
-    public Integer getComment() {
-        return Comment;
+    public String getImg() {
+        return Img;
     }
 
-    public void setComment(Integer Comment) {
-        this.Comment = Comment;
+    public void setImg(String img) {
+        Img = img;
     }
 
+    public double getRating() {
+        return rating;
+    }
 
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
 }

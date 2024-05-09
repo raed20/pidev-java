@@ -28,7 +28,7 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, ExecutionException, InterruptedException {
         MainFX.primaryStage = primaryStage;
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/FrontOffice/FrontSideBar.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/FrontOffice/Login/login.fxml")));
         primaryStage.setTitle("Loan App");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(true);
