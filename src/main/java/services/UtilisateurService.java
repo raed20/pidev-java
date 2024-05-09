@@ -124,7 +124,8 @@ public class UtilisateurService implements UService<Utilisateurs> {
                         resultSet.getInt("numtel"),
                         resultSet.getString("adresse"),
                         resultSet.getString("roles"),
-                        resultSet.getString("password"));
+                        resultSet.getString("password"),
+                        resultSet.getString("image"));
                 utilisateursList.add(utilisateur);
             }
         }

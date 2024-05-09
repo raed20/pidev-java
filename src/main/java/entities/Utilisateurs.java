@@ -8,12 +8,12 @@ public class Utilisateurs {
     private String email;
     private String password;
     private String roles;
+    private String image;
 
 
-    
 
 
-    public Utilisateurs(int id, String lastname, String email, int numtel, String adresse, String roles,  String password) {
+    public Utilisateurs(int id, String lastname, String email, int numtel, String adresse, String roles, String password, String image) {
         this.id = id;
         this.lastname = lastname;
         this.numtel = numtel;
@@ -21,6 +21,7 @@ public class Utilisateurs {
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.image = image;
     }
 
     public Utilisateurs() {
@@ -86,6 +87,14 @@ public class Utilisateurs {
         this.roles = roles;
     }
 
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Utilisateurs{" +
@@ -96,6 +105,7 @@ public class Utilisateurs {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roles='" + roles + '\'' +
+                ", image='" + image + '\'' +
               '}';
     }
 

@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import services.UtilisateurService;
@@ -43,6 +45,8 @@ public class ProfilController implements Initializable {
     private BorderPane borderPane;
     @FXML
     private Button delbtn;
+    @FXML
+    private ImageView selectedImageLabel;
    // @FXML
     //private Label selectedImageLabel;
     UtilisateurService utilisateurService=new UtilisateurService();
@@ -71,6 +75,14 @@ public class ProfilController implements Initializable {
             EmailAddressTextField.setText(utilisateurConnecte.getEmail());
             AddressTextField.setText(utilisateurConnecte.getAdresse());
             RoleBox.setValue(utilisateurConnecte.getRoles());
+
+            String imagePath = utilisateurConnecte.getImage(); // Assurez-vous que getImagePath() renvoie le chemin d'accès correct
+            if (imagePath != null) {
+                Image image = new Image(imagePath);
+                selectedImageLabel.setImage(image);
+            } else {
+                System.out.println("Le chemin d'accès à l'image est null.");
+            }
             // Update other labels with additional user profile information
         } else {
             // Handle the case where utilisateurConnecte is null
