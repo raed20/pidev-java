@@ -9,6 +9,7 @@ public class Blog {
 
     private String Img;
     private double rating;
+<<<<<<< HEAD
     private int vu;
 
     public int getVu() {
@@ -19,6 +20,8 @@ public class Blog {
         this.vu = vu;
     }
 
+=======
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
     public Blog() {}
 
     public Blog(String title, String description, String content, String img) {
@@ -29,14 +32,21 @@ public class Blog {
         this.rating= 0.1f;
     }
 
+<<<<<<< HEAD
     public Blog(int id, String title, String description, String content, String img,double rating,int vu) {
+=======
+    public Blog(int id, String title, String description, String content, String img,double rating) {
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
         this.id = id;
         Title = title;
         Description = description;
         Content = content;
         Img = img;
         this.rating = rating;
+<<<<<<< HEAD
         this.vu=vu;
+=======
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
     }
 
     public int getId() {

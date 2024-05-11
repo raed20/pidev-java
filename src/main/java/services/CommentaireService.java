@@ -22,6 +22,7 @@ public class CommentaireService implements ICommentaire {
 
     @Override
     public void addCommentaire(Commentaire commentaire) {
+<<<<<<< HEAD
         String query = "INSERT INTO Commentaire (contenue, idblog_id,iduser) VALUES (?, ? , ?)";
 
         int userid=1;
@@ -31,6 +32,12 @@ public class CommentaireService implements ICommentaire {
             statement.setInt(3, userid);
             //statement.setInt(3, commentaire.getUserid());
 
+=======
+        String query = "INSERT INTO Commentaire (Content, blog_id) VALUES (?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, commentaire.getContent());
+            statement.setInt(2, commentaire.getBlog_id());
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
             statement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "An SQL Exception occurred: ", e);
@@ -50,12 +57,20 @@ public class CommentaireService implements ICommentaire {
 
     @Override
     public void updateCommentaire(Commentaire commentaire) {
+<<<<<<< HEAD
         String query = "UPDATE Commentaire SET contenue = ?, blog_id = ? , userid= ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, commentaire.getContent());
             statement.setInt(2, commentaire.getBlog_id());
             statement.setInt(3, commentaire.getUserid());
             statement.setInt(4, commentaire.getId());
+=======
+        String query = "UPDATE Commentaire SET Content = ?, blog_id = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, commentaire.getContent());
+            statement.setInt(2, commentaire.getBlog_id());
+            statement.setInt(3, commentaire.getId());
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
             statement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "An SQL Exception occurred: ", e);
@@ -71,8 +86,13 @@ public class CommentaireService implements ICommentaire {
             while (resultSet.next()) {
                 Commentaire commentaire = new Commentaire();
                 commentaire.setId(resultSet.getInt("id"));
+<<<<<<< HEAD
                 commentaire.setContent(resultSet.getString("contenue"));
                 commentaire.setBlog_id(resultSet.getInt("idblog_id"));
+=======
+                commentaire.setContent(resultSet.getString("Content"));
+                commentaire.setBlog_id(resultSet.getInt("blog_id"));
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
                 commentaires.add(commentaire);
             }
         } catch (SQLException e) {
@@ -89,8 +109,13 @@ public class CommentaireService implements ICommentaire {
                 if (resultSet.next()) {
                     Commentaire commentaire = new Commentaire();
                     commentaire.setId(resultSet.getInt("id"));
+<<<<<<< HEAD
                     commentaire.setContent(resultSet.getString("contenue"));
                     commentaire.setBlog_id(resultSet.getInt("idblog_id"));
+=======
+                    commentaire.setContent(resultSet.getString("Content"));
+                    commentaire.setBlog_id(resultSet.getInt("blog_id"));
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
                     return commentaire;
                 } else {
                     return new Commentaire();

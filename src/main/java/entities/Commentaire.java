@@ -4,6 +4,7 @@ public class Commentaire {
     private int id;
     private String Content;
     private int blog_id;
+<<<<<<< HEAD
     private int userid;
 
     public int getUserid() {
@@ -13,6 +14,8 @@ public class Commentaire {
     public void setUserid(int userid) {
         this.userid = userid;
     }
+=======
+>>>>>>> f6759ea7b6dfbab61e3d1719b5ef12c97bc0ee5f
 
     public int getBlog_id() {
         return blog_id;
