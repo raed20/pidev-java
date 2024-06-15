@@ -196,13 +196,19 @@ public class ProductAddController {
             isValid = false;
         } else {
             try {
-                Double.parseDouble(priceTF.getText());
-                priceAlert.setText("");
+                double price = Double.parseDouble(priceTF.getText());
+                if (price < 0) { // Check if price is negative
+                    priceAlert.setText("Price must be non-negative");
+                    isValid = false;
+                } else {
+                    priceAlert.setText("");
+                }
             } catch (NumberFormatException e) {
                 priceAlert.setText("Please enter a valid price");
                 isValid = false;
             }
         }
+
 
         // Check if the discount is between 0 and 100
         try {

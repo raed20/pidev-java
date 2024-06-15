@@ -33,6 +33,9 @@ import java.util.ResourceBundle;
 public class MarketController implements Initializable {
 
     @FXML
+    private Button addProd;
+
+    @FXML
     private TextField searchTextField;
 
     @FXML
@@ -286,6 +289,8 @@ public class MarketController implements Initializable {
         saledP.setText("");
         descP.setText("");
         imgP.setImage(null);
+        addProd.setVisible(false);
+        qtyP.setVisible(false);
     }
 
 }
